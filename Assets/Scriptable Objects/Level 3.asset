@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bc3eb84fac1c79459ba1a5c580d7a88, type: 3}
+  m_Name: Level 3
+  m_EditorClassIdentifier: 
+  LevelNum: 3
+  NumOfGeneralColors: 0
+  NumOfGeneralSymbol: 1
+  NumOfSpecificColors: 0
+  NumOfSpecificSymbols: 0
+  NumOfRedColorLimiter: 0
+  NumOfBlueColorLimiter: 0
+  NumOfYellowColorLimiter: 0
+  NumOfPinkColorLimiter: 0
+  NumOfSquareShapeLimiter: 0
+  NumOfTriangleShapeLimiter: 0
+  NumOfPlusShapeLimiter: 0
+  NumOfCircleShapeLimiter: 0
+  GeneralColorLimiter: {fileID: 0}
+  GeneralSymbolLimiter: {fileID: 166987301943786010, guid: 7fb3ab365b2b5204eb0f2c14a9a7d379,
+    type: 3}
+  RedColorLimiter: {fileID: 0}
+  BlueColorLimiter: {fileID: 0}
+  YellowColorLimiter: {fileID: 0}
+  PinkColorLimiter: {fileID: 0}
+  SquareShapeLimiter: {fileID: 0}
+  TriangleShapeLimiter: {fileID: 0}
+  PlusShapeLimiter: {fileID: 0}
+  CircleShapeLimiter: {fileID: 0}
+  SpecificColorLimiters:
+  - {fileID: 6907255254345208100, guid: 816b9fe7ae27fca49bf421a66cee1ea6, type: 3}
+  - {fileID: 6974204443252933433, guid: 757e791464a6f174d8a8ddd7784c9ecf, type: 3}
+  - {fileID: 344991765306433361, guid: 31d1667cd80258e4290a407a4be337fe, type: 3}
+  - {fileID: 6953025811541798861, guid: 717e085b76f501e488a88ca1a5545aaf, type: 3}
+  SpecificSymbolLimiters:
+  - {fileID: 8668036997334722415, guid: 219c03d63265f624ebe21bcc9e38c6ad, type: 3}
+  - {fileID: 6891077082690501355, guid: 37457def2f23a474cbbb2a6323fccbc8, type: 3}
+  - {fileID: 5598056756775799692, guid: b179753565f381344b938c984ff8886e, type: 3}
+  - {fileID: 7293285188048754860, guid: 0ae41b8f5ef17b7469a2f88aed13d0a3, type: 3}
