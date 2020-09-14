@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5815842131392355583}
   m_Layer: 9
   m_Name: Mouse Piece Detector
-  m_TagString: Untagged
+  m_TagString: MouseDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

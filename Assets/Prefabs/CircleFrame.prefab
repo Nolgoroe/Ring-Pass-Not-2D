@@ -755,6 +755,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsFull: 0
   TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
+  boolTypeOfSlice: 4
 --- !u!1 &1390533573340998790
 GameObject:
   m_ObjectHideFlags: 0
@@ -829,7 +833,10 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
-  TypeOfLimiter: 0
+  TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
   Rsymbol: 4
   Rcolor: 4
   Lsymbol: 4
@@ -930,7 +937,10 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
-  TypeOfLimiter: 0
+  TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
   Rsymbol: 4
   Rcolor: 4
   Lsymbol: 4
@@ -1069,7 +1079,10 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
-  TypeOfLimiter: 0
+  TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
   Rsymbol: 4
   Rcolor: 4
   Lsymbol: 4
@@ -1141,6 +1154,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsFull: 0
   TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
+  boolTypeOfSlice: 4
 --- !u!1 &2423585661347231327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,6 +1203,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsFull: 0
   TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
+  boolTypeOfSlice: 4
 --- !u!1 &2487633633436840302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,7 +1281,10 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
-  TypeOfLimiter: 0
+  TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
   Rsymbol: 4
   Rcolor: 4
   Lsymbol: 4
@@ -1361,7 +1385,10 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
-  TypeOfLimiter: 0
+  TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
   Rsymbol: 4
   Rcolor: 4
   Lsymbol: 4
@@ -1462,7 +1489,10 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
-  TypeOfLimiter: 0
+  TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
   Rsymbol: 4
   Rcolor: 4
   Lsymbol: 4
@@ -1534,6 +1564,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsFull: 0
   TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
+  boolTypeOfSlice: 4
 --- !u!1 &4448597237925216128
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,7 +1680,10 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
-  TypeOfLimiter: 0
+  TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
   Rsymbol: 4
   Rcolor: 4
   Lsymbol: 4
@@ -1718,6 +1755,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsFull: 0
   TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
+  boolTypeOfSlice: 4
 --- !u!1 &6382559071292991177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,6 +1928,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsFull: 0
   TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
+  boolTypeOfSlice: 4
 --- !u!1 &8509420411794038460
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,7 +2006,10 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
-  TypeOfLimiter: 0
+  TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
   Rsymbol: 4
   Rcolor: 4
   Lsymbol: 4
@@ -2071,6 +2119,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsFull: 0
   TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
+  boolTypeOfSlice: 4
 --- !u!1 &9104597469676834754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2116,3 +2168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsFull: 0
   TypeOfLimiter: 10
+  TypeOfLootLimiter: 10
+  TypeOfLootSlice: 10
+  TypeOfLootLockSlice: 10
+  boolTypeOfSlice: 4

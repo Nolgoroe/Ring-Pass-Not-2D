@@ -9,6 +9,7 @@ public class PieceMoveManager : MonoBehaviour
 
     public bool IsBeingHeld;
     public bool PartOfBoard;
+    public bool Locked = false;
 
     //public bool EnteredBoard;
     [HideInInspector]
@@ -92,7 +93,21 @@ public class PieceMoveManager : MonoBehaviour
 
     public void Update()
     {
-        if (IsBeingHeld)
+        if (Locked)
+        {
+            foreach (Transform child in transform)
+            {
+                if (child.CompareTag("Lock"))
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
+
+            return;
+
+        }
+
+        if (IsBeingHeld && !Locked)
         {
             transform.parent = null;
             //ThisRenderer.sortingOrder = 10;
@@ -104,5 +119,6 @@ public class PieceMoveManager : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
             //Debug.Log(angle);
         }
+        
     }
 }

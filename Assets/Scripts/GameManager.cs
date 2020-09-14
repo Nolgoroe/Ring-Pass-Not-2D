@@ -58,6 +58,12 @@ public class GameManager : MonoBehaviour
 
     public void StartLevel()
     {
+        if (GameLevels.Count == 0)
+        {
+            Debug.LogError("NO LEVELS LOADED! Please load levels.");
+            return;
+        }
+
         GameObject C = Instantiate(ClipPrefab, DeleteOnLevelTransfer.transform);
         C.tag = "Clip";
 
@@ -142,9 +148,10 @@ public class GameManager : MonoBehaviour
 
             if (!LimiterCells[RandomCell].IsFull)
             {
-                Instantiate(GameLevels[CurrentLevelNum].GeneralColorLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].GeneralColorLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
                 LimiterCells[RandomCell].IsFull = true;
                 LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].GeneralColorLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
                 i++;
             }
         }
@@ -161,161 +168,10 @@ public class GameManager : MonoBehaviour
 
             if (!LimiterCells[RandomCell].IsFull)
             {
-                Instantiate(GameLevels[CurrentLevelNum].GeneralSymbolLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].GeneralSymbolLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
                 LimiterCells[RandomCell].IsFull = true;
                 LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].GeneralSymbolLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
-                i++;
-            }
-        }
-
-        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfRedColorLimiter;)
-        {
-            if (LevelNumOfLimiters > LimiterCells.Count)
-            {
-                Debug.LogError("Too many limiters! what the hell man!");
-                break;
-            }
-
-            int RandomCell = Random.Range(0, LimiterCells.Count);
-
-            if (!LimiterCells[RandomCell].IsFull)
-            {
-                Instantiate(GameLevels[CurrentLevelNum].RedColorLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
-                LimiterCells[RandomCell].IsFull = true;
-                LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].RedColorLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
-                i++;
-            }
-        }
-
-        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfBlueColorLimiter;)
-        {
-            if (LevelNumOfLimiters > LimiterCells.Count)
-            {
-                Debug.LogError("Too many limiters! what the hell man!");
-                break;
-            }
-
-            int RandomCell = Random.Range(0, LimiterCells.Count);
-
-            if (!LimiterCells[RandomCell].IsFull)
-            {
-                Instantiate(GameLevels[CurrentLevelNum].BlueColorLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
-                LimiterCells[RandomCell].IsFull = true;
-                LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].BlueColorLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
-                i++;
-            }
-        }
-
-        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfYellowColorLimiter;)
-        {
-            if (LevelNumOfLimiters > LimiterCells.Count)
-            {
-                Debug.LogError("Too many limiters! what the hell man!");
-                break;
-            }
-
-            int RandomCell = Random.Range(0, LimiterCells.Count);
-
-            if (!LimiterCells[RandomCell].IsFull)
-            {
-                Instantiate(GameLevels[CurrentLevelNum].YellowColorLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
-                LimiterCells[RandomCell].IsFull = true;
-                LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].YellowColorLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
-                i++;
-            }
-        }
-
-        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfPinkColorLimiter;)
-        {
-            if (LevelNumOfLimiters > LimiterCells.Count)
-            {
-                Debug.LogError("Too many limiters! what the hell man!");
-                break;
-            }
-
-            int RandomCell = Random.Range(0, LimiterCells.Count);
-
-            if (!LimiterCells[RandomCell].IsFull)
-            {
-                Instantiate(GameLevels[CurrentLevelNum].PinkColorLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
-                LimiterCells[RandomCell].IsFull = true;
-                LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].PinkColorLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
-                i++;
-            }
-        }
-
-        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfSquareShapeLimiter;)
-        {
-            if (LevelNumOfLimiters > LimiterCells.Count)
-            {
-                Debug.LogError("Too many limiters! what the hell man!");
-                break;
-            }
-
-            int RandomCell = Random.Range(0, LimiterCells.Count);
-
-            if (!LimiterCells[RandomCell].IsFull)
-            {
-                Instantiate(GameLevels[CurrentLevelNum].SquareShapeLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
-                LimiterCells[RandomCell].IsFull = true;
-                LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].SquareShapeLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
-                i++;
-            }
-        }
-
-        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfTriangleShapeLimiter;)
-        {
-            if (LevelNumOfLimiters > LimiterCells.Count)
-            {
-                Debug.LogError("Too many limiters! what the hell man!");
-                break;
-            }
-
-            int RandomCell = Random.Range(0, LimiterCells.Count);
-
-            if (!LimiterCells[RandomCell].IsFull)
-            {
-                Instantiate(GameLevels[CurrentLevelNum].TriangleShapeLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
-                LimiterCells[RandomCell].IsFull = true;
-                LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].TriangleShapeLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
-                i++;
-            }
-        }
-
-        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfPlusShapeLimiter;)
-        {
-            if (LevelNumOfLimiters > LimiterCells.Count)
-            {
-                Debug.LogError("Too many limiters! what the hell man!");
-                break;
-            }
-
-            int RandomCell = Random.Range(0, LimiterCells.Count);
-
-            if (!LimiterCells[RandomCell].IsFull)
-            {
-                Instantiate(GameLevels[CurrentLevelNum].PlusShapeLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
-                LimiterCells[RandomCell].IsFull = true;
-                LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].PlusShapeLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
-                i++;
-            }
-        }
-
-        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfCircleShapeLimiter;)
-        {
-            if (LevelNumOfLimiters > LimiterCells.Count)
-            {
-                Debug.LogError("Too many limiters! what the hell man!");
-                break;
-            }
-
-            int RandomCell = Random.Range(0, LimiterCells.Count);
-
-            if (!LimiterCells[RandomCell].IsFull)
-            {
-                Instantiate(GameLevels[CurrentLevelNum].CircleShapeLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
-                LimiterCells[RandomCell].IsFull = true;
-                LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].CircleShapeLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
                 i++;
             }
         }
@@ -329,13 +185,14 @@ public class GameManager : MonoBehaviour
             }
 
             int RandomCell = Random.Range(0, LimiterCells.Count);
-            int RandomSpecific = Random.Range(0, GameLevels[CurrentLevelNum].SpecificColorLimiters.Length);
+            int RandomSpecific = Random.Range(0, GameLevels[CurrentLevelNum].SpecificColorLimitersPrefabs.Length);
 
             if (!LimiterCells[RandomCell].IsFull)
             {
-                Instantiate(GameLevels[CurrentLevelNum].SpecificColorLimiters[RandomSpecific], LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].SpecificColorLimitersPrefabs[RandomSpecific], LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
                 LimiterCells[RandomCell].IsFull = true;
-                LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].SpecificColorLimiters[RandomSpecific].GetComponent<LimiterPiece>().TypeOfLimiter;
+                LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].SpecificColorLimitersPrefabs[RandomSpecific].GetComponent<LimiterPiece>().TypeOfLimiter;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
                 i++;
             }
         }
@@ -349,16 +206,434 @@ public class GameManager : MonoBehaviour
             }
 
             int RandomCell = Random.Range(0, LimiterCells.Count);
-            int RandomSpecific = Random.Range(0, GameLevels[CurrentLevelNum].SpecificSymbolLimiters.Length);
+            int RandomSpecific = Random.Range(0, GameLevels[CurrentLevelNum].SpecificSymbolLimitersPrefabs.Length);
 
             if (!LimiterCells[RandomCell].IsFull)
             {
-                Instantiate(GameLevels[CurrentLevelNum].SpecificSymbolLimiters[RandomSpecific], LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].SpecificSymbolLimitersPrefabs[RandomSpecific], LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
                 LimiterCells[RandomCell].IsFull = true;
-                LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].SpecificSymbolLimiters[RandomSpecific].GetComponent<LimiterPiece>().TypeOfLimiter;
+                LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].SpecificSymbolLimitersPrefabs[RandomSpecific].GetComponent<LimiterPiece>().TypeOfLimiter;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
                 i++;
             }
         }
+
+
+
+
+        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfLootGeneralColors;)
+        {
+            if (LevelNumOfLimiters > LimiterCells.Count)
+            {
+                Debug.LogError("Too many limiters! what the hell man!");
+                break;
+            }
+
+            int RandomCell = Random.Range(0, LimiterCells.Count);
+
+            if (!LimiterCells[RandomCell].IsFull)
+            {
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].GeneralLootColorLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                LimiterCells[RandomCell].IsFull = true;
+                LimiterCells[RandomCell].TypeOfLootSlice = GameLevels[CurrentLevelNum].GeneralLootColorLimiter.GetComponent<LimiterPiece>().TypeOfLootSlice;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+                i++;
+            }
+        }
+
+        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfLootGeneralSymbol;)
+        {
+            if (LevelNumOfLimiters > LimiterCells.Count)
+            {
+                Debug.LogError("Too many limiters! what the hell man!");
+                break;
+            }
+
+            int RandomCell = Random.Range(0, LimiterCells.Count);
+
+            if (!LimiterCells[RandomCell].IsFull)
+            {
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].GeneralLootSymbolLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                LimiterCells[RandomCell].IsFull = true;
+                LimiterCells[RandomCell].TypeOfLootSlice = GameLevels[CurrentLevelNum].GeneralLootSymbolLimiter.GetComponent<LimiterPiece>().TypeOfLootSlice;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+                i++;
+            }
+        }
+
+        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfLootSpecificColors;)
+        {
+            if (LevelNumOfLimiters > LimiterCells.Count)
+            {
+                Debug.LogError("Too many limiters! what the hell man!");
+                break;
+            }
+
+            int RandomCell = Random.Range(0, LimiterCells.Count);
+            int RandomSpecific = Random.Range(0, GameLevels[CurrentLevelNum].SpecificLootColorLimitersPrefabs.Length);
+
+            if (!LimiterCells[RandomCell].IsFull)
+            {
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].SpecificLootColorLimitersPrefabs[RandomSpecific], LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                LimiterCells[RandomCell].IsFull = true;
+                LimiterCells[RandomCell].TypeOfLootSlice = GameLevels[CurrentLevelNum].SpecificLootColorLimitersPrefabs[RandomSpecific].GetComponent<LimiterPiece>().TypeOfLootSlice;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+                i++;
+            }
+        }
+
+        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfLootSpecificSymbols;)
+        {
+            if (LevelNumOfLimiters > LimiterCells.Count)
+            {
+                Debug.LogError("Too many limiters! what the hell man!");
+                break;
+            }
+
+            int RandomCell = Random.Range(0, LimiterCells.Count);
+            int RandomSpecific = Random.Range(0, GameLevels[CurrentLevelNum].SpecificLootSymbolLimitersPrefabs.Length);
+
+            if (!LimiterCells[RandomCell].IsFull)
+            {
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].SpecificLootSymbolLimitersPrefabs[RandomSpecific], LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                LimiterCells[RandomCell].IsFull = true;
+                LimiterCells[RandomCell].TypeOfLootSlice = GameLevels[CurrentLevelNum].SpecificLootSymbolLimitersPrefabs[RandomSpecific].GetComponent<LimiterPiece>().TypeOfLootSlice;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+                i++;
+            }
+        }
+
+
+
+
+
+        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfLootLockGeneralColors;)
+        {
+            if (LevelNumOfLimiters > LimiterCells.Count)
+            {
+                Debug.LogError("Too many limiters! what the hell man!");
+                break;
+            }
+
+            int RandomCell = Random.Range(0, LimiterCells.Count);
+
+            if (!LimiterCells[RandomCell].IsFull)
+            {
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].GeneralLootLockColorLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                LimiterCells[RandomCell].IsFull = true;
+                LimiterCells[RandomCell].TypeOfLootLockSlice = GameLevels[CurrentLevelNum].GeneralLootLockColorLimiter.GetComponent<LimiterPiece>().TypeOfLootLockSlice;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+                i++;
+            }
+        }
+
+        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfLootLockGeneralSymbol;)
+        {
+            if (LevelNumOfLimiters > LimiterCells.Count)
+            {
+                Debug.LogError("Too many limiters! what the hell man!");
+                break;
+            }
+
+            int RandomCell = Random.Range(0, LimiterCells.Count);
+
+            if (!LimiterCells[RandomCell].IsFull)
+            {
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].GeneralLootLockSymbolLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                LimiterCells[RandomCell].IsFull = true;
+                LimiterCells[RandomCell].TypeOfLootLockSlice = GameLevels[CurrentLevelNum].GeneralLootLockSymbolLimiter.GetComponent<LimiterPiece>().TypeOfLootLockSlice;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+                i++;
+            }
+        }
+
+        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfLootLockSpecificColors;)
+        {
+            if (LevelNumOfLimiters > LimiterCells.Count)
+            {
+                Debug.LogError("Too many limiters! what the hell man!");
+                break;
+            }
+
+            int RandomCell = Random.Range(0, LimiterCells.Count);
+            int RandomSpecific = Random.Range(0, GameLevels[CurrentLevelNum].SpecificLootLockColorLimitersPrefabs.Length);
+
+            if (!LimiterCells[RandomCell].IsFull)
+            {
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].SpecificLootLockColorLimitersPrefabs[RandomSpecific], LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                LimiterCells[RandomCell].IsFull = true;
+                LimiterCells[RandomCell].TypeOfLootLockSlice = GameLevels[CurrentLevelNum].SpecificLootLockColorLimitersPrefabs[RandomSpecific].GetComponent<LimiterPiece>().TypeOfLootLockSlice;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+                i++;
+            }
+        }
+
+        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfLootLockSpecificSymbols;)
+        {
+            if (LevelNumOfLimiters > LimiterCells.Count)
+            {
+                Debug.LogError("Too many limiters! what the hell man!");
+                break;
+            }
+
+            int RandomCell = Random.Range(0, LimiterCells.Count);
+            int RandomSpecific = Random.Range(0, GameLevels[CurrentLevelNum].SpecificLootLockSymbolLimitersPrefabs.Length);
+
+            if (!LimiterCells[RandomCell].IsFull)
+            {
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].SpecificLootLockSymbolLimitersPrefabs[RandomSpecific], LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                LimiterCells[RandomCell].IsFull = true;
+                LimiterCells[RandomCell].TypeOfLootLockSlice = GameLevels[CurrentLevelNum].SpecificLootLockSymbolLimitersPrefabs[RandomSpecific].GetComponent<LimiterPiece>().TypeOfLootLockSlice;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+                i++;
+            }
+        }
+
+
+
+
+        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfLootLimiterGeneralColors;)
+        {
+            if (LevelNumOfLimiters > LimiterCells.Count)
+            {
+                Debug.LogError("Too many limiters! what the hell man!");
+                break;
+            }
+
+            int RandomCell = Random.Range(0, LimiterCells.Count);
+
+            if (!LimiterCells[RandomCell].IsFull)
+            {
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].GeneralLootLimiterColorLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                LimiterCells[RandomCell].IsFull = true;
+                LimiterCells[RandomCell].TypeOfLootLimiter = GameLevels[CurrentLevelNum].GeneralLootLimiterColorLimiter.GetComponent<LimiterPiece>().TypeOfLootLimiter;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+                i++;
+            }
+        }
+
+        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfLootLimiterGeneralSymbol;)
+        {
+            if (LevelNumOfLimiters > LimiterCells.Count)
+            {
+                Debug.LogError("Too many limiters! what the hell man!");
+                break;
+            }
+
+            int RandomCell = Random.Range(0, LimiterCells.Count);
+
+            if (!LimiterCells[RandomCell].IsFull)
+            {
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].GeneralLootLimiterSymbolLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                LimiterCells[RandomCell].IsFull = true;
+                LimiterCells[RandomCell].TypeOfLootLimiter = GameLevels[CurrentLevelNum].GeneralLootLimiterSymbolLimiter.GetComponent<LimiterPiece>().TypeOfLootLimiter;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+                i++;
+            }
+        }
+
+        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfLootLimiterSpecificColors;)
+        {
+            if (LevelNumOfLimiters > LimiterCells.Count)
+            {
+                Debug.LogError("Too many limiters! what the hell man!");
+                break;
+            }
+
+            int RandomCell = Random.Range(0, LimiterCells.Count);
+            int RandomSpecific = Random.Range(0, GameLevels[CurrentLevelNum].SpecificLootLimiterColorLimitersPrefabs.Length);
+
+            if (!LimiterCells[RandomCell].IsFull)
+            {
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].SpecificLootLimiterColorLimitersPrefabs[RandomSpecific], LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                LimiterCells[RandomCell].IsFull = true;
+                LimiterCells[RandomCell].TypeOfLootLimiter = GameLevels[CurrentLevelNum].SpecificLootLimiterColorLimitersPrefabs[RandomSpecific].GetComponent<LimiterPiece>().TypeOfLootLimiter;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+                i++;
+            }
+        }
+
+        for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfLootLimiterSpecificSymbols;)
+        {
+            if (LevelNumOfLimiters > LimiterCells.Count)
+            {
+                Debug.LogError("Too many limiters! what the hell man!");
+                break;
+            }
+
+            int RandomCell = Random.Range(0, LimiterCells.Count);
+            int RandomSpecific = Random.Range(0, GameLevels[CurrentLevelNum].SpecificLootLimiterSymbolLimitersPrefabs.Length);
+
+            if (!LimiterCells[RandomCell].IsFull)
+            {
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].SpecificLootLimiterSymbolLimitersPrefabs[RandomSpecific], LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+                LimiterCells[RandomCell].IsFull = true;
+                LimiterCells[RandomCell].TypeOfLootLimiter = GameLevels[CurrentLevelNum].SpecificLootLimiterSymbolLimitersPrefabs[RandomSpecific].GetComponent<LimiterPiece>().TypeOfLootLimiter;
+                LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+                i++;
+            }
+        }
+
+        //for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfRedColorLimiter;)
+        //{
+        //    if (LevelNumOfLimiters > LimiterCells.Count)
+        //    {
+        //        Debug.LogError("Too many limiters! what the hell man!");
+        //        break;
+        //    }
+
+        //    int RandomCell = Random.Range(0, LimiterCells.Count);
+
+        //    if (!LimiterCells[RandomCell].IsFull)
+        //    {
+        //        GameObject go = Instantiate(GameLevels[CurrentLevelNum].RedColorLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+        //        LimiterCells[RandomCell].IsFull = true;
+        //        LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].RedColorLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
+        //        LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+        //        i++;
+        //    }
+        //}
+
+        //for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfBlueColorLimiter;)
+        //{
+        //    if (LevelNumOfLimiters > LimiterCells.Count)
+        //    {
+        //        Debug.LogError("Too many limiters! what the hell man!");
+        //        break;
+        //    }
+
+        //    int RandomCell = Random.Range(0, LimiterCells.Count);
+
+        //    if (!LimiterCells[RandomCell].IsFull)
+        //    {
+        //        GameObject go = Instantiate(GameLevels[CurrentLevelNum].BlueColorLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+        //        LimiterCells[RandomCell].IsFull = true;
+        //        LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].BlueColorLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
+        //        LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+        //        i++;
+        //    }
+        //}
+
+        //for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfYellowColorLimiter;)
+        //{
+        //    if (LevelNumOfLimiters > LimiterCells.Count)
+        //    {
+        //        Debug.LogError("Too many limiters! what the hell man!");
+        //        break;
+        //    }
+
+        //    int RandomCell = Random.Range(0, LimiterCells.Count);
+
+        //    if (!LimiterCells[RandomCell].IsFull)
+        //    {
+        //        GameObject go = Instantiate(GameLevels[CurrentLevelNum].YellowColorLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+        //        LimiterCells[RandomCell].IsFull = true;
+        //        LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].YellowColorLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
+        //        LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+        //        i++;
+        //    }
+        //}
+
+        //for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfPinkColorLimiter;)
+        //{
+        //    if (LevelNumOfLimiters > LimiterCells.Count)
+        //    {
+        //        Debug.LogError("Too many limiters! what the hell man!");
+        //        break;
+        //    }
+
+        //    int RandomCell = Random.Range(0, LimiterCells.Count);
+
+        //    if (!LimiterCells[RandomCell].IsFull)
+        //    {
+        //        GameObject go = Instantiate(GameLevels[CurrentLevelNum].PinkColorLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+        //        LimiterCells[RandomCell].IsFull = true;
+        //        LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].PinkColorLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
+        //        LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+        //        i++;
+        //    }
+        //}
+
+        //for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfSquareShapeLimiter;)
+        //{
+        //    if (LevelNumOfLimiters > LimiterCells.Count)
+        //    {
+        //        Debug.LogError("Too many limiters! what the hell man!");
+        //        break;
+        //    }
+
+        //    int RandomCell = Random.Range(0, LimiterCells.Count);
+
+        //    if (!LimiterCells[RandomCell].IsFull)
+        //    {
+        //        GameObject go = Instantiate(GameLevels[CurrentLevelNum].SquareShapeLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+        //        LimiterCells[RandomCell].IsFull = true;
+        //        LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].SquareShapeLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
+        //        LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+        //        i++;
+        //    }
+        //}
+
+        //for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfTriangleShapeLimiter;)
+        //{
+        //    if (LevelNumOfLimiters > LimiterCells.Count)
+        //    {
+        //        Debug.LogError("Too many limiters! what the hell man!");
+        //        break;
+        //    }
+
+        //    int RandomCell = Random.Range(0, LimiterCells.Count);
+
+        //    if (!LimiterCells[RandomCell].IsFull)
+        //    {
+        //        GameObject go = Instantiate(GameLevels[CurrentLevelNum].TriangleShapeLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+        //        LimiterCells[RandomCell].IsFull = true;
+        //        LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].TriangleShapeLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
+        //        LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+        //        i++;
+        //    }
+        //}
+
+        //for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfPlusShapeLimiter;)
+        //{
+        //    if (LevelNumOfLimiters > LimiterCells.Count)
+        //    {
+        //        Debug.LogError("Too many limiters! what the hell man!");
+        //        break;
+        //    }
+
+        //    int RandomCell = Random.Range(0, LimiterCells.Count);
+
+        //    if (!LimiterCells[RandomCell].IsFull)
+        //    {
+        //        GameObject go = Instantiate(GameLevels[CurrentLevelNum].PlusShapeLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+        //        LimiterCells[RandomCell].IsFull = true;
+        //        LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].PlusShapeLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
+        //        LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+        //        i++;
+        //    }
+        //}
+
+        //for (int i = 0; i < GameLevels[CurrentLevelNum].NumOfCircleShapeLimiter;)
+        //{
+        //    if (LevelNumOfLimiters > LimiterCells.Count)
+        //    {
+        //        Debug.LogError("Too many limiters! what the hell man!");
+        //        break;
+        //    }
+
+        //    int RandomCell = Random.Range(0, LimiterCells.Count);
+
+        //    if (!LimiterCells[RandomCell].IsFull)
+        //    {
+        //        GameObject go = Instantiate(GameLevels[CurrentLevelNum].CircleShapeLimiter, LimiterCells[RandomCell].transform.position, LimiterCells[RandomCell].transform.rotation, LimiterCells[RandomCell].transform);
+        //        LimiterCells[RandomCell].IsFull = true;
+        //        LimiterCells[RandomCell].TypeOfLimiter = GameLevels[CurrentLevelNum].CircleShapeLimiter.GetComponent<LimiterPiece>().TypeOfLimiter;
+        //        LimiterCells[RandomCell].boolTypeOfSlice = go.GetComponent<LimiterPiece>().boolTypeOfSlice;
+        //        i++;
+        //    }
+        //}
+
     }
 
     public void FillClipPiece(GameObject ToFill)

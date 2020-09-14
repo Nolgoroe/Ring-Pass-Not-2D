@@ -22,6 +22,11 @@ public class MouseCollisionDetection : MonoBehaviour
                 {
                     Debug.Log("What?");
                     PieceToMove = collision.gameObject.GetComponent<PieceMoveManager>();
+                    if (PieceToMove.Locked)
+                    {
+                        PieceToMove = null;
+                        Debug.Log("Piece Locked");
+                    }
                 }
             }
         }
@@ -241,8 +246,12 @@ public class MouseCollisionDetection : MonoBehaviour
                                 InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Rconnect.Lsymbol = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
                                 InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Rconnect.Lcolor = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
 
+                                InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Rconnect.LeftPieceParent = PieceToMove;
+
                                 InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Lconnect.Rsymbol = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
                                 InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Lconnect.Rcolor = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+
+                                InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Lconnect.RightPieceParent = PieceToMove;
 
                                 InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Lconnect.CheckConnection();
                                 InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Rconnect.CheckConnection();
