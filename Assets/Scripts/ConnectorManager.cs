@@ -30,6 +30,8 @@ public class ConnectorManager : MonoBehaviour
 
     SpriteRenderer ThisSpriteRenderer, FirstChildSpriteRenderer, SecondChildSpriteRenderer;
 
+    Rigidbody2D FirstChildBody, SecondChildBody;
+
     private void Update()
     {
         if(ConnectorLimiter.TypeOfLimiter != LimiterType.None)
@@ -810,6 +812,8 @@ public class ConnectorManager : MonoBehaviour
             ThisSpriteRenderer = ConnectorLimiter.transform.GetChild(0).GetComponent<SpriteRenderer>();
 
             FirstChildSpriteRenderer = ConnectorLimiter.transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>();
+
+            FirstChildBody = ConnectorLimiter.transform.GetChild(0).transform.GetChild(0).GetComponent<Rigidbody2D>();
         }
 
         ConnectorLimiter.TypeOfLootSlice = LootSliceType.None;
@@ -820,6 +824,9 @@ public class ConnectorManager : MonoBehaviour
         TypeOfLootSlice = LootSliceType.None;
         ThisSpriteRenderer.color = new Color(ThisSpriteRenderer.color.r, ThisSpriteRenderer.color.g, ThisSpriteRenderer.color.b, 0.3f);
         FirstChildSpriteRenderer.color = new Color(FirstChildSpriteRenderer.color.r, FirstChildSpriteRenderer.color.g, FirstChildSpriteRenderer.color.b, 0.3f);
+        FirstChildBody.gravityScale = 1;
+
+        RecieveLoot();
     }
 
     public void lootlocksliceReset()
@@ -831,6 +838,8 @@ public class ConnectorManager : MonoBehaviour
             FirstChildSpriteRenderer = ConnectorLimiter.transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>();
 
             SecondChildSpriteRenderer = ConnectorLimiter.transform.GetChild(0).transform.GetChild(1).GetComponent<SpriteRenderer>();
+
+            SecondChildBody = ConnectorLimiter.transform.GetChild(0).transform.GetChild(1).GetComponent<Rigidbody2D>();
         }
 
         ConnectorLimiter.TypeOfLootLockSlice = LootLockSliceType.None;
@@ -842,7 +851,10 @@ public class ConnectorManager : MonoBehaviour
 
         ThisSpriteRenderer.color = new Color(ThisSpriteRenderer.color.r, ThisSpriteRenderer.color.g, ThisSpriteRenderer.color.b, 0.3f);
         FirstChildSpriteRenderer.color = new Color(FirstChildSpriteRenderer.color.r, FirstChildSpriteRenderer.color.g, FirstChildSpriteRenderer.color.b, 0.3f);
+        SecondChildSpriteRenderer.color = new Color(SecondChildSpriteRenderer.color.r, SecondChildSpriteRenderer.color.g, SecondChildSpriteRenderer.color.b, 0.3f);
 
+        SecondChildBody.gravityScale = 1;
+        RecieveLoot();
     }
 
     public void CheckForNormalConnectionSlices()
@@ -859,5 +871,37 @@ public class ConnectorManager : MonoBehaviour
         {
             BadConnectionToggle();
         }
+    }
+
+    public void RecieveLoot()
+    {
+        Debug.Log("Recieved Loot");
+        int Randomloot = Random.Range(0, GameManager.Instance.LevelSpecificLoot.Count);
+
+        Debug.Log(Randomloot);
+        Debug.Log(GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].LootForLevel[Randomloot]);
+
+        switch (GameManager.Instance.LevelSpecificLoot[Randomloot])
+        {
+            case LootType.SmallGold:
+                LootManager.Instance.GainGold(LootType.SmallGold);
+                break;
+            case LootType.BigGold:
+                LootManager.Instance.GainGold(LootType.BigGold);
+                break;
+            case LootType.SmallRuby:
+                LootManager.Instance.GainRubie(LootType.SmallRuby);
+                break;
+            case LootType.BigRuby:
+                LootManager.Instance.GainRubie(LootType.BigRuby);
+                break;
+            case LootType.MagicItem:
+                LootManager.Instance.GainMagicalItems();
+                break;
+            default:
+                break;
+        }
+
+        GameManager.Instance.LevelSpecificLoot.RemoveAt(Randomloot);
     }
 }

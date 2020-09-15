@@ -20,7 +20,7 @@ public class MouseCollisionDetection : MonoBehaviour
             {
                 if (Input.touchCount > 0)
                 {
-                    Debug.Log("What?");
+                    //Debug.Log("What?");
                     PieceToMove = collision.gameObject.GetComponent<PieceMoveManager>();
                     if (PieceToMove.Locked)
                     {
@@ -215,16 +215,16 @@ public class MouseCollisionDetection : MonoBehaviour
             if (touch.phase == TouchPhase.Ended)
             {
                 SkipLevel = false;
-                Debug.Log("Touch Up");
+                //Debug.Log("Touch Up");
                 if (EnteredBoard)
                 {
-                    Debug.Log("In Board");
+                    //Debug.Log("In Board");
                     if (PieceToMove != null)
                     {
-                        Debug.Log("Has Piece");
+                        //Debug.Log("Has Piece");
                         if (InteractedColliders.Count != 0)
                         {
-                            Debug.Log("InteractedColliders Not Empty");
+                            //Debug.Log("InteractedColliders Not Empty");
                             if (InteractedColliders[InteractedColliders.Count -1].GetComponent<CellInfo>().Full == false)
                             {
                                 if (PieceToMove.OriginalParent.CompareTag("MiniClipDaddy"))

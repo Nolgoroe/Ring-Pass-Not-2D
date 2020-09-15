@@ -101,6 +101,27 @@ MonoBehaviour:
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 4
   boolTypeOfSlice: 3
+--- !u!50 &569993234584502483
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7398294291771973011}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &2700440864343998540
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -245,6 +266,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce9119c65bb764940b85ee1f75e47111, type: 3}
+--- !u!1 &7398294291771973011 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5703959832018399235, guid: ce9119c65bb764940b85ee1f75e47111,
+    type: 3}
+  m_PrefabInstance: {fileID: 2991670306035461520}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5803044457627227167 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8722349304757909903, guid: ce9119c65bb764940b85ee1f75e47111,

@@ -52,6 +52,10 @@ public class LevelManager : ScriptableObject
     public GameObject[] SpecificLootLimiterColorLimitersPrefabs, SpecificLootLimiterSymbolLimitersPrefabs;
     #endregion
 
+    #region Loot Zone
+    public List<LootType> LootForLevel;
+    #endregion
+
     //public int NumOfRedColorLimiter, NumOfBlueColorLimiter, NumOfYellowColorLimiter, NumOfPinkColorLimiter;
 
     //public int NumOfSquareShapeLimiter, NumOfTriangleShapeLimiter, NumOfPlusShapeLimiter, NumOfCircleShapeLimiter;

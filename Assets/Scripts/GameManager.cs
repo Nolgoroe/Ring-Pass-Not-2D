@@ -44,11 +44,16 @@ public class GameManager : MonoBehaviour
     public int SuccesfullConnectionsMade = 0;
 
     public GameObject DeleteOnLevelTransfer;
+
+    public List<LootType> LevelSpecificLoot;
+
+    PlayerData ThePlayer;
     int LevelNumOfLimiters;
 
     void Start()
     {
         Instance = this;
+        ThePlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
     }
 
     public void StartGame()
@@ -92,7 +97,12 @@ public class GameManager : MonoBehaviour
         UiManager.Instance.StartGameButton.gameObject.SetActive(false);
         UiManager.Instance.LevelNum.text = "Level: " + GameLevels[CurrentLevelNum].LevelNum.ToString();
         UiManager.Instance.LevelNum.gameObject.SetActive(true);
-        //UiManager.Instance.Commit.interactable = false;
+
+        UiManager.Instance.GoldText.text = "Gold: " + ThePlayer.Gold;
+        UiManager.Instance.RubiesText.text = "Rubies: "+ ThePlayer.Rubies;
+        UiManager.Instance.MagicalItemText.text = "Magical Items: " + ThePlayer.MagicalItems;
+        LevelSpecificLoot.Clear();
+        LevelSpecificLoot.AddRange(GameLevels[CurrentLevelNum].LootForLevel);
     }
 
     public void FillClip()
