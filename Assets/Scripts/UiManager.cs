@@ -36,6 +36,7 @@ public class UiManager : MonoBehaviour
 
     public List<Button> LevelButtons;
 
+    public bool OptionsOpen;
     void Start()
     {
         Instance = this;
@@ -104,10 +105,12 @@ public class UiManager : MonoBehaviour
         if (Toggle)
         {
             OptionsWindow.SetActive(true);
+            OptionsOpen = true;
         }
         else
         {
             OptionsWindow.SetActive(false);
+            OptionsOpen = false;
         }
     }
 
