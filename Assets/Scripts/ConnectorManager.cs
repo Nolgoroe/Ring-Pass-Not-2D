@@ -902,6 +902,7 @@ public class ConnectorManager : MonoBehaviour
                 break;
         }
 
+        GameManager.Instance.ThePlayer.SaveDate();
         GameManager.Instance.LevelSpecificLoot.RemoveAt(Randomloot);
     }
 }

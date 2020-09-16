@@ -144,12 +144,12 @@ public class MouseCollisionDetection : MonoBehaviour
 
     private void Update()
     {
-        if(Input.touchCount >= 3 && !SkipLevel)
-        {
-            SkipLevel = true;
-            GameManager.Instance.StartNextLevel();
-            return;
-        }
+        //if(Input.touchCount >= 3 && !SkipLevel)
+        //{
+        //    SkipLevel = true;
+        //    GameManager.Instance.StartNextLevel();
+        //    return;
+        //}
 
         if (Input.touchCount > 0)
         {

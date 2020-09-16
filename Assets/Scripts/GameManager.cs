@@ -47,22 +47,33 @@ public class GameManager : MonoBehaviour
 
     public List<LootType> LevelSpecificLoot;
 
-    PlayerData ThePlayer;
+    [HideInInspector]
+    public PlayerData ThePlayer;
+
     int LevelNumOfLimiters;
 
     void Start()
     {
         Instance = this;
         ThePlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
+
+        if (PlayerPrefs.HasKey("MaxLevelReached"))
+        {
+            CurrentLevelNum = PlayerPrefs.GetInt("MaxLevelReached") - 1; ///// -1 Because counting levels start from 1 while loading levels starts from 0 from an array
+        }
+
+        UiManager.Instance.ToggleLevelHub(false);
     }
 
-    public void StartGame()
-    {
-        StartLevel();
-    }
+    //public void StartGame()
+    //{
+    //    StartLevel();
+    //}
 
-    public void StartLevel()
+    public void StartLevel(int LevelNum)
     {
+        CurrentLevelNum = LevelNum;
+
         if (GameLevels.Count == 0)
         {
             Debug.LogError("NO LEVELS LOADED! Please load levels.");
@@ -94,7 +105,7 @@ public class GameManager : MonoBehaviour
         UiManager.Instance.InGameUI.SetActive(true);
         UiManager.Instance.Commit.interactable = false;
         UiManager.Instance.CommitCanvas.SetActive(true);
-        UiManager.Instance.StartGameButton.gameObject.SetActive(false);
+        UiManager.Instance.MainMenuScreen.SetActive(false);
         UiManager.Instance.LevelNum.text = "Level: " + GameLevels[CurrentLevelNum].LevelNum.ToString();
         UiManager.Instance.LevelNum.gameObject.SetActive(true);
 
@@ -103,6 +114,7 @@ public class GameManager : MonoBehaviour
         UiManager.Instance.MagicalItemText.text = "Magical Items: " + ThePlayer.MagicalItems;
         LevelSpecificLoot.Clear();
         LevelSpecificLoot.AddRange(GameLevels[CurrentLevelNum].LootForLevel);
+        UiManager.Instance.ToggleLevelHub(false);
     }
 
     public void FillClip()
@@ -674,21 +686,80 @@ public class GameManager : MonoBehaviour
         if(FullCellCounter == 8 && SuccesfullConnectionsMade == 8)
         {
             UiManager.Instance.YouWinMessage();
+
+            LeftSideClipsPieces.Clear();
+            RightSideClipsPieces.Clear();
+            LimiterCells.Clear();
+            Connectors.Clear();
+            PieceCells.Clear();
+            FullCellCounter = 0;
+            SuccesfullConnectionsMade = 0;
+            CurrentLevelNum++;
+
+            ThePlayer.MaxLevelReached = GameLevels[CurrentLevelNum].LevelNum;
+            ThePlayer.SaveDate();
         }
         else
         {
             UiManager.Instance.YouLoseMessage();
+
+            LeftSideClipsPieces.Clear();
+            RightSideClipsPieces.Clear();
+            LimiterCells.Clear();
+            Connectors.Clear();
+            PieceCells.Clear();
+            FullCellCounter = 0;
+            SuccesfullConnectionsMade = 0;
         }
     }
 
-    public void StartNextLevel()
+    //public void StartNextLevel()
+    //{
+    //    //for (int i = 0; i < DeleteOnLevelTransfer.transform.childCount; i++)
+    //    //{
+    //    //    Destroy(DeleteOnLevelTransfer.transform.GetChild(i).gameObject);
+    //    //}
+
+    //    //UiManager.Instance.GoToNextLevelButton.gameObject.SetActive(false);
+    //    LeftSideClipsPieces.Clear();
+    //    RightSideClipsPieces.Clear();
+    //    LimiterCells.Clear();
+    //    Connectors.Clear();
+    //    PieceCells.Clear();
+    //    FullCellCounter = 0;
+    //    SuccesfullConnectionsMade = 0;
+    //    CurrentLevelNum++;
+
+    //    ThePlayer.MaxLevelReached = GameLevels[CurrentLevelNum].LevelNum;
+    //    ThePlayer.SaveDate();
+
+    //    //StartCoroutine(CallNextLevelFuntion());
+    //}
+
+    //public IEnumerator CallNextLevelFuntion()
+    //{
+    //    yield return new WaitForEndOfFrame();
+    //    StartGame();
+    //}
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void ToggleLevelHub(bool Toggle)
+    {
+        UiManager.Instance.ToggleLevelHub(Toggle);
+    }
+
+
+    public void OrganizeForNextLevel()
     {
         for (int i = 0; i < DeleteOnLevelTransfer.transform.childCount; i++)
         {
             Destroy(DeleteOnLevelTransfer.transform.GetChild(i).gameObject);
         }
 
-        UiManager.Instance.GoToNextLevelButton.gameObject.SetActive(false);
         LeftSideClipsPieces.Clear();
         RightSideClipsPieces.Clear();
         LimiterCells.Clear();
@@ -696,14 +767,5 @@ public class GameManager : MonoBehaviour
         PieceCells.Clear();
         FullCellCounter = 0;
         SuccesfullConnectionsMade = 0;
-        CurrentLevelNum++;
-
-        StartCoroutine(CallNextLevelFuntion());
-    }
-
-    public IEnumerator CallNextLevelFuntion()
-    {
-        yield return new WaitForEndOfFrame();
-        StartGame();
     }
 }
