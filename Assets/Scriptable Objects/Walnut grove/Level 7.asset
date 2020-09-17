@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Level 7
   m_EditorClassIdentifier: 
   LevelNum: 7
+  CellsInLevel: 8
+  ConnectionsNeededToFinishLevel: 8
+  BoardPrefab: {fileID: 6382559071292991177, guid: 57dccfc5183706e44b64e76c25053a52,
+    type: 3}
+  DoubleRing: 0
   NumOfGeneralColors: 0
   NumOfGeneralSymbol: 0
   NumOfSpecificColors: 0

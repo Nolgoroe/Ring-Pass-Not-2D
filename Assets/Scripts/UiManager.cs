@@ -22,7 +22,6 @@ public class UiManager : MonoBehaviour
     public Button BackToLevelHubButton;
 
     public GameObject InGameUI;
-    public GameObject CommitCanvas;
     public GameObject LevelHub;
     public GameObject OptionsWindow;
 
@@ -89,6 +88,8 @@ public class UiManager : MonoBehaviour
             }
 
             GameManager.Instance.OrganizeForNextLevel();
+
+            GameManager.Instance.PowerUpManager.LoseGame = false;
 
             BackToLevelHubButton.gameObject.SetActive(false);
 

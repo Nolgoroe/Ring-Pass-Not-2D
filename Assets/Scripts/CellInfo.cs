@@ -6,5 +6,6 @@ public class CellInfo : MonoBehaviour
 {
     public bool Full;
 
-    public ConnectorManager Rconnect, Lconnect;
+    public bool IsOuterRing;
+    public ConnectorManager Rconnect, Lconnect, OuterRightConnect, OuterLeftConnect;
 }

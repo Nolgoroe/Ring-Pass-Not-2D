@@ -7,7 +7,11 @@ using Pixeye.Unity;
 public class LevelManager : ScriptableObject
 {
     public int LevelNum;
+    public int CellsInLevel, ConnectionsNeededToFinishLevel;
 
+    public GameObject BoardPrefab;
+
+    public bool DoubleRing;
     #region Normal Limiters
     [Foldout("Num of Normal Limiters", false)]
     public int NumOfGeneralColors, NumOfGeneralSymbol, NumOfSpecificColors, NumOfSpecificSymbols;
@@ -68,7 +72,8 @@ public class LevelManager : ScriptableObject
     {
         int LimiterNum = NumOfGeneralColors + NumOfGeneralSymbol + NumOfSpecificColors + NumOfSpecificSymbols
             + NumOfLootGeneralColors + NumOfLootGeneralSymbol + NumOfLootSpecificColors + NumOfLootSpecificSymbols 
-            + NumOfLootLockGeneralColors + NumOfLootLockGeneralSymbol + NumOfLootLockSpecificColors + NumOfLootLockSpecificSymbols 
+            + NumOfLootLockGeneralColors + NumOfLootLockGeneralSymbol + NumOfLootLockSpecificColors + NumOfLootLockSpecificSymbols +
+             NumOfLootLimiterGeneralColors + NumOfLootLimiterGeneralSymbol + NumOfLootLimiterSpecificColors + NumOfLootLimiterSpecificSymbols
             /*+ NumOfRedColorLimiter + NumOfBlueColorLimiter + NumOfYellowColorLimiter
             + NumOfPinkColorLimiter + NumOfSquareShapeLimiter + NumOfTriangleShapeLimiter + NumOfPlusShapeLimiter + NumOfCircleShapeLimiter*/;
 

@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Level 2
   m_EditorClassIdentifier: 
   LevelNum: 2
+  CellsInLevel: 8
+  ConnectionsNeededToFinishLevel: 8
+  BoardPrefab: {fileID: 0}
+  DoubleRing: 0
   NumOfGeneralColors: 1
   NumOfGeneralSymbol: 0
   NumOfSpecificColors: 0
@@ -54,3 +58,4 @@ MonoBehaviour:
   GeneralLootLimiterSymbolLimiter: {fileID: 0}
   SpecificLootLimiterColorLimitersPrefabs: []
   SpecificLootLimiterSymbolLimitersPrefabs: []
+  LootForLevel: 

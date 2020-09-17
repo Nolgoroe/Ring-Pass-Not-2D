@@ -24,6 +24,12 @@ public class ConnectorManager : MonoBehaviour
     public Symbols Lsymbol = Symbols.None;
     public Colors Lcolor = Colors.None;
 
+    public Symbols ROutersymbol = Symbols.None;
+    public Colors ROutercolor = Colors.None;
+
+    public Symbols LOutersymbol = Symbols.None;
+    public Colors LOutercolor = Colors.None;
+
     public LimiterCellManager ConnectorLimiter;
 
     public PieceMoveManager LeftPieceParent, RightPieceParent;
@@ -34,34 +40,36 @@ public class ConnectorManager : MonoBehaviour
 
     private void Update()
     {
-        if(ConnectorLimiter.TypeOfLimiter != LimiterType.None)
+        if (ConnectorLimiter)
         {
-            HasLimiter = true;
-            TypeOfLimiter = ConnectorLimiter.TypeOfLimiter;
-        }
+            if (ConnectorLimiter.TypeOfLimiter != LimiterType.None)
+            {
+                HasLimiter = true;
+                TypeOfLimiter = ConnectorLimiter.TypeOfLimiter;
+            }
 
-        if (ConnectorLimiter.TypeOfLootLimiter != LootLimiterType.None)
-        {
-            HasLimiter = true;
-            TypeOfLootLimiter = ConnectorLimiter.TypeOfLootLimiter;
-        }
+            if (ConnectorLimiter.TypeOfLootLimiter != LootLimiterType.None)
+            {
+                HasLimiter = true;
+                TypeOfLootLimiter = ConnectorLimiter.TypeOfLootLimiter;
+            }
 
-        if (ConnectorLimiter.TypeOfLootSlice != LootSliceType.None)
-        {
-            HasLimiter = true;
-            TypeOfLootSlice = ConnectorLimiter.TypeOfLootSlice;
-        }
+            if (ConnectorLimiter.TypeOfLootSlice != LootSliceType.None)
+            {
+                HasLimiter = true;
+                TypeOfLootSlice = ConnectorLimiter.TypeOfLootSlice;
+            }
 
-        if (ConnectorLimiter.TypeOfLootLockSlice != LootLockSliceType.None)
-        {
-            HasLimiter = true;
-            TypeOfLootLockSlice = ConnectorLimiter.TypeOfLootLockSlice;
-            LockPieces = true;
+            if (ConnectorLimiter.TypeOfLootLockSlice != LootLockSliceType.None)
+            {
+                HasLimiter = true;
+                TypeOfLootLockSlice = ConnectorLimiter.TypeOfLootLockSlice;
+                LockPieces = true;
+            }
         }
-
     }
 
-    public void CheckConnection()
+    public void CheckConnection(bool OuterRingPiece)
     {
         if (HasLimiter)
         {
@@ -85,20 +93,31 @@ public class ConnectorManager : MonoBehaviour
         }
         else
         {
-            if (Rcolor != Colors.None && Rsymbol != Symbols.None && Lcolor != Colors.None && Lsymbol != Symbols.None)
-            {
-                BadConnectionMade = true;
-                SuccesfullConnectionMade = false;
-            }
+            //if (Rcolor != Colors.None && Rsymbol != Symbols.None && Lcolor != Colors.None && Lsymbol != Symbols.None)
+            //{
+            //    BadConnectionMade = true;
+            //    SuccesfullConnectionMade = false;
+            //}
 
-            if ((Rcolor == Lcolor || Rsymbol == Lsymbol) && Rcolor!= Colors.None && Lcolor != Colors.None && Rsymbol !=Symbols.None && Rsymbol != Symbols.None)
+            if ((Rcolor == Lcolor || Rsymbol == Lsymbol) && Rcolor != Colors.None && Lcolor != Colors.None && Rsymbol != Symbols.None && Rsymbol != Symbols.None)
             {
                 //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color or Shape" + " " + transform.name);
                 Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform), 1.5f);
                 SuccesfullConnectionMade = true;
                 GameManager.Instance.SuccesfullConnectionsMade++;
                 BadConnectionMade = false;
+                return;
             }
+        }
+
+        if ((ROutercolor == LOutercolor || ROutersymbol == LOutersymbol) && ROutercolor != Colors.None && LOutercolor != Colors.None && ROutersymbol != Symbols.None && LOutersymbol != Symbols.None)
+        {
+            //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color or Shape" + " " + transform.name);
+            Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform), 1.5f);
+            SuccesfullConnectionMade = true;
+            GameManager.Instance.SuccesfullConnectionsMade++;
+            BadConnectionMade = false;
+            return;
         }
     }
 

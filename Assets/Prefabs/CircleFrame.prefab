@@ -706,7 +706,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.16, y: -0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1483202997137572537}
   m_Father: {fileID: 6382559071292991179}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -753,6 +754,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b4b4c8f62f3d46960cae8137319f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OptionalLimiterZones:
+  - {fileID: 6236383519284700385}
+  - {fileID: 3773748689731196929}
+  - {fileID: 2292409886226605294}
   IsFull: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
@@ -833,6 +838,7 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
+  LockPieces: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
@@ -842,6 +848,8 @@ MonoBehaviour:
   Lsymbol: 4
   Lcolor: 4
   ConnectorLimiter: {fileID: 4829648212063193824}
+  LeftPieceParent: {fileID: 0}
+  RightPieceParent: {fileID: 0}
 --- !u!50 &5448190396013907039
 Rigidbody2D:
   serializedVersion: 4
@@ -937,6 +945,7 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
+  LockPieces: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
@@ -946,6 +955,8 @@ MonoBehaviour:
   Lsymbol: 4
   Lcolor: 4
   ConnectorLimiter: {fileID: 3773748689731196929}
+  LeftPieceParent: {fileID: 0}
+  RightPieceParent: {fileID: 0}
 --- !u!50 &4942687014719152370
 Rigidbody2D:
   serializedVersion: 4
@@ -1079,6 +1090,7 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
+  LockPieces: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
@@ -1088,6 +1100,8 @@ MonoBehaviour:
   Lsymbol: 4
   Lcolor: 4
   ConnectorLimiter: {fileID: 8618753284228223647}
+  LeftPieceParent: {fileID: 0}
+  RightPieceParent: {fileID: 0}
 --- !u!50 &7096749095272199050
 Rigidbody2D:
   serializedVersion: 4
@@ -1152,6 +1166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b4b4c8f62f3d46960cae8137319f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OptionalLimiterZones:
+  - {fileID: 4829648212063193824}
+  - {fileID: 8618753284228223647}
+  - {fileID: 672524642646665350}
   IsFull: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
@@ -1201,6 +1219,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b4b4c8f62f3d46960cae8137319f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OptionalLimiterZones:
+  - {fileID: 2292409886226605294}
+  - {fileID: 1049147081767504682}
+  - {fileID: 6236383519284700385}
   IsFull: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
@@ -1281,6 +1303,7 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
+  LockPieces: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
@@ -1290,6 +1313,8 @@ MonoBehaviour:
   Lsymbol: 4
   Lcolor: 4
   ConnectorLimiter: {fileID: 672524642646665350}
+  LeftPieceParent: {fileID: 0}
+  RightPieceParent: {fileID: 0}
 --- !u!50 &8346866356275737718
 Rigidbody2D:
   serializedVersion: 4
@@ -1385,6 +1410,7 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
+  LockPieces: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
@@ -1394,6 +1420,8 @@ MonoBehaviour:
   Lsymbol: 4
   Lcolor: 4
   ConnectorLimiter: {fileID: 1049147081767504682}
+  LeftPieceParent: {fileID: 0}
+  RightPieceParent: {fileID: 0}
 --- !u!50 &7601174209046614213
 Rigidbody2D:
   serializedVersion: 4
@@ -1489,6 +1517,7 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
+  LockPieces: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
@@ -1498,6 +1527,8 @@ MonoBehaviour:
   Lsymbol: 4
   Lcolor: 4
   ConnectorLimiter: {fileID: 1493236217806541124}
+  LeftPieceParent: {fileID: 0}
+  RightPieceParent: {fileID: 0}
 --- !u!50 &2953554508270079550
 Rigidbody2D:
   serializedVersion: 4
@@ -1562,6 +1593,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b4b4c8f62f3d46960cae8137319f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OptionalLimiterZones:
+  - {fileID: 1049147081767504682}
+  - {fileID: 6236383519284700385}
+  - {fileID: 3773748689731196929}
   IsFull: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
@@ -1680,6 +1715,7 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
+  LockPieces: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
@@ -1689,6 +1725,8 @@ MonoBehaviour:
   Lsymbol: 4
   Lcolor: 4
   ConnectorLimiter: {fileID: 6236383519284700385}
+  LeftPieceParent: {fileID: 0}
+  RightPieceParent: {fileID: 0}
 --- !u!50 &4434652670380033430
 Rigidbody2D:
   serializedVersion: 4
@@ -1753,6 +1791,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b4b4c8f62f3d46960cae8137319f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OptionalLimiterZones:
+  - {fileID: 672524642646665350}
+  - {fileID: 1493236217806541124}
+  - {fileID: 4829648212063193824}
   IsFull: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
@@ -1926,6 +1968,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b4b4c8f62f3d46960cae8137319f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OptionalLimiterZones:
+  - {fileID: 1493236217806541124}
+  - {fileID: 4829648212063193824}
+  - {fileID: 8618753284228223647}
   IsFull: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
@@ -2006,6 +2052,7 @@ MonoBehaviour:
   HasLimiter: 0
   SuccesfullConnectionMade: 0
   BadConnectionMade: 0
+  LockPieces: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
@@ -2015,6 +2062,8 @@ MonoBehaviour:
   Lsymbol: 4
   Lcolor: 4
   ConnectorLimiter: {fileID: 2292409886226605294}
+  LeftPieceParent: {fileID: 0}
+  RightPieceParent: {fileID: 0}
 --- !u!50 &3911324696758849781
 Rigidbody2D:
   serializedVersion: 4
@@ -2117,6 +2166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b4b4c8f62f3d46960cae8137319f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OptionalLimiterZones:
+  - {fileID: 3773748689731196929}
+  - {fileID: 2292409886226605294}
+  - {fileID: 1049147081767504682}
   IsFull: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
@@ -2166,9 +2219,138 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b4b4c8f62f3d46960cae8137319f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OptionalLimiterZones:
+  - {fileID: 8618753284228223647}
+  - {fileID: 672524642646665350}
+  - {fileID: 1493236217806541124}
   IsFull: 0
   TypeOfLimiter: 10
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
   boolTypeOfSlice: 4
+--- !u!1001 &2276767356821990335
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6110132794239592031}
+    m_Modifications:
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 30.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 32.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153082, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_Name
+      value: Commit Button
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5a28c7fa477d3094dbaa2acc42ff1017, type: 3}
+--- !u!224 &1483202997137572537 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+    type: 3}
+  m_PrefabInstance: {fileID: 2276767356821990335}
+  m_PrefabAsset: {fileID: 0}

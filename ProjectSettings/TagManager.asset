@@ -16,6 +16,7 @@ TagManager:
   - PieceCell
   - MouseDetector
   - Lock
+  - Commit
   layers:
   - Default
   - TransparentFX

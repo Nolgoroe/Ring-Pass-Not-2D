@@ -65,6 +65,7 @@ public enum LootLockSliceType
 
 public class LimiterCellManager : MonoBehaviour
 {
+    public LimiterCellManager[] OptionalLimiterZones;
     public bool IsFull;
 
     public LimiterType TypeOfLimiter;
