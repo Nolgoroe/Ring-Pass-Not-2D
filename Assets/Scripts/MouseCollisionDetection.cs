@@ -5,43 +5,68 @@ using UnityEngine;
 public class MouseCollisionDetection : MonoBehaviour
 {
     public PieceMoveManager PieceToMove;
+
+    public GameObject ObjectToUsePowerup;
+
     public List<Collider2D> InteractedColliders;
     public bool EnteredBoard;
     bool DoOnce;
-    bool SkipLevel;
+    //bool SkipLevel;
     Vector3 Mousepos;
 
     Touch touch;
 
     public float LengthTouchLimiter = 1f;
     public float TimerCouter = 0f;
+
+    public LayerMask PowerUpsLayer;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(PieceToMove == null)
+        if(gameObject.layer == LayerMask.NameToLayer("Power Ups Layer") && !PowerUps.Instance.HasTargetForPowerUp)
         {
-            if (collision.CompareTag("Movable Daddy"))
+            PowerUps.Instance.HasTargetForPowerUp = true;
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Power Ups Layer"))
             {
-                if (Input.touchCount > 0)
+                Debug.Log(collision.gameObject.name);
+                ObjectToUsePowerup = collision.gameObject;
+
+                for (int i = 0; i < ObjectToUsePowerup.GetComponent<SelectPowerUpType>().PowerUpsToUse.Length; i++)
                 {
-                    //Debug.Log("What?");
-                    PieceToMove = collision.gameObject.GetComponent<PieceMoveManager>();
-                    if (PieceToMove.Locked)
+                    if (PowerUps.Instance.PowerUpType == ObjectToUsePowerup.GetComponent<SelectPowerUpType>().PowerUpsToUse[i])
                     {
-                        PieceToMove = null;
-                        Debug.Log("Piece Locked");
+                        PowerUps.Instance.UsePowerUp(ObjectToUsePowerup);
                     }
                 }
             }
         }
-
-        if (!collision.CompareTag("Movable Daddy") && !collision.CompareTag("Board"))
+        else
         {
-            InteractedColliders.Add(collision);
-        }
+            if (PieceToMove == null)
+            {
+                if (collision.CompareTag("Movable Daddy"))
+                {
+                    if (Input.touchCount > 0)
+                    {
+                        //Debug.Log("What?");
+                        PieceToMove = collision.gameObject.GetComponent<PieceMoveManager>();
+                        if (PieceToMove.Locked)
+                        {
+                            PieceToMove = null;
+                            Debug.Log("Piece Locked");
+                        }
+                    }
+                }
+            }
 
-        if (collision.CompareTag("Board"))
-        {
-            EnteredBoard = true;
+            if (!collision.CompareTag("Movable Daddy") && !collision.CompareTag("Board"))
+            {
+                InteractedColliders.Add(collision);
+            }
+
+            if (collision.CompareTag("Board"))
+            {
+                EnteredBoard = true;
+            }
         }
     }
 
@@ -52,6 +77,7 @@ public class MouseCollisionDetection : MonoBehaviour
             EnteredBoard = false;
         }
     }
+
 
     //private void OnMouseDown()
     //{
@@ -154,337 +180,384 @@ public class MouseCollisionDetection : MonoBehaviour
         //    return;
         //}
 
-        if (!UiManager.Instance.OptionsOpen)
+        if(GameManager.Instance.SceneBoard != null)
         {
-            if (Input.touchCount > 0)
+            if (!UiManager.Instance.OptionsOpen && !PowerUps.Instance.UsingPowerUp)
             {
-                TimerCouter += Time.deltaTime;
-                touch = Input.GetTouch(0);
-
-                if (touch.phase == TouchPhase.Began)
+                transform.gameObject.layer = LayerMask.NameToLayer("Board Collision Detector");
+                if (Input.touchCount > 0)
                 {
-                    DoOnce = true;
-                    Mousepos = Camera.main.ScreenToWorldPoint(new Vector2(touch.position.x, touch.position.y));
-                    transform.position = Mousepos;
-                    transform.GetComponent<Collider2D>().enabled = true;
-                }
+                    TimerCouter += Time.deltaTime;
+                    touch = Input.GetTouch(0);
 
-                if (TimerCouter > LengthTouchLimiter)
-                {
-                    if (touch.phase == TouchPhase.Moved)
+                    if (touch.phase == TouchPhase.Began)
                     {
-                        transform.GetComponent<Collider2D>().enabled = true;
-                        Mousepos = Camera.main.ScreenToWorldPoint(new Vector2(touch.position.x, touch.position.y));
+                        DoOnce = true;
+                        Mousepos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0));
                         transform.position = Mousepos;
-
-                        if (PieceToMove != null)
-                        {
-                            //Debug.Log("Can Pick Up");
-
-                            PieceToMove.IsBeingHeld = true;
-
-                            if (PieceToMove.PartOfBoard)
-                            {
-                                if (DoOnce)
-                                {
-                                    GameManager.Instance.FullCellCounter--;
-
-                                    if (PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.SuccesfullConnectionMade == true)
-                                    {
-                                        GameManager.Instance.SuccesfullConnectionsMade--;
-                                    }
-
-                                    if (PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.SuccesfullConnectionMade == true)
-                                    {
-                                        GameManager.Instance.SuccesfullConnectionsMade--;
-                                    }
-
-                                    if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect != null)
-                                    {
-                                        if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.SuccesfullConnectionMade == true)
-                                        {
-                                            GameManager.Instance.SuccesfullConnectionsMade--;
-                                        }
-                                    }
-
-                                    if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect != null)
-                                    {
-                                        if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.SuccesfullConnectionMade == true)
-                                        {
-                                            GameManager.Instance.SuccesfullConnectionsMade--;
-                                        }
-                                    }
-
-                                    DoOnce = false;
-                                }
-
-                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lsymbol = Symbols.None;
-                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lcolor = Colors.None;
-
-                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rsymbol = Symbols.None;
-                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rcolor = Colors.None;
-
-
-                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.BadConnectionMade = false;
-                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.BadConnectionMade = false;
-
-                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.SuccesfullConnectionMade = false;
-                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.SuccesfullConnectionMade = false;
-
-                                if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect != null)
-                                {
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.ROutersymbol = Symbols.None;
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.ROutercolor = Colors.None;
-
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.LOutersymbol = Symbols.None;
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.LOutercolor = Colors.None;
-
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.SuccesfullConnectionMade = false;
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.SuccesfullConnectionMade = false;
-
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.BadConnectionMade = false;
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.BadConnectionMade = false;
-
-                                }
-
-                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Full = false;
-
-                                //InteractedColliders.Clear();
-                            }
-                        }
+                        transform.GetComponent<Collider2D>().enabled = true;
                     }
 
-                    if (touch.phase == TouchPhase.Ended)
+                    if (TimerCouter > LengthTouchLimiter)
                     {
-                        SkipLevel = false;
-                        //Debug.Log("Touch Up");
-                        if (EnteredBoard)
+                        if (touch.phase == TouchPhase.Moved)
                         {
-                            //Debug.Log("In Board");
+                            transform.GetComponent<Collider2D>().enabled = true;
+                            Mousepos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y,0));
+                            transform.position = Mousepos;
+
                             if (PieceToMove != null)
                             {
-                                //Debug.Log("Has Piece");
-                                if (InteractedColliders.Count != 0)
+                                //Debug.Log("Can Pick Up");
+
+                                PieceToMove.IsBeingHeld = true;
+
+                                if (PieceToMove.PartOfBoard)
                                 {
-                                    //Debug.Log("InteractedColliders Not Empty");
-                                    if (InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Full == false)
+                                    if (DoOnce)
                                     {
-                                        if (PieceToMove.OriginalParent.CompareTag("MiniClipDaddy"))
+                                        GameManager.Instance.FullCellCounter--;
+
+                                        if (PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.SuccesfullConnectionMade == true)
                                         {
-                                            GameManager.Instance.FillClipPiece(PieceToMove.OriginalParent.gameObject);
+                                            GameManager.Instance.SuccesfullConnectionsMade--;
                                         }
 
-                                        PieceToMove.transform.SetParent(InteractedColliders[InteractedColliders.Count - 1].transform);
-                                        PieceToMove.transform.position = InteractedColliders[InteractedColliders.Count - 1].transform.position;
-                                        PieceToMove.transform.rotation = InteractedColliders[InteractedColliders.Count - 1].transform.rotation;
-
-                                        PieceToMove.PartOfBoard = true;
-                                        PieceToMove.IsBeingHeld = false;
-
-                                        PieceToMove.OriginalParent = PieceToMove.transform.parent;
-                                        PieceToMove.startingpos = PieceToMove.transform.position;
-                                        PieceToMove.startingRotation = PieceToMove.transform.rotation;
-
-                                        if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
+                                        if (PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.SuccesfullConnectionMade == true)
                                         {
-                                            if (InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing)
-                                            {
-                                                PieceToMove.transform.localScale = new Vector3(1.44f, 1.44f, 1.44f);
-                                            }
-                                            else
-                                            {
-                                                PieceToMove.transform.localScale = new Vector3(1.04f, 1.06f, 1.04f);
-                                            }
+                                            GameManager.Instance.SuccesfullConnectionsMade--;
                                         }
-
-
-                                        InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Rconnect.Lsymbol = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
-                                        InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Rconnect.Lcolor = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
-
-                                        InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Rconnect.LeftPieceParent = PieceToMove;
-
-                                        InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Lconnect.Rsymbol = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
-                                        InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Lconnect.Rcolor = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
-
-                                        InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Lconnect.RightPieceParent = PieceToMove;
-
 
                                         if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect != null)
                                         {
-                                            InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().OuterRightConnect.ROutersymbol = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
-                                            InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().OuterRightConnect.ROutercolor = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
-
-                                            InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().OuterLeftConnect.LOutersymbol = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
-                                            InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().OuterLeftConnect.LOutercolor = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
-
-                                            InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().OuterLeftConnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
-                                            InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().OuterRightConnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
+                                            if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.SuccesfullConnectionMade == true)
+                                            {
+                                                GameManager.Instance.SuccesfullConnectionsMade--;
+                                            }
                                         }
 
-                                        InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Lconnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
-                                        InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Rconnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
-
-                                        InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Full = true;
-                                        GameManager.Instance.FullCellCounter++;
-                                        PieceToMove = null;
-                                    }
-                                    else
-                                    {
-                                        PieceToMove.transform.position = PieceToMove.startingpos;
-                                        PieceToMove.transform.parent = PieceToMove.OriginalParent;
-                                        PieceToMove.transform.rotation = PieceToMove.startingRotation;
-
-                                        if (PieceToMove.PartOfBoard)
+                                        if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect != null)
                                         {
-                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lsymbol = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
-                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lcolor = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+                                            if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.SuccesfullConnectionMade == true)
+                                            {
+                                                GameManager.Instance.SuccesfullConnectionsMade--;
+                                            }
+                                        }
 
-                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.LeftPieceParent = PieceToMove;
+                                        DoOnce = false;
+                                    }
 
-                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rsymbol = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
-                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rcolor = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lsymbol = Symbols.None;
+                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lcolor = Colors.None;
 
-                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.RightPieceParent = PieceToMove;
+                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rsymbol = Symbols.None;
+                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rcolor = Colors.None;
+
+
+                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.BadConnectionMade = false;
+                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.BadConnectionMade = false;
+
+                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.SuccesfullConnectionMade = false;
+                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.SuccesfullConnectionMade = false;
+
+                                    if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect != null)
+                                    {
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.ROutersymbol = Symbols.None;
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.ROutercolor = Colors.None;
+
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.LOutersymbol = Symbols.None;
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.LOutercolor = Colors.None;
+
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.SuccesfullConnectionMade = false;
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.SuccesfullConnectionMade = false;
+
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.BadConnectionMade = false;
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.BadConnectionMade = false;
+
+                                    }
+
+                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Full = false;
+
+                                    //InteractedColliders.Clear();
+                                }
+                            }
+                        }
+
+                        if (touch.phase == TouchPhase.Ended)
+                        {
+                            //SkipLevel = false;
+                            //Debug.Log("Touch Up");
+                            if (EnteredBoard)
+                            {
+                                //Debug.Log("In Board");
+                                if (PieceToMove != null)
+                                {
+                                    //Debug.Log("Has Piece");
+                                    if (InteractedColliders.Count != 0)
+                                    {
+                                        //Debug.Log("InteractedColliders Not Empty");
+                                        if (InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Full == false)
+                                        {
+                                            if (PieceToMove.OriginalParent.CompareTag("MiniClipDaddy"))
+                                            {
+                                                GameManager.Instance.FillClipPiece(PieceToMove.OriginalParent.gameObject);
+                                            }
+
+                                            PieceToMove.transform.SetParent(InteractedColliders[InteractedColliders.Count - 1].transform);
+                                            PieceToMove.transform.position = InteractedColliders[InteractedColliders.Count - 1].transform.position;
+                                            PieceToMove.transform.rotation = InteractedColliders[InteractedColliders.Count - 1].transform.rotation;
+
+                                            PieceToMove.PartOfBoard = true;
+                                            PieceToMove.IsBeingHeld = false;
+
+                                            PieceToMove.OriginalParent = PieceToMove.transform.parent;
+                                            PieceToMove.startingpos = PieceToMove.transform.position;
+                                            PieceToMove.startingRotation = PieceToMove.transform.rotation;
+
+                                            if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
+                                            {
+                                                if (InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing)
+                                                {
+                                                    PieceToMove.transform.localScale = new Vector3(1.44f, 1.44f, 1.44f);
+                                                }
+                                                else
+                                                {
+                                                    PieceToMove.transform.localScale = new Vector3(1.04f, 1.06f, 1.04f);
+                                                }
+                                            }
+
+
+                                            InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Rconnect.Lsymbol = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+                                            InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Rconnect.Lcolor = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+
+                                            InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Rconnect.LeftPieceParent = PieceToMove;
+
+                                            InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Lconnect.Rsymbol = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+                                            InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Lconnect.Rcolor = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+
+                                            InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Lconnect.RightPieceParent = PieceToMove;
 
 
                                             if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect != null)
                                             {
-                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.ROutersymbol = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
-                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.ROutercolor = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+                                                InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().OuterRightConnect.ROutersymbol = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+                                                InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().OuterRightConnect.ROutercolor = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
 
-                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.LOutersymbol = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
-                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.LOutercolor = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+                                                InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().OuterLeftConnect.LOutersymbol = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+                                                InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().OuterLeftConnect.LOutercolor = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
 
-                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
-                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
+                                                InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().OuterLeftConnect.CheckConnection();
+                                                InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().OuterRightConnect.CheckConnection();
                                             }
 
-                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
-                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
-                                            GameManager.Instance.FullCellCounter++;
-                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().Full = true;
+                                            InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Lconnect.CheckConnection();
+                                            InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Rconnect.CheckConnection();
 
+                                            InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().Full = true;
+                                            GameManager.Instance.FullCellCounter++;
+                                            PieceToMove = null;
+                                        }
+                                        else
+                                        {
+                                            PieceToMove.transform.position = PieceToMove.startingpos;
+                                            PieceToMove.transform.parent = PieceToMove.OriginalParent;
+                                            PieceToMove.transform.rotation = PieceToMove.startingRotation;
+
+                                            if (PieceToMove.PartOfBoard)
+                                            {
+                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lsymbol = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lcolor = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+
+                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.LeftPieceParent = PieceToMove;
+
+                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rsymbol = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rcolor = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+
+                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.RightPieceParent = PieceToMove;
+
+
+                                                if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect != null)
+                                                {
+                                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.ROutersymbol = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+                                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.ROutercolor = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+
+                                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.LOutersymbol = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+                                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.LOutercolor = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+
+                                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.CheckConnection();
+                                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.CheckConnection();
+                                                }
+
+                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.CheckConnection();
+                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.CheckConnection();
+                                                GameManager.Instance.FullCellCounter++;
+                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().Full = true;
+
+
+                                            }
+
+                                            PieceToMove.IsBeingHeld = false;
+                                            PieceToMove = null;
+                                            return;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (PieceToMove.PartOfBoard)
+                                        {
+                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().Full = true;
+                                            GameManager.Instance.FullCellCounter++;
+                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.CheckConnection();
+                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.CheckConnection();
+
+                                            if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect != null)
+                                            {
+                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.CheckConnection();
+                                                PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.CheckConnection();
+                                            }
 
                                         }
+                                        Debug.Log("Found Nothing 2");
 
+                                        PieceToMove.transform.position = PieceToMove.startingpos;
+                                        PieceToMove.transform.parent = PieceToMove.OriginalParent;
+                                        PieceToMove.transform.rotation = PieceToMove.startingRotation;
                                         PieceToMove.IsBeingHeld = false;
                                         PieceToMove = null;
-                                        return;
+
                                     }
                                 }
-                                else
+                                //else
+                                //{
+                                //    if (PieceToMove.PartOfBoard)
+                                //    {
+                                //        PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lsymbol = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+                                //        PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lcolor = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+
+                                //        PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rsymbol = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+                                //        PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rcolor = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+
+                                //        PieceToMove.transform.position = PieceToMove.startingpos;
+                                //        PieceToMove.transform.parent = PieceToMove.OriginalParent;
+                                //        PieceToMove.transform.rotation = PieceToMove.startingRotation;
+                                //        PieceToMove.IsBeingHeld = false;
+                                //        PieceToMove.OriginalParent.GetComponent<CellInfo>().Full = true;
+                                //        GameManager.Instance.FullCellCounter++;
+
+                                //        PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.CheckConnection();
+                                //        PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.CheckConnection();
+
+                                //        PieceToMove = null;
+                                //    }
+                                //}
+                            }
+                            else
+                            {
+                                if (PieceToMove != null)
                                 {
                                     if (PieceToMove.PartOfBoard)
                                     {
-                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().Full = true;
-                                        GameManager.Instance.FullCellCounter++;
-                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
-                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lsymbol = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lcolor = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rsymbol = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rcolor = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
 
                                         if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect != null)
                                         {
-                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
-                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
+                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.ROutersymbol = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.ROutercolor = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+
+                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.LOutersymbol = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.LOutercolor = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
                                         }
 
-                                    }
-                                    Debug.Log("Found Nothing 2");
 
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().Full = true;
+                                        GameManager.Instance.FullCellCounter++;
+
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.CheckConnection();
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.CheckConnection();
+
+                                        if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect != null)
+                                        {
+                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.CheckConnection();
+                                            PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.CheckConnection();
+                                        }
+                                    }
+                                    //Debug.Log("Found Nothing 1");
+                                    //ThisRenderer.sortingOrder = 0;
                                     PieceToMove.transform.position = PieceToMove.startingpos;
                                     PieceToMove.transform.parent = PieceToMove.OriginalParent;
                                     PieceToMove.transform.rotation = PieceToMove.startingRotation;
                                     PieceToMove.IsBeingHeld = false;
                                     PieceToMove = null;
-
                                 }
+
+
                             }
-                            //else
-                            //{
-                            //    if (PieceToMove.PartOfBoard)
-                            //    {
-                            //        PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lsymbol = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
-                            //        PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lcolor = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
 
-                            //        PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rsymbol = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
-                            //        PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rcolor = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+                            DoOnce = false;
+                            transform.GetComponent<Collider2D>().enabled = false;
+                            InteractedColliders.Clear();
 
-                            //        PieceToMove.transform.position = PieceToMove.startingpos;
-                            //        PieceToMove.transform.parent = PieceToMove.OriginalParent;
-                            //        PieceToMove.transform.rotation = PieceToMove.startingRotation;
-                            //        PieceToMove.IsBeingHeld = false;
-                            //        PieceToMove.OriginalParent.GetComponent<CellInfo>().Full = true;
-                            //        GameManager.Instance.FullCellCounter++;
-
-                            //        PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.CheckConnection();
-                            //        PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.CheckConnection();
-
-                            //        PieceToMove = null;
-                            //    }
-                            //}
-                        }
-                        else
-                        {
-                            if (PieceToMove != null)
+                            if (GameManager.Instance.FullCellCounter == GameManager.Instance.CellsNeeedToFinish)
                             {
-                                if (PieceToMove.PartOfBoard)
+                                if (UiManager.Instance.Commit)
                                 {
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lsymbol = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lcolor = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
-
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rsymbol = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rcolor = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
-
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.ROutersymbol = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.ROutercolor = PieceToMove.RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
-
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.LOutersymbol = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.LOutercolor = PieceToMove.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
-
-
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Full = true;
-                                    GameManager.Instance.FullCellCounter++;
-
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.CheckConnection(InteractedColliders[InteractedColliders.Count - 1].GetComponent<CellInfo>().IsOuterRing);
+                                    UiManager.Instance.Commit.interactable = true;
                                 }
-                                //Debug.Log("Found Nothing 1");
-                                //ThisRenderer.sortingOrder = 0;
-                                PieceToMove.transform.position = PieceToMove.startingpos;
-                                PieceToMove.transform.parent = PieceToMove.OriginalParent;
-                                PieceToMove.transform.rotation = PieceToMove.startingRotation;
-                                PieceToMove.IsBeingHeld = false;
-                                PieceToMove = null;
-                            }
-
-
-                        }
-
-                        DoOnce = false;
-                        transform.GetComponent<Collider2D>().enabled = false;
-                        InteractedColliders.Clear();
-
-                        if (GameManager.Instance.FullCellCounter == GameManager.Instance.CellsNeeedToFinish)
-                        {
-                            if (UiManager.Instance.Commit)
-                            {
-                                UiManager.Instance.Commit.interactable = true;
                             }
                         }
+
+
                     }
 
-
                 }
-
-            }
-            else
-            {
-                TimerCouter = 0;
-                if(PieceToMove != null)
+                else
                 {
-                    PieceToMove.IsBeingHeld = false;
-                    PieceToMove = null;
+                    TimerCouter = 0;
+                    if (PieceToMove != null)
+                    {
+                        PieceToMove.IsBeingHeld = false;
+                        PieceToMove = null;
+                    }
+                }
+            }
+
+
+            if (PowerUps.Instance.UsingPowerUp)
+            {
+                transform.gameObject.layer = LayerMask.NameToLayer("Power Ups Layer");
+
+                if (Input.touchCount > 0)
+                {
+                    TimerCouter += Time.deltaTime;
+                    touch = Input.GetTouch(0);
+
+                    if (touch.phase == TouchPhase.Began)
+                    {
+                        DoOnce = true;
+                        Mousepos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0));
+                        transform.position = Mousepos;
+                        transform.GetComponent<Collider2D>().enabled = true;
+                    }
+
+                    if (touch.phase == TouchPhase.Moved)
+                    {
+                        transform.GetComponent<Collider2D>().enabled = true;
+                        Mousepos = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0));
+                        transform.position = Mousepos;
+                    }
+                }
+                else
+                {
+                    TimerCouter = 0;
+                    if (PieceToMove != null)
+                    {
+                        PieceToMove.IsBeingHeld = false;
+                        PieceToMove = null;
+                    }
                 }
             }
         }

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8394052252805481715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.027, y: 0.027, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8394052251401136207}
@@ -44,7 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d1b4b4c8f62f3d46960cae8137319f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OptionalLimiterZones: []
   IsFull: 0
+  TypeOfLimiter: 0
+  TypeOfLootLimiter: 0
+  TypeOfLootSlice: 0
+  TypeOfLootLockSlice: 0
+  boolTypeOfSlice: 0
 --- !u!1001 &2753142786714192631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52,21 +58,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8394052252805481714}
     m_Modifications:
-    - target: {fileID: 5929141516317496048, guid: 29d81a1f57c15724bbf8dbee5b0c5916,
-        type: 3}
-      propertyPath: m_Name
-      value: Right 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5929141516317496049, guid: 29d81a1f57c15724bbf8dbee5b0c5916,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.112
-      objectReference: {fileID: 0}
-    - target: {fileID: 5929141516317496049, guid: 29d81a1f57c15724bbf8dbee5b0c5916,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5929141516413067960, guid: 29d81a1f57c15724bbf8dbee5b0c5916,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -122,35 +113,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5929141516413067960, guid: 29d81a1f57c15724bbf8dbee5b0c5916,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.175448
-      objectReference: {fileID: 0}
-    - target: {fileID: 5929141516413067960, guid: 29d81a1f57c15724bbf8dbee5b0c5916,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.175448
-      objectReference: {fileID: 0}
-    - target: {fileID: 5929141516413067960, guid: 29d81a1f57c15724bbf8dbee5b0c5916,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.175448
-      objectReference: {fileID: 0}
     - target: {fileID: 5929141516413067963, guid: 29d81a1f57c15724bbf8dbee5b0c5916,
         type: 3}
       propertyPath: m_Name
       value: Movable Daddy
-      objectReference: {fileID: 0}
-    - target: {fileID: 5929141517883223042, guid: 29d81a1f57c15724bbf8dbee5b0c5916,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5929141517883223045, guid: 29d81a1f57c15724bbf8dbee5b0c5916,
-        type: 3}
-      propertyPath: m_Name
-      value: Left 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29d81a1f57c15724bbf8dbee5b0c5916, type: 3}

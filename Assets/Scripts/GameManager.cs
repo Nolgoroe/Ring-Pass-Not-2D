@@ -152,16 +152,35 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < LeftSideClipsPieces.Count; i++)
         {
-            PieceNum = Random.Range(0, LeftShapesGameobjects.Length);
-            GameObject go = Instantiate(LeftShapesGameobjects[PieceNum], LeftSideClipsPieces[i].transform);
-            go.GetComponent<ColorSymbolData>().ChooseColorAndSprtie(PieceNum);
+            if (GameLevels[CurrentLevelNum].DoubleRing)
+            {
+                PieceNum = Random.Range(0, GameLevels[CurrentLevelNum].LeftShapesGameobjects.Length);
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].LeftShapesGameobjects[PieceNum], LeftSideClipsPieces[i].transform);
+                go.GetComponent<ColorSymbolData>().ChooseColorAndSprtie(PieceNum);
+            }
+            else
+            {
+                PieceNum = Random.Range(0, LeftShapesGameobjects.Length);
+                GameObject go = Instantiate(LeftShapesGameobjects[PieceNum], LeftSideClipsPieces[i].transform);
+                go.GetComponent<ColorSymbolData>().ChooseColorAndSprtie(PieceNum);
+            }
+
         }
 
         for (int i = 0; i < RightSideClipsPieces.Count; i++)
         {
-            PieceNum = Random.Range(0, RightShapesGameobjects.Length);
-            GameObject go = Instantiate(RightShapesGameobjects[PieceNum], RightSideClipsPieces[i].transform);
-            go.GetComponent<ColorSymbolData>().ChooseColorAndSprtie(PieceNum);
+            if (GameLevels[CurrentLevelNum].DoubleRing)
+            {
+                PieceNum = Random.Range(0, GameLevels[CurrentLevelNum].RightShapesGameobjects.Length);
+                GameObject go = Instantiate(GameLevels[CurrentLevelNum].RightShapesGameobjects[PieceNum], RightSideClipsPieces[i].transform);
+                go.GetComponent<ColorSymbolData>().ChooseColorAndSprtie(PieceNum);
+            }
+            else
+            {
+                PieceNum = Random.Range(0, RightShapesGameobjects.Length);
+                GameObject go = Instantiate(RightShapesGameobjects[PieceNum], RightSideClipsPieces[i].transform);
+                go.GetComponent<ColorSymbolData>().ChooseColorAndSprtie(PieceNum);
+            }
         }
     }
 
@@ -417,16 +436,34 @@ public class GameManager : MonoBehaviour
         {
             if (child.CompareTag("RightPiece"))
             {
-                PieceNum = Random.Range(0, RightShapesGameobjects.Length);
-                GameObject P = Instantiate(RightShapesGameobjects[PieceNum], child.position, child.rotation, child.transform);
-                P.GetComponent<ColorSymbolData>().ChooseColorAndSprtie(PieceNum);
+                if (GameLevels[CurrentLevelNum].DoubleRing)
+                {
+                    PieceNum = Random.Range(0, GameLevels[CurrentLevelNum].RightShapesGameobjects.Length);
+                    GameObject P = Instantiate(GameLevels[CurrentLevelNum].RightShapesGameobjects[PieceNum], child.position, child.rotation, child.transform);
+                    P.GetComponent<ColorSymbolData>().ChooseColorAndSprtie(PieceNum);
+                }
+                else
+                {
+                    PieceNum = Random.Range(0, RightShapesGameobjects.Length);
+                    GameObject P = Instantiate(RightShapesGameobjects[PieceNum], child.position, child.rotation, child.transform);
+                    P.GetComponent<ColorSymbolData>().ChooseColorAndSprtie(PieceNum);
+                }
             }
 
             if (child.CompareTag("LeftPiece"))
             {
-                PieceNum = Random.Range(0, LeftShapesGameobjects.Length);
-                GameObject P = Instantiate(LeftShapesGameobjects[PieceNum], child.position, child.rotation, child.transform);
-                P.GetComponent<ColorSymbolData>().ChooseColorAndSprtie(PieceNum);
+                if (GameLevels[CurrentLevelNum].DoubleRing)
+                {
+                    PieceNum = Random.Range(0, GameLevels[CurrentLevelNum].LeftShapesGameobjects.Length);
+                    GameObject P = Instantiate(GameLevels[CurrentLevelNum].LeftShapesGameobjects[PieceNum], child.position, child.rotation, child.transform);
+                    P.GetComponent<ColorSymbolData>().ChooseColorAndSprtie(PieceNum);
+                }
+                else
+                {
+                    PieceNum = Random.Range(0, LeftShapesGameobjects.Length);
+                    GameObject P = Instantiate(LeftShapesGameobjects[PieceNum], child.position, child.rotation, child.transform);
+                    P.GetComponent<ColorSymbolData>().ChooseColorAndSprtie(PieceNum);
+                }
             }
 
         }
@@ -434,6 +471,7 @@ public class GameManager : MonoBehaviour
 
     public void CheckEndGame()
     {
+        Debug.Log("Checking");
         if(FullCellCounter == CellsNeeedToFinish && SuccesfullConnectionsMade == ConnectionsNeededToFinishLevel)
         {
             Debug.Log("Win");
@@ -448,7 +486,11 @@ public class GameManager : MonoBehaviour
             SuccesfullConnectionsMade = 0;
             CurrentLevelNum++;
 
-            ThePlayer.MaxLevelReached = GameLevels[CurrentLevelNum].LevelNum;
+            if(GameLevels[CurrentLevelNum].LevelNum > ThePlayer.MaxLevelReached)
+            {
+                ThePlayer.MaxLevelReached = GameLevels[CurrentLevelNum].LevelNum;
+            }
+
             ThePlayer.SaveDate();
         }
         else

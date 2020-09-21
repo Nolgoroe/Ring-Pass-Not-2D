@@ -18,6 +18,16 @@ MonoBehaviour:
   BoardPrefab: {fileID: 6382559071292991177, guid: 88c786c8bc57be74ea304ce963831f7c,
     type: 3}
   DoubleRing: 1
+  SpecificColors: 000000000100000002000000
+  SpecificSymbols: 000000000100000003000000
+  LeftShapesGameobjects:
+  - {fileID: 8330252414879909698, guid: 05394f626ca853f46a08167f4219e97a, type: 3}
+  - {fileID: 6000253942341051403, guid: 6397cedbc7127f64aa35a2fed983c346, type: 3}
+  - {fileID: 8235953214814661458, guid: 4d03201ba78658c46a391ddb183f968a, type: 3}
+  RightShapesGameobjects:
+  - {fileID: 2798714391076580937, guid: c74eab195c6b7f54087fc1e6db1fb4d4, type: 3}
+  - {fileID: 6844287745032431658, guid: 221be30ffd60e26468595df912b4b7a5, type: 3}
+  - {fileID: 5745174356349831837, guid: 6bb8a235ee0457043aff3feaeb9da5f6, type: 3}
   NumOfGeneralColors: 0
   NumOfGeneralSymbol: 0
   NumOfSpecificColors: 0
@@ -30,16 +40,14 @@ MonoBehaviour:
   - {fileID: 6907255254345208100, guid: 816b9fe7ae27fca49bf421a66cee1ea6, type: 3}
   - {fileID: 6974204443252933433, guid: 757e791464a6f174d8a8ddd7784c9ecf, type: 3}
   - {fileID: 344991765306433361, guid: 31d1667cd80258e4290a407a4be337fe, type: 3}
-  - {fileID: 6953025811541798861, guid: 717e085b76f501e488a88ca1a5545aaf, type: 3}
   SpecificSymbolLimitersPrefabs:
   - {fileID: 8668036997334722415, guid: 219c03d63265f624ebe21bcc9e38c6ad, type: 3}
   - {fileID: 6891077082690501355, guid: 37457def2f23a474cbbb2a6323fccbc8, type: 3}
   - {fileID: 5598056756775799692, guid: b179753565f381344b938c984ff8886e, type: 3}
-  - {fileID: 7293285188048754860, guid: 0ae41b8f5ef17b7469a2f88aed13d0a3, type: 3}
-  NumOfLootGeneralColors: 1
-  NumOfLootGeneralSymbol: 1
-  NumOfLootSpecificColors: 0
-  NumOfLootSpecificSymbols: 0
+  NumOfLootGeneralColors: 0
+  NumOfLootGeneralSymbol: 0
+  NumOfLootSpecificColors: 1
+  NumOfLootSpecificSymbols: 1
   GeneralLootColorLimiter: {fileID: 7828220405409502647, guid: b836bb28a930a9c4b8dd05e0c19dd232,
     type: 3}
   GeneralLootSymbolLimiter: {fileID: 3786212338860530595, guid: 920a21af62466484e91828e71f0a267c,
@@ -48,12 +56,10 @@ MonoBehaviour:
   - {fileID: 2584019538950384712, guid: cd03aadad82b5704ebde4ce0d88539bf, type: 3}
   - {fileID: 7530035789135570828, guid: 3eb8140e930e3244ba803b638cdd417a, type: 3}
   - {fileID: 6869445464764739252, guid: c6135c9b678a10b4c9fa0d162e1052f9, type: 3}
-  - {fileID: 818270858516165647, guid: 6eb54ac61060f6e4b90582c8bb4f870c, type: 3}
   SpecificLootSymbolLimitersPrefabs:
   - {fileID: 6891029665877919591, guid: c41250d7176a1b9418bb06e6d47a8bdf, type: 3}
   - {fileID: 6785294414025329252, guid: 1c607e2d2d5a4b241995fec7d6961c20, type: 3}
   - {fileID: 4486263574875896101, guid: 951fe32b0ec377846b1e0ffefdb0865e, type: 3}
-  - {fileID: 2985472402194782441, guid: 71a1b5b76b9a7804fabf30a71bcf060c, type: 3}
   NumOfLootLockGeneralColors: 1
   NumOfLootLockGeneralSymbol: 1
   NumOfLootLockSpecificColors: 0
@@ -66,12 +72,10 @@ MonoBehaviour:
   - {fileID: 5302286009408917913, guid: fc8ea6595f430004dbfed28ee02ac8ed, type: 3}
   - {fileID: 3830909819571194733, guid: 640017ae5b3a1544dba348344b2f5b29, type: 3}
   - {fileID: 7640110615718749598, guid: 4e60167bad9a9774e9484b4cf952ba93, type: 3}
-  - {fileID: 2759991926490183370, guid: ae422ccc7ecfbff4096ebe637c8de48a, type: 3}
   SpecificLootLockSymbolLimitersPrefabs:
   - {fileID: 7717648498677629122, guid: dcab9e77ec6f9154687734f75557198b, type: 3}
   - {fileID: 5267408471434941798, guid: f917beb2e174f484690406b886f85c6e, type: 3}
   - {fileID: 782655465213857969, guid: 8cc1fb684a302954caf087a01e5a6cd4, type: 3}
-  - {fileID: 3385285500129652979, guid: 9ff8aea0aadebf44586b76cf24770fb9, type: 3}
   NumOfLootLimiterGeneralColors: 0
   NumOfLootLimiterGeneralSymbol: 0
   NumOfLootLimiterSpecificColors: 0
@@ -84,10 +88,8 @@ MonoBehaviour:
   - {fileID: 2584019538950384712, guid: 904c6bf1b45bb664ab6bde4d2aaaf16c, type: 3}
   - {fileID: 7530035789135570828, guid: 991df7860bd766240bebb18a756a05fa, type: 3}
   - {fileID: 6869445464764739252, guid: 1549a12c6e233f44a892f449f3c3ae2e, type: 3}
-  - {fileID: 818270858516165647, guid: 440de7258deeca8499043f0217f2bb78, type: 3}
   SpecificLootLimiterSymbolLimitersPrefabs:
   - {fileID: 6891029665877919591, guid: 13952752e4766794187a417d106467bd, type: 3}
   - {fileID: 6785294414025329252, guid: 2e6b25b4d625b6649bb9128385022ba3, type: 3}
   - {fileID: 4486263574875896101, guid: 36d490bfe0924224ab56ace01bd93b5a, type: 3}
-  - {fileID: 2985472402194782441, guid: bac02431d60b9c344af30a88dedca5f6, type: 3}
   LootForLevel: 0000000001000000020000000300000004000000

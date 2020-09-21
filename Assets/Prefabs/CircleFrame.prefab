@@ -45,8 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Full: 0
+  IsOuterRing: 0
   Rconnect: {fileID: 5672523259217925512}
   Lconnect: {fileID: 8221156618005660566}
+  OuterRightConnect: {fileID: 0}
+  OuterLeftConnect: {fileID: 0}
 --- !u!60 &25947652220540412
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -130,8 +133,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Full: 0
+  IsOuterRing: 0
   Rconnect: {fileID: 2533645008353541292}
   Lconnect: {fileID: 800916397763096192}
+  OuterRightConnect: {fileID: 0}
+  OuterLeftConnect: {fileID: 0}
 --- !u!60 &4141813846576397529
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -215,8 +221,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Full: 0
+  IsOuterRing: 0
   Rconnect: {fileID: 3208127043907068921}
   Lconnect: {fileID: 195719910251049669}
+  OuterRightConnect: {fileID: 0}
+  OuterLeftConnect: {fileID: 0}
 --- !u!60 &6134778628242588952
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -300,8 +309,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Full: 0
+  IsOuterRing: 0
   Rconnect: {fileID: 6067888831473827446}
   Lconnect: {fileID: 2533645008353541292}
+  OuterRightConnect: {fileID: 0}
+  OuterLeftConnect: {fileID: 0}
 --- !u!60 &8332268147060274079
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -385,8 +397,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Full: 0
+  IsOuterRing: 0
   Rconnect: {fileID: 8221156618005660566}
   Lconnect: {fileID: 5893213841487858066}
+  OuterRightConnect: {fileID: 0}
+  OuterLeftConnect: {fileID: 0}
 --- !u!60 &4622015506449077442
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -470,8 +485,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Full: 0
+  IsOuterRing: 0
   Rconnect: {fileID: 800916397763096192}
   Lconnect: {fileID: 5672523259217925512}
+  OuterRightConnect: {fileID: 0}
+  OuterLeftConnect: {fileID: 0}
 --- !u!60 &8397433265928908743
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -555,8 +573,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Full: 0
+  IsOuterRing: 0
   Rconnect: {fileID: 5893213841487858066}
   Lconnect: {fileID: 3208127043907068921}
+  OuterRightConnect: {fileID: 0}
+  OuterLeftConnect: {fileID: 0}
 --- !u!60 &1128980806233688924
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -640,8 +661,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Full: 0
+  IsOuterRing: 0
   Rconnect: {fileID: 195719910251049669}
   Lconnect: {fileID: 6067888831473827446}
+  OuterRightConnect: {fileID: 0}
+  OuterLeftConnect: {fileID: 0}
 --- !u!60 &3075722905194992663
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -843,10 +867,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 4829648212063193824}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -950,10 +978,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 3773748689731196929}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -1095,10 +1127,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 8618753284228223647}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -1308,10 +1344,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 672524642646665350}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -1415,10 +1455,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 1049147081767504682}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -1522,10 +1566,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 1493236217806541124}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -1720,10 +1768,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 6236383519284700385}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -2057,10 +2109,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 2292409886226605294}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -2236,6 +2292,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6110132794239592031}
     m_Modifications:
+    - target: {fileID: 796528680358669202, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680358669205, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.002335043
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680358669205, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.002335043
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680358669205, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.002335043
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680358669205, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000065075
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680358669205, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00001422
+      objectReference: {fileID: 0}
     - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2294,7 +2380,7 @@ PrefabInstance:
     - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.17
+      value: 0.16994
       objectReference: {fileID: 0}
     - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
         type: 3}
@@ -2340,6 +2426,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.08220684
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.07646437
+      objectReference: {fileID: 0}
+    - target: {fileID: 796528680485153030, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.07646437
       objectReference: {fileID: 0}
     - target: {fileID: 796528680485153082, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
         type: 3}

@@ -48,6 +48,11 @@ MonoBehaviour:
   PieceToMove: {fileID: 0}
   InteractedColliders: []
   EnteredBoard: 0
+  LengthTouchLimiter: 0.15
+  TimerCouter: 0
+  PowerUpsLayer:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!61 &8437584309133628707
 BoxCollider2D:
   m_ObjectHideFlags: 0

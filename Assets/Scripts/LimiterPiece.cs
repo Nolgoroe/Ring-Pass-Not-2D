@@ -21,4 +21,11 @@ public class LimiterPiece : MonoBehaviour
     public LootLockSliceType TypeOfLootLockSlice;
 
     public BoolSliceType boolTypeOfSlice;
+
+    public LimiterCellManager ParentLimiterCell;
+
+    private void Start()
+    {
+        ParentLimiterCell = transform.parent.GetComponent<LimiterCellManager>();
+    }
 }

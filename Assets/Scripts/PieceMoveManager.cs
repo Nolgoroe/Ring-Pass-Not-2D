@@ -28,6 +28,12 @@ public class PieceMoveManager : MonoBehaviour
     public GameObject LeftSidePiece;
     public GameObject RightSidePiece;
 
+    public Symbols Rsymbol = Symbols.None;
+    public Colors Rcolor = Colors.None;
+
+    public Symbols Lsymbol = Symbols.None;
+    public Colors Lcolor = Colors.None;
+
     //public List<Collider2D> InteractedColliders;
     private void Start()
     {
@@ -35,6 +41,13 @@ public class PieceMoveManager : MonoBehaviour
         OriginalParent = transform.parent;
         startingpos = transform.position;
         startingRotation = transform.rotation;
+
+        Rsymbol = RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+        Rcolor = RightSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+
+        Lsymbol = LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
+        Lcolor = LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+
     }
     //private void OnMouseDown()
     //{

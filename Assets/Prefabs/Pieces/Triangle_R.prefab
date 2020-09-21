@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8170627194236145985}
   - component: {fileID: 547053122438239884}
   - component: {fileID: -2326454456862970811}
+  - component: {fileID: 8467099769394213218}
+  - component: {fileID: -3927541404291428352}
   m_Layer: 11
   m_Name: Triangle_R
   m_TagString: Untagged
@@ -97,5 +99,80 @@ MonoBehaviour:
   ThisRenderer: {fileID: 0}
   RightSide: 1
   LeftSide: 0
-  PieceColor: 0
-  PieceSymbol: 0
+  PieceColor: 5
+  TheColors:
+  - {r: 0.7176471, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0, b: 0.7176471, a: 1}
+  - {r: 0, g: 0.7176471, b: 0, a: 1}
+  - {r: 0.7176471, g: 0, b: 0.7176471, a: 1}
+  PieceSymbol: 5
+--- !u!60 &8467099769394213218
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7898000434669452456}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.9, y: 1.9}
+    newSize: {x: 1.9, y: 1.9}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.65999997, y: -0.25}
+      - {x: 0.7, y: -0.14999999}
+      - {x: 0.78, y: 0.04}
+      - {x: 0.83, y: 0.16}
+      - {x: 0.87, y: 0.26}
+      - {x: 0.95, y: 0.45}
+      - {x: 0.95, y: 0.48}
+      - {x: 0.90999997, y: 0.51}
+      - {x: 0.64, y: 0.62}
+      - {x: 0.32, y: 0.7}
+      - {x: 0.14999999, y: 0.74}
+      - {x: -0.049999997, y: 0.78}
+      - {x: -0.17, y: 0.79999995}
+      - {x: -0.41, y: 0.83}
+      - {x: -0.52, y: 0.84}
+      - {x: -0.66999996, y: 0.84999996}
+      - {x: -0.94, y: 0.84999996}
+      - {x: -0.95, y: 0.84}
+      - {x: -0.95, y: -0.57}
+      - {x: -0.94, y: -0.58}
+      - {x: -0.79999995, y: -0.59}
+      - {x: -0.63, y: -0.59999996}
+      - {x: -0.38, y: -0.63}
+      - {x: -0.26, y: -0.65}
+      - {x: -0.08, y: -0.69}
+      - {x: 0.07, y: -0.72999996}
+      - {x: 0.22999999, y: -0.78}
+      - {x: 0.37, y: -0.83}
+      - {x: 0.39999998, y: -0.83}
+      - {x: 0.42999998, y: -0.81}
+      - {x: 0.51, y: -0.61}
+      - {x: 0.58, y: -0.44}
+--- !u!114 &-3927541404291428352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7898000434669452456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136f362086f5856459bd13cc3a800a98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PowerUpsToUse: 0300000001000000

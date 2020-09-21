@@ -53,7 +53,6 @@ public class ConnectorManager : MonoBehaviour
                 HasLimiter = true;
                 TypeOfLootLimiter = ConnectorLimiter.TypeOfLootLimiter;
             }
-
             if (ConnectorLimiter.TypeOfLootSlice != LootSliceType.None)
             {
                 HasLimiter = true;
@@ -69,7 +68,7 @@ public class ConnectorManager : MonoBehaviour
         }
     }
 
-    public void CheckConnection(bool OuterRingPiece)
+    public void CheckConnection()
     {
         if (HasLimiter)
         {
@@ -106,18 +105,19 @@ public class ConnectorManager : MonoBehaviour
                 SuccesfullConnectionMade = true;
                 GameManager.Instance.SuccesfullConnectionsMade++;
                 BadConnectionMade = false;
-                return;
             }
         }
 
-        if ((ROutercolor == LOutercolor || ROutersymbol == LOutersymbol) && ROutercolor != Colors.None && LOutercolor != Colors.None && ROutersymbol != Symbols.None && LOutersymbol != Symbols.None)
+        if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
         {
-            //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color or Shape" + " " + transform.name);
-            Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform), 1.5f);
-            SuccesfullConnectionMade = true;
-            GameManager.Instance.SuccesfullConnectionsMade++;
-            BadConnectionMade = false;
-            return;
+            if ((ROutercolor == LOutercolor || ROutersymbol == LOutersymbol) && ROutercolor != Colors.None && LOutercolor != Colors.None && ROutersymbol != Symbols.None && LOutersymbol != Symbols.None)
+            {
+                //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color or Shape" + " " + transform.name);
+                Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform), 1.5f);
+                SuccesfullConnectionMade = true;
+                GameManager.Instance.SuccesfullConnectionsMade++;
+                BadConnectionMade = false;
+            }
         }
     }
 

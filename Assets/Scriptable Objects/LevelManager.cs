@@ -12,6 +12,13 @@ public class LevelManager : ScriptableObject
     public GameObject BoardPrefab;
 
     public bool DoubleRing;
+
+    public Colors[] SpecificColors;
+    public Symbols[] SpecificSymbols;
+
+    public GameObject[] LeftShapesGameobjects;
+    public GameObject[] RightShapesGameobjects;
+
     #region Normal Limiters
     [Foldout("Num of Normal Limiters", false)]
     public int NumOfGeneralColors, NumOfGeneralSymbol, NumOfSpecificColors, NumOfSpecificSymbols;
