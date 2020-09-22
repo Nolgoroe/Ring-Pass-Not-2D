@@ -40,10 +40,10 @@ MonoBehaviour:
   - {fileID: 6891077082690501355, guid: 37457def2f23a474cbbb2a6323fccbc8, type: 3}
   - {fileID: 5598056756775799692, guid: b179753565f381344b938c984ff8886e, type: 3}
   - {fileID: 7293285188048754860, guid: 0ae41b8f5ef17b7469a2f88aed13d0a3, type: 3}
-  NumOfLootGeneralColors: 4
-  NumOfLootGeneralSymbol: 0
-  NumOfLootSpecificColors: 0
-  NumOfLootSpecificSymbols: 0
+  NumOfLootGeneralColors: 0
+  NumOfLootGeneralSymbol: 1
+  NumOfLootSpecificColors: 1
+  NumOfLootSpecificSymbols: 1
   GeneralLootColorLimiter: {fileID: 7828220405409502647, guid: b836bb28a930a9c4b8dd05e0c19dd232,
     type: 3}
   GeneralLootSymbolLimiter: {fileID: 3786212338860530595, guid: 920a21af62466484e91828e71f0a267c,
@@ -58,7 +58,7 @@ MonoBehaviour:
   - {fileID: 6785294414025329252, guid: 1c607e2d2d5a4b241995fec7d6961c20, type: 3}
   - {fileID: 4486263574875896101, guid: 951fe32b0ec377846b1e0ffefdb0865e, type: 3}
   - {fileID: 2985472402194782441, guid: 71a1b5b76b9a7804fabf30a71bcf060c, type: 3}
-  NumOfLootLockGeneralColors: 0
+  NumOfLootLockGeneralColors: 1
   NumOfLootLockGeneralSymbol: 0
   NumOfLootLockSpecificColors: 0
   NumOfLootLockSpecificSymbols: 0

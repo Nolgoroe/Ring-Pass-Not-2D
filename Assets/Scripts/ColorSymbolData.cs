@@ -50,8 +50,8 @@ public class ColorSymbolData : MonoBehaviour
 
         if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
         {
-            int Ran = Random.Range(0, (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].SpecificSymbols.Length));
-            PieceSymbol = GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].SpecificSymbols[Ran];
+            //int Ran = Random.Range(0, (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].SpecificSymbols.Length));
+            PieceSymbol = GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].SpecificSymbols[Symbol];
         }
         else
         {

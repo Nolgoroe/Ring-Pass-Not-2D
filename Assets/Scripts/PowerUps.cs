@@ -193,6 +193,8 @@ public class PowerUps : MonoBehaviour
 
     public void TileBomb(LimiterPiece TileToBomb)
     {
+        Debug.Log("Used Tile Bomb Power Up");
+
         TileToBomb.ParentLimiterCell.TypeOfLimiter = LimiterType.None;
         TileToBomb.ParentLimiterCell.TypeOfLootLimiter = LootLimiterType.None;
         TileToBomb.ParentLimiterCell.TypeOfLootLockSlice = LootLockSliceType.None;
@@ -249,16 +251,19 @@ public class PowerUps : MonoBehaviour
         }
 
         Destroy(TileToBomb.gameObject);
-        UsingPowerUp = false;
+        //UsingPowerUp = false;
     }
 
     public void SliceBomb(PieceMoveManager PieceToBomb)
     {
         if (PieceToBomb.PartOfBoard)
         {
+            Debug.Log("Used Slice Bomb Power Up");
+
             CellInfo CellParent = PieceToBomb.transform.parent.GetComponent<CellInfo>();
 
             CellParent.Full = false;
+            //Debug.Log("2");
 
             CellParent.Rconnect.Lsymbol = Symbols.None;
             CellParent.Rconnect.Lcolor = Colors.None;
@@ -267,6 +272,15 @@ public class PowerUps : MonoBehaviour
             CellParent.Lconnect.Rsymbol = Symbols.None;
             CellParent.Lconnect.Rcolor = Colors.None;
 
+            if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
+            {
+                CellParent.OuterRightConnect.ROutercolor = Colors.None;
+                CellParent.OuterRightConnect.ROutersymbol = Symbols.None;
+
+                CellParent.OuterLeftConnect.LOutercolor = Colors.None;
+                CellParent.OuterLeftConnect.LOutersymbol = Symbols.None;
+
+            }
 
             if (CellParent.Rconnect.LockPieces)
             {
@@ -346,9 +360,37 @@ public class PowerUps : MonoBehaviour
                 CellParent.Lconnect.BadConnectionMade = false;
             }
 
-            GameManager.Instance.FullCellCounter--;
+
+            if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
+            {
+                if (CellParent.OuterRightConnect.SuccesfullConnectionMade)
+                {
+                    CellParent.OuterRightConnect.SuccesfullConnectionMade = false;
+                    GameManager.Instance.SuccesfullConnectionsMade--;
+                }
+
+                if (CellParent.OuterLeftConnect.SuccesfullConnectionMade)
+                {
+                    CellParent.OuterLeftConnect.SuccesfullConnectionMade = false;
+                    GameManager.Instance.SuccesfullConnectionsMade--;
+                }
+
+                if (CellParent.OuterRightConnect.BadConnectionMade)
+                {
+                    CellParent.OuterRightConnect.BadConnectionMade = false;
+                }
+
+                if (CellParent.OuterLeftConnect.BadConnectionMade)
+                {
+                    CellParent.OuterLeftConnect.BadConnectionMade = false;
+                }
+            }
+
+            MouseCollisionDetection.Instance.ObjectToUsePowerup = null;
+            MouseCollisionDetection.Instance.BombedSlice = true;
+           GameManager.Instance.FullCellCounter--;
             Destroy(PieceToBomb.gameObject);
-            UsingPowerUp = false;
+            //UsingPowerUp = false;
         }
     }
 
@@ -356,6 +398,11 @@ public class PowerUps : MonoBehaviour
     {
         if (PieceToSwtich.PartOfBoard && !PieceToSwtich.Locked)
         {
+            Debug.Log("Used Switch Power Up");
+
+            CellInfo PieceParent = PieceToSwtich.transform.parent.GetComponent<CellInfo>();
+
+
             Colors TempColor = PieceToSwtich.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
             Symbols TempSymbol = PieceToSwtich.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
 
@@ -379,7 +426,6 @@ public class PowerUps : MonoBehaviour
 
             ////// Change Connectors Now
 
-            CellInfo PieceParent =  PieceToSwtich.transform.parent.GetComponent<CellInfo>();
 
             TempColor = PieceParent.Rconnect.Lcolor;
             TempSymbol = PieceParent.Rconnect.Lsymbol;
@@ -389,6 +435,20 @@ public class PowerUps : MonoBehaviour
 
             PieceParent.Lconnect.Rcolor = TempColor;
             PieceParent.Lconnect.Rsymbol = TempSymbol;
+
+            if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
+            {
+
+                TempColor = PieceParent.OuterRightConnect.ROutercolor;
+                TempSymbol = PieceParent.OuterRightConnect.ROutersymbol;
+
+                PieceParent.OuterRightConnect.ROutercolor = PieceParent.OuterLeftConnect.LOutercolor;
+                PieceParent.OuterRightConnect.ROutersymbol = PieceParent.OuterLeftConnect.LOutersymbol;
+
+                PieceParent.OuterLeftConnect.LOutercolor = TempColor;
+                PieceParent.OuterLeftConnect.LOutersymbol = TempSymbol;
+
+            }
 
             if (GameManager.Instance.SuccesfullConnectionsMade == GameManager.Instance.ConnectionsNeededToFinishLevel)
             {
@@ -417,8 +477,35 @@ public class PowerUps : MonoBehaviour
                 PieceParent.Lconnect.BadConnectionMade = false;
             }
 
-            //PieceParent.Rconnect.CheckConnection();
-            //PieceParent.Lconnect.CheckConnection();
+            if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
+            {
+                if (PieceParent.OuterRightConnect.SuccesfullConnectionMade)
+                {
+                    PieceParent.OuterRightConnect.SuccesfullConnectionMade = false;
+                    GameManager.Instance.SuccesfullConnectionsMade--;
+                }
+
+                if (PieceParent.OuterLeftConnect.SuccesfullConnectionMade)
+                {
+                    PieceParent.OuterLeftConnect.SuccesfullConnectionMade = false;
+                    GameManager.Instance.SuccesfullConnectionsMade--;
+                }
+
+                if (PieceParent.OuterRightConnect.BadConnectionMade)
+                {
+                    PieceParent.OuterRightConnect.BadConnectionMade = false;
+                }
+
+                if (PieceParent.OuterLeftConnect.BadConnectionMade)
+                {
+                    PieceParent.OuterLeftConnect.BadConnectionMade = false;
+                }
+
+                PieceParent.OuterRightConnect.CheckConnection();
+                PieceParent.OuterLeftConnect.CheckConnection();
+            }
+            PieceParent.Rconnect.CheckConnection();
+            PieceParent.Lconnect.CheckConnection();
 
 
             if (GameManager.Instance.FullCellCounter == GameManager.Instance.CellsNeeedToFinish)
@@ -429,14 +516,18 @@ public class PowerUps : MonoBehaviour
                 }
             }
 
-            UsingPowerUp = false;
+           // UsingPowerUp = false;
         }
     }
 
     public void Joker(PieceMoveManager PieceToJoker)
     {
-        if (PieceToJoker.PartOfBoard && !PieceToJoker.Locked)
+        if (PieceToJoker.PartOfBoard && !PieceToJoker.Locked && !PieceToJoker.IsJoker)
         {
+            Debug.Log("Used Joker Power Up");
+
+            PieceToJoker.IsJoker = true;
+
             PieceToJoker.Rcolor = Colors.Joker;
             PieceToJoker.Rsymbol = Symbols.Joker;
 
@@ -452,15 +543,77 @@ public class PowerUps : MonoBehaviour
             PieceParent.Lconnect.Rcolor = Colors.Joker;
             PieceParent.Lconnect.Rsymbol = Symbols.Joker;
 
+            if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
+            {
+                PieceParent.OuterRightConnect.ROutercolor = Colors.Joker;
+                PieceParent.OuterRightConnect.ROutersymbol = Symbols.Joker;
+
+                PieceParent.OuterLeftConnect.LOutercolor = Colors.Joker;
+                PieceParent.OuterLeftConnect.LOutersymbol = Symbols.Joker;
+            }
+
             //if (!PieceParent.Rconnect.SuccesfullConnectionMade)
             //{
             //    PieceParent.Rconnect.CheckConnection();
             //}
 
-            //if (PieceParent.Lconnect.SuccesfullConnectionMade)
+            //if (!PieceParent.Lconnect.SuccesfullConnectionMade)
             //{
             //    PieceParent.Lconnect.CheckConnection();
             //}
+
+            if (PieceParent.Rconnect.SuccesfullConnectionMade)
+            {
+                PieceParent.Rconnect.SuccesfullConnectionMade = false;
+                GameManager.Instance.SuccesfullConnectionsMade--;
+            }
+
+            if (PieceParent.Lconnect.SuccesfullConnectionMade)
+            {
+                PieceParent.Lconnect.SuccesfullConnectionMade = false;
+                GameManager.Instance.SuccesfullConnectionsMade--;
+            }
+
+            if (PieceParent.Rconnect.BadConnectionMade)
+            {
+                PieceParent.Rconnect.BadConnectionMade = false;
+            }
+
+            if (PieceParent.Lconnect.BadConnectionMade)
+            {
+                PieceParent.Lconnect.BadConnectionMade = false;
+            }
+
+            if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
+            {
+                if (PieceParent.OuterRightConnect.SuccesfullConnectionMade)
+                {
+                    PieceParent.OuterRightConnect.SuccesfullConnectionMade = false;
+                    GameManager.Instance.SuccesfullConnectionsMade--;
+                }
+
+                if (PieceParent.OuterLeftConnect.SuccesfullConnectionMade)
+                {
+                    PieceParent.OuterLeftConnect.SuccesfullConnectionMade = false;
+                    GameManager.Instance.SuccesfullConnectionsMade--;
+                }
+
+                if (PieceParent.OuterRightConnect.BadConnectionMade)
+                {
+                    PieceParent.OuterRightConnect.BadConnectionMade = false;
+                }
+
+                if (PieceParent.OuterLeftConnect.BadConnectionMade)
+                {
+                    PieceParent.OuterLeftConnect.BadConnectionMade = false;
+                }
+
+                PieceParent.OuterRightConnect.CheckConnection();
+                PieceParent.OuterLeftConnect.CheckConnection();
+            }
+
+            PieceParent.Rconnect.CheckConnection();
+            PieceParent.Lconnect.CheckConnection();
 
             if (GameManager.Instance.FullCellCounter == GameManager.Instance.CellsNeeedToFinish)
             {
@@ -470,7 +623,7 @@ public class PowerUps : MonoBehaviour
                 }
             }
 
-            UsingPowerUp = false;
+            //UsingPowerUp = false;
         }
     }
 
@@ -478,8 +631,10 @@ public class PowerUps : MonoBehaviour
     {
         PieceMoveManager pieceParent = PieceToTransform.transform.parent.parent.GetComponent<PieceMoveManager>();
 
-        if (pieceParent.PartOfBoard && !pieceParent.Locked)
+        if (pieceParent.PartOfBoard && !pieceParent.Locked && PieceToTransform.PieceColor != ColorForColorTransformPowerUp)
         {
+            Debug.Log("Used Color Transform Power Up");
+
             PieceToTransform.PieceColor = ColorForColorTransformPowerUp;
             
             PieceToTransform.ChooseColorAndSpritePowerUp(ColorForColorTransformPowerUp, PieceToTransform.PieceSymbol);
@@ -499,6 +654,20 @@ public class PowerUps : MonoBehaviour
                 pieceParent.Lcolor = ColorForColorTransformPowerUp;
             }
 
+            if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
+            {
+                if (PieceToTransform.RightSide)
+                {
+                    CellParent.OuterRightConnect.ROutercolor = ColorForColorTransformPowerUp;
+                    pieceParent.Rcolor = ColorForColorTransformPowerUp;
+                }
+
+                if (PieceToTransform.LeftSide)
+                {
+                    CellParent.OuterLeftConnect.LOutercolor = ColorForColorTransformPowerUp;
+                    pieceParent.Lcolor = ColorForColorTransformPowerUp;
+                }
+            }
 
             if (GameManager.Instance.SuccesfullConnectionsMade == GameManager.Instance.ConnectionsNeededToFinishLevel)
             {
@@ -527,8 +696,36 @@ public class PowerUps : MonoBehaviour
                 CellParent.Lconnect.BadConnectionMade = false;
             }
 
-            //CellParent.Rconnect.CheckConnection();
-            //CellParent.Lconnect.CheckConnection();
+            if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
+            {
+                if (CellParent.OuterRightConnect.SuccesfullConnectionMade)
+                {
+                    CellParent.OuterRightConnect.SuccesfullConnectionMade = false;
+                    GameManager.Instance.SuccesfullConnectionsMade--;
+                }
+
+                if (CellParent.OuterLeftConnect.SuccesfullConnectionMade)
+                {
+                    CellParent.OuterLeftConnect.SuccesfullConnectionMade = false;
+                    GameManager.Instance.SuccesfullConnectionsMade--;
+                }
+
+                if (CellParent.OuterRightConnect.BadConnectionMade)
+                {
+                    CellParent.OuterRightConnect.BadConnectionMade = false;
+                }
+
+                if (CellParent.OuterLeftConnect.BadConnectionMade)
+                {
+                    CellParent.OuterLeftConnect.BadConnectionMade = false;
+                }
+
+                CellParent.OuterRightConnect.CheckConnection();
+                CellParent.OuterLeftConnect.CheckConnection();
+            }
+
+            CellParent.Rconnect.CheckConnection();
+            CellParent.Lconnect.CheckConnection();
 
 
             if (GameManager.Instance.FullCellCounter == GameManager.Instance.CellsNeeedToFinish)
@@ -539,7 +736,7 @@ public class PowerUps : MonoBehaviour
                 }
             }
 
-            UsingPowerUp = false;
+            //UsingPowerUp = false;
         }
     }
 
@@ -547,8 +744,9 @@ public class PowerUps : MonoBehaviour
     {
         PieceMoveManager pieceParent = PieceToTransform.transform.parent.parent.GetComponent<PieceMoveManager>();
 
-        if (pieceParent.PartOfBoard && !pieceParent.Locked)
+        if (pieceParent.PartOfBoard && !pieceParent.Locked && PieceToTransform.PieceSymbol != SymbolForShapeTransformPowerUp)
         {
+            Debug.Log("Used Symbol Transform Power Up");
             PieceToTransform.PieceSymbol = SymbolForShapeTransformPowerUp;
 
             PieceToTransform.ChooseColorAndSpritePowerUp(PieceToTransform.PieceColor, SymbolForShapeTransformPowerUp);
@@ -568,6 +766,21 @@ public class PowerUps : MonoBehaviour
                 pieceParent.Lsymbol = SymbolForShapeTransformPowerUp;
             }
 
+            if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
+            {
+                if (PieceToTransform.RightSide)
+                {
+                    CellParent.OuterRightConnect.ROutersymbol = SymbolForShapeTransformPowerUp;
+                    pieceParent.Rsymbol = SymbolForShapeTransformPowerUp;
+                }
+
+                if (PieceToTransform.LeftSide)
+                {
+                    CellParent.OuterLeftConnect.LOutersymbol = SymbolForShapeTransformPowerUp;
+                    pieceParent.Lsymbol = SymbolForShapeTransformPowerUp;
+                }
+            }
+
 
             if (GameManager.Instance.SuccesfullConnectionsMade == GameManager.Instance.ConnectionsNeededToFinishLevel)
             {
@@ -596,8 +809,37 @@ public class PowerUps : MonoBehaviour
                 CellParent.Lconnect.BadConnectionMade = false;
             }
 
-            //CellParent.Rconnect.CheckConnection();
-            //CellParent.Lconnect.CheckConnection();
+            if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
+            {
+                if (CellParent.OuterRightConnect.SuccesfullConnectionMade)
+                {
+                    CellParent.OuterRightConnect.SuccesfullConnectionMade = false;
+                    GameManager.Instance.SuccesfullConnectionsMade--;
+                }
+
+                if (CellParent.OuterLeftConnect.SuccesfullConnectionMade)
+                {
+                    CellParent.OuterLeftConnect.SuccesfullConnectionMade = false;
+                    GameManager.Instance.SuccesfullConnectionsMade--;
+                }
+
+                if (CellParent.OuterRightConnect.BadConnectionMade)
+                {
+                    CellParent.OuterRightConnect.BadConnectionMade = false;
+                }
+
+                if (CellParent.OuterLeftConnect.BadConnectionMade)
+                {
+                    CellParent.OuterLeftConnect.BadConnectionMade = false;
+                }
+
+                CellParent.OuterRightConnect.CheckConnection();
+                CellParent.OuterLeftConnect.CheckConnection();
+
+            }
+
+            CellParent.Rconnect.CheckConnection();
+            CellParent.Lconnect.CheckConnection();
 
 
             if (GameManager.Instance.FullCellCounter == GameManager.Instance.CellsNeeedToFinish)
@@ -608,7 +850,7 @@ public class PowerUps : MonoBehaviour
                 }
             }
 
-            UsingPowerUp = false;
+            //UsingPowerUp = false;
         }
     }
 

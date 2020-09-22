@@ -471,10 +471,10 @@ public class GameManager : MonoBehaviour
 
     public void CheckEndGame()
     {
-        Debug.Log("Checking");
+        //Debug.Log("Checking");
         if(FullCellCounter == CellsNeeedToFinish && SuccesfullConnectionsMade == ConnectionsNeededToFinishLevel)
         {
-            Debug.Log("Win");
+            //Debug.Log("Win");
             UiManager.Instance.YouWinMessage();
 
             LeftSideClipsPieces.Clear();
@@ -503,7 +503,7 @@ public class GameManager : MonoBehaviour
             Connectors.Clear();
             PieceCells.Clear();
             FullCellCounter = 0;
-            Debug.Log("3");
+            //Debug.Log("3");
             SuccesfullConnectionsMade = 0;
         }
     }

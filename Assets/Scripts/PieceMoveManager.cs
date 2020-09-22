@@ -34,6 +34,7 @@ public class PieceMoveManager : MonoBehaviour
     public Symbols Lsymbol = Symbols.None;
     public Colors Lcolor = Colors.None;
 
+    public bool IsJoker;
     //public List<Collider2D> InteractedColliders;
     private void Start()
     {

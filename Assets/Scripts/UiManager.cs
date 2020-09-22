@@ -16,6 +16,9 @@ public class UiManager : MonoBehaviour
     public Text RubiesText;
     public Text MagicalItemText;
 
+    public Text FullSlotCountText;
+    public Text SuccessfullConnectionsCountText;
+
     public Button GoToNextLevelButton;
     public GameObject MainMenuScreen;
     public Button Commit;
@@ -41,7 +44,14 @@ public class UiManager : MonoBehaviour
         Instance = this;
         ThePlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerData>();
     }
-    
+
+    private void Update()
+    {
+        FullSlotCountText.text = "Full cells: " +  GameManager.Instance.FullCellCounter + "/" + GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].CellsInLevel;
+
+        SuccessfullConnectionsCountText.text = "Connections: " + GameManager.Instance.SuccesfullConnectionsMade + "/" + GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].ConnectionsNeededToFinishLevel;
+
+    }
     public void YouLoseMessage()
     {
         YouLose.gameObject.SetActive(true);

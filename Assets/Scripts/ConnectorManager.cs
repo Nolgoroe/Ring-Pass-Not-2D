@@ -838,6 +838,7 @@ public class ConnectorManager : MonoBehaviour
         ConnectorLimiter.TypeOfLootSlice = LootSliceType.None;
         ConnectorLimiter.boolTypeOfSlice = BoolSliceType.None;
         ConnectorLimiter.IsFull = false;
+        //Debug.Log("4");
 
         HasLimiter = false;
         TypeOfLootSlice = LootSliceType.None;
@@ -864,7 +865,7 @@ public class ConnectorManager : MonoBehaviour
         ConnectorLimiter.TypeOfLootLockSlice = LootLockSliceType.None;
         ConnectorLimiter.boolTypeOfSlice = BoolSliceType.None;
         ConnectorLimiter.IsFull = false;
-
+        //Debug.Log("5");
         HasLimiter = false;
         TypeOfLootLockSlice = LootLockSliceType.None;
 
