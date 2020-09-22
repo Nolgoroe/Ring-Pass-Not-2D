@@ -11,10 +11,9 @@ public enum PowerUpChooseItemTypes
     ColorTransform,
     ShapeTransform
 }
+
 public class PowerUps : MonoBehaviour
 {
-    public static PowerUps Instance;
-
     public GameObject Clip;
 
     public int TimesClickedDeal;
@@ -27,12 +26,11 @@ public class PowerUps : MonoBehaviour
 
     public PowerUpChooseItemTypes PowerUpType;
 
+    public Colors ColorForColorTransformPowerUp;
+    public Symbols SymbolForShapeTransformPowerUp;
+
     public bool HasTargetForPowerUp = false;
 
-    private void Start()
-    {
-        Instance = this;
-    }
     public void Init()
     {
         TimesClickedDeal = 0;
@@ -41,6 +39,8 @@ public class PowerUps : MonoBehaviour
 
     public void UsingPowerUpToggle(int TypeOfPowerUp)
     {
+        UsingPowerUp = true;
+
         switch (TypeOfPowerUp)
         {
             case 0:
@@ -64,8 +64,50 @@ public class PowerUps : MonoBehaviour
             default:
                 break;
         }
-        UsingPowerUp = true;
     }
+
+    public void ChooseColorForColorTransformPowerUp(int Color)
+    {
+        switch (Color)
+        {
+            case 0:
+                ColorForColorTransformPowerUp = Colors.Red;
+                break;
+            case 1:
+                ColorForColorTransformPowerUp = Colors.Pink;
+                break;
+            case 2:
+                ColorForColorTransformPowerUp = Colors.Blue;
+                break;
+            case 3:
+                ColorForColorTransformPowerUp = Colors.Yellow;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void ChooseSymbolForShapeTransformPowerUp(int Shape)
+    {
+        switch (Shape)
+        {
+            case 0:
+                SymbolForShapeTransformPowerUp = Symbols.Circle;
+                break;
+            case 1:
+                SymbolForShapeTransformPowerUp = Symbols.Plus;
+                break;
+            case 2:
+                SymbolForShapeTransformPowerUp = Symbols.Triangle;
+                break;
+            case 3:
+                SymbolForShapeTransformPowerUp = Symbols.Square;
+                break;
+            default:
+                break;
+        }
+    }
+
     public void DealCards() //// Put on Deal Button in scene
     {
         if (!LoseGame)
@@ -198,7 +240,7 @@ public class PowerUps : MonoBehaviour
                 if (GameManager.Instance.Connectors[i].TypeOfLootLimiter != LootLimiterType.None)
                 {
                     GameManager.Instance.Connectors[i].TypeOfLootLimiter = LootLimiterType.None;
-                    GameManager.Instance.Connectors[i].CheckConnection();
+                    //GameManager.Instance.Connectors[i].CheckConnection();
                 }
             }
         }
@@ -392,8 +434,8 @@ public class PowerUps : MonoBehaviour
                 PieceParent.Lconnect.BadConnectionMade = false;
             }
 
-            PieceParent.Rconnect.CheckConnection();
-            PieceParent.Lconnect.CheckConnection();
+            //PieceParent.Rconnect.CheckConnection();
+            //PieceParent.Lconnect.CheckConnection();
 
 
             if (GameManager.Instance.FullCellCounter == GameManager.Instance.CellsNeeedToFinish)
@@ -408,16 +450,192 @@ public class PowerUps : MonoBehaviour
         }
     }
 
-    public void Joker()
+    public void Joker(PieceMoveManager PieceToJoker)
     {
+        if (PieceToJoker.PartOfBoard && !PieceToJoker.Locked)
+        {
+            PieceToJoker.Rcolor = Colors.Joker;
+            PieceToJoker.Rsymbol = Symbols.Joker;
 
+            PieceToJoker.Lcolor = Colors.Joker;
+            PieceToJoker.Lsymbol = Symbols.Joker;
+
+            ////// Change Connectors Now
+            CellInfo PieceParent = PieceToJoker.transform.parent.GetComponent<CellInfo>();
+
+            PieceParent.Rconnect.Lcolor = Colors.Joker;
+            PieceParent.Rconnect.Lsymbol = Symbols.Joker;
+
+            PieceParent.Lconnect.Rcolor = Colors.Joker;
+            PieceParent.Lconnect.Rsymbol = Symbols.Joker;
+
+            //if (!PieceParent.Rconnect.SuccesfullConnectionMade)
+            //{
+            //    PieceParent.Rconnect.CheckConnection();
+            //}
+
+            //if (PieceParent.Lconnect.SuccesfullConnectionMade)
+            //{
+            //    PieceParent.Lconnect.CheckConnection();
+            //}
+
+            if (GameManager.Instance.FullCellCounter == GameManager.Instance.CellsNeeedToFinish)
+            {
+                if (UiManager.Instance.Commit)
+                {
+                    UiManager.Instance.Commit.interactable = true;
+                }
+            }
+
+            UsingPowerUp = false;
+        }
     }
+
+    public void ColorTransform(ColorSymbolData PieceToTransform)
+    {
+        PieceMoveManager pieceParent = PieceToTransform.transform.parent.parent.GetComponent<PieceMoveManager>();
+
+        if (pieceParent.PartOfBoard && !pieceParent.Locked)
+        {
+            PieceToTransform.PieceColor = ColorForColorTransformPowerUp;
+            
+            PieceToTransform.ChooseColorAndSpritePowerUp(ColorForColorTransformPowerUp, PieceToTransform.PieceSymbol);
+
+            ////// Change Connectors Now
+            CellInfo CellParent = PieceToTransform.transform.parent.parent.parent.GetComponent<CellInfo>();
+
+            if (PieceToTransform.RightSide)
+            {
+                CellParent.Rconnect.Lcolor = ColorForColorTransformPowerUp;
+                pieceParent.Rcolor = ColorForColorTransformPowerUp;
+            }
+
+            if (PieceToTransform.LeftSide)
+            {
+                CellParent.Lconnect.Rcolor = ColorForColorTransformPowerUp;
+                pieceParent.Lcolor = ColorForColorTransformPowerUp;
+            }
+
+
+            if (GameManager.Instance.SuccesfullConnectionsMade == GameManager.Instance.ConnectionsNeededToFinishLevel)
+            {
+                UiManager.Instance.Commit.interactable = false;
+            }
+
+            if (CellParent.Rconnect.SuccesfullConnectionMade)
+            {
+                CellParent.Rconnect.SuccesfullConnectionMade = false;
+                GameManager.Instance.SuccesfullConnectionsMade--;
+            }
+
+            if (CellParent.Lconnect.SuccesfullConnectionMade)
+            {
+                CellParent.Lconnect.SuccesfullConnectionMade = false;
+                GameManager.Instance.SuccesfullConnectionsMade--;
+            }
+
+            if (CellParent.Rconnect.BadConnectionMade)
+            {
+                CellParent.Rconnect.BadConnectionMade = false;
+            }
+
+            if (CellParent.Lconnect.BadConnectionMade)
+            {
+                CellParent.Lconnect.BadConnectionMade = false;
+            }
+
+            //CellParent.Rconnect.CheckConnection();
+            //CellParent.Lconnect.CheckConnection();
+
+
+            if (GameManager.Instance.FullCellCounter == GameManager.Instance.CellsNeeedToFinish)
+            {
+                if (UiManager.Instance.Commit)
+                {
+                    UiManager.Instance.Commit.interactable = true;
+                }
+            }
+
+            UsingPowerUp = false;
+        }
+    }
+
+    public void SymbolTransform(ColorSymbolData PieceToTransform)
+    {
+        PieceMoveManager pieceParent = PieceToTransform.transform.parent.parent.GetComponent<PieceMoveManager>();
+
+        if (pieceParent.PartOfBoard && !pieceParent.Locked)
+        {
+            PieceToTransform.PieceSymbol = SymbolForShapeTransformPowerUp;
+
+            PieceToTransform.ChooseColorAndSpritePowerUp(PieceToTransform.PieceColor, SymbolForShapeTransformPowerUp);
+
+            ////// Change Connectors Now
+            CellInfo CellParent = PieceToTransform.transform.parent.parent.parent.GetComponent<CellInfo>();
+
+            if (PieceToTransform.RightSide)
+            {
+                CellParent.Rconnect.Lsymbol = SymbolForShapeTransformPowerUp;
+                pieceParent.Rsymbol = SymbolForShapeTransformPowerUp;
+            }
+
+            if (PieceToTransform.LeftSide)
+            {
+                CellParent.Lconnect.Rsymbol = SymbolForShapeTransformPowerUp;
+                pieceParent.Lsymbol = SymbolForShapeTransformPowerUp;
+            }
+
+
+            if (GameManager.Instance.SuccesfullConnectionsMade == GameManager.Instance.ConnectionsNeededToFinishLevel)
+            {
+                UiManager.Instance.Commit.interactable = false;
+            }
+
+            if (CellParent.Rconnect.SuccesfullConnectionMade)
+            {
+                CellParent.Rconnect.SuccesfullConnectionMade = false;
+                GameManager.Instance.SuccesfullConnectionsMade--;
+            }
+
+            if (CellParent.Lconnect.SuccesfullConnectionMade)
+            {
+                CellParent.Lconnect.SuccesfullConnectionMade = false;
+                GameManager.Instance.SuccesfullConnectionsMade--;
+            }
+
+            if (CellParent.Rconnect.BadConnectionMade)
+            {
+                CellParent.Rconnect.BadConnectionMade = false;
+            }
+
+            if (CellParent.Lconnect.BadConnectionMade)
+            {
+                CellParent.Lconnect.BadConnectionMade = false;
+            }
+
+            //CellParent.Rconnect.CheckConnection();
+            //CellParent.Lconnect.CheckConnection();
+
+
+            if (GameManager.Instance.FullCellCounter == GameManager.Instance.CellsNeeedToFinish)
+            {
+                if (UiManager.Instance.Commit)
+                {
+                    UiManager.Instance.Commit.interactable = true;
+                }
+            }
+
+            UsingPowerUp = false;
+        }
+    }
+
     public void UsePowerUp(GameObject ToUsePowerUp)
     {
-
+        //Debug.Log(ToUsePowerUp.name);
         switch (PowerUpType)
         {
             case PowerUpChooseItemTypes.Joker:
+                Joker(ToUsePowerUp.transform.parent.parent.GetComponent<PieceMoveManager>());
                 break;
             case PowerUpChooseItemTypes.Switch:
                 SwitchPieceSides(ToUsePowerUp.transform.parent.parent.GetComponent<PieceMoveManager>());
@@ -429,8 +647,10 @@ public class PowerUps : MonoBehaviour
                 SliceBomb(ToUsePowerUp.transform.parent.parent.GetComponent<PieceMoveManager>());
                 break;
             case PowerUpChooseItemTypes.ColorTransform:
+                ColorTransform(ToUsePowerUp.transform.GetComponent<ColorSymbolData>());
                 break;
             case PowerUpChooseItemTypes.ShapeTransform:
+                SymbolTransform(ToUsePowerUp.transform.GetComponent<ColorSymbolData>());
                 break;
             default:
                 break;

@@ -503,6 +503,7 @@ public class GameManager : MonoBehaviour
             Connectors.Clear();
             PieceCells.Clear();
             FullCellCounter = 0;
+            Debug.Log("3");
             SuccesfullConnectionsMade = 0;
         }
     }
@@ -766,5 +767,4 @@ public class GameManager : MonoBehaviour
         }
 
     }
-
 }

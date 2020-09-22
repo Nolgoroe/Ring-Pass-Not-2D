@@ -44,7 +44,7 @@ public class LootManager : MonoBehaviour
         }
 
         UiManager.Instance.UpdateLootStats(AmoutOfGoldToRecive,0,0);
-        Debug.Log(AmoutOfGoldToRecive);
+        //Debug.Log(AmoutOfGoldToRecive);
     }
 
     public void GainRubie(LootType type)
@@ -60,12 +60,12 @@ public class LootManager : MonoBehaviour
         }
 
         UiManager.Instance.UpdateLootStats(0, AmoutOfRubiesToRecive, 0);
-        Debug.Log(AmoutOfRubiesToRecive);
+        //Debug.Log(AmoutOfRubiesToRecive);
     }
 
     public void GainMagicalItems()
     {
         UiManager.Instance.UpdateLootStats(0, 0, 1);
-        Debug.Log("magic Item + 1");
+        //Debug.Log("magic Item + 1");
     }
 }

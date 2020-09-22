@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PieceToMove: {fileID: 0}
+  ObjectToUsePowerup: {fileID: 0}
   InteractedColliders: []
   EnteredBoard: 0
   LengthTouchLimiter: 0.15

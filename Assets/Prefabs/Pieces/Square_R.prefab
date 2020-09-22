@@ -175,4 +175,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136f362086f5856459bd13cc3a800a98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PowerUpsToUse: 0300000001000000
+  PowerUpsToUse: 0300000001000000000000000400000005000000

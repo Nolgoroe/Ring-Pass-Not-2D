@@ -783,14 +783,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -894,14 +894,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -1089,14 +1089,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 4829648212063193824}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -1298,14 +1298,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 3773748689731196929}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -1441,14 +1441,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 8618753284228223647}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -1704,14 +1704,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 672524642646665350}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -1815,14 +1815,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 1049147081767504682}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -1964,14 +1964,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -2075,14 +2075,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -2186,14 +2186,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 1493236217806541124}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -2297,14 +2297,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -2408,14 +2408,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -2519,14 +2519,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -2728,14 +2728,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -2839,14 +2839,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -3232,14 +3232,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -3381,14 +3381,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -3492,14 +3492,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 6236383519284700385}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -3656,14 +3656,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -3903,14 +3903,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -4014,14 +4014,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -4125,14 +4125,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -4361,14 +4361,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -4570,14 +4570,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -4719,14 +4719,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -4883,14 +4883,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -5093,14 +5093,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -5204,14 +5204,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -5413,14 +5413,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -5605,14 +5605,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -5716,14 +5716,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 2292409886226605294}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
@@ -5827,14 +5827,14 @@ MonoBehaviour:
   TypeOfLootLimiter: 10
   TypeOfLootSlice: 10
   TypeOfLootLockSlice: 10
-  Rsymbol: 4
-  Rcolor: 4
-  Lsymbol: 4
-  Lcolor: 4
-  LOutersymbol: 4
-  LOutercolor: 4
-  ROutersymbol: 4
-  ROutercolor: 4
+  Rsymbol: 5
+  Rcolor: 5
+  Lsymbol: 5
+  Lcolor: 5
+  ROutersymbol: 5
+  ROutercolor: 5
+  LOutersymbol: 5
+  LOutercolor: 5
   ConnectorLimiter: {fileID: 0}
   LeftPieceParent: {fileID: 0}
   RightPieceParent: {fileID: 0}
