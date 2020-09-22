@@ -209,9 +209,10 @@ public class PowerUps : MonoBehaviour
                 GameManager.Instance.Connectors[i].TypeOfLimiter = LimiterType.None;
                 GameManager.Instance.Connectors[i].TypeOfLootLockSlice = LootLockSliceType.None;
                 GameManager.Instance.Connectors[i].TypeOfLootSlice = LootSliceType.None;
+                GameManager.Instance.Connectors[i].TypeOfLootLimiter = LootLimiterType.None;
 
 
-                if(GameManager.Instance.Connectors[i].LeftPieceParent != null && GameManager.Instance.Connectors[i].RightPieceParent != null)
+                if (GameManager.Instance.Connectors[i].LeftPieceParent != null && GameManager.Instance.Connectors[i].RightPieceParent != null)
                 {
                     if (GameManager.Instance.Connectors[i].LeftPieceParent.Locked && GameManager.Instance.Connectors[i].RightPieceParent.Locked)
                     {
@@ -235,12 +236,6 @@ public class PowerUps : MonoBehaviour
                         }
 
                     }
-                }
-
-                if (GameManager.Instance.Connectors[i].TypeOfLootLimiter != LootLimiterType.None)
-                {
-                    GameManager.Instance.Connectors[i].TypeOfLootLimiter = LootLimiterType.None;
-                    //GameManager.Instance.Connectors[i].CheckConnection();
                 }
             }
         }
@@ -272,18 +267,6 @@ public class PowerUps : MonoBehaviour
             CellParent.Lconnect.Rsymbol = Symbols.None;
             CellParent.Lconnect.Rcolor = Colors.None;
 
-
-            if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
-            {
-
-                CellParent.Rconnect.LOutersymbol = Symbols.None;
-                CellParent.Rconnect.LOutercolor = Colors.None;
-
-                CellParent.Lconnect.ROutersymbol = Symbols.None;
-                CellParent.Lconnect.ROutercolor = Colors.None;
-
-
-            }
 
             if (CellParent.Rconnect.LockPieces)
             {
