@@ -19,16 +19,16 @@ public class ConnectorManager : MonoBehaviour
 
 
     public Symbols Rsymbol = Symbols.None;
-    public Colors Rcolor = Colors.None;
+    public ColorData Rcolor = ColorData.None;
 
     public Symbols Lsymbol = Symbols.None;
-    public Colors Lcolor = Colors.None;
+    public ColorData Lcolor = ColorData.None;
 
     public Symbols ROutersymbol = Symbols.None;
-    public Colors ROutercolor = Colors.None;
+    public ColorData ROutercolor = ColorData.None;
 
     public Symbols LOutersymbol = Symbols.None;
-    public Colors LOutercolor = Colors.None;
+    public ColorData LOutercolor = ColorData.None;
 
     public LimiterCellManager ConnectorLimiter;
 
@@ -98,7 +98,7 @@ public class ConnectorManager : MonoBehaviour
             //    SuccesfullConnectionMade = false;
             //}
 
-            if ((Rcolor == Lcolor || Rsymbol == Lsymbol || Rcolor == Colors.Joker || Lcolor == Colors.Joker || Rsymbol == Symbols.Joker || Lsymbol == Symbols.Joker) && Rcolor != Colors.None && Lcolor != Colors.None && Rsymbol != Symbols.None && Rsymbol != Symbols.None)
+            if ((Rcolor == Lcolor || Rsymbol == Lsymbol || Rcolor == ColorData.Joker || Lcolor == ColorData.Joker || Rsymbol == Symbols.Joker || Lsymbol == Symbols.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None && Rsymbol != Symbols.None && Rsymbol != Symbols.None)
             {
                 //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color or Shape" + " " + transform.name);
                 Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position,transform.rotation, transform), 1.5f);
@@ -110,7 +110,7 @@ public class ConnectorManager : MonoBehaviour
 
         if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
         {
-            if ((ROutercolor == LOutercolor || ROutersymbol == LOutersymbol || ROutercolor == Colors.Joker || LOutercolor == Colors.Joker || ROutersymbol == Symbols.Joker || LOutersymbol == Symbols.Joker) && ROutercolor != Colors.None && LOutercolor != Colors.None && ROutersymbol != Symbols.None && LOutersymbol != Symbols.None)
+            if ((ROutercolor == LOutercolor || ROutersymbol == LOutersymbol || ROutercolor == ColorData.Joker || LOutercolor == ColorData.Joker || ROutersymbol == Symbols.Joker || LOutersymbol == Symbols.Joker) && ROutercolor != ColorData.None && LOutercolor != ColorData.None && ROutersymbol != Symbols.None && LOutersymbol != Symbols.None)
             {
                 //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color or Shape" + " " + transform.name);
                 Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -123,7 +123,7 @@ public class ConnectorManager : MonoBehaviour
 
     public void BadConnectionToggle()
     {
-        if (Rcolor != Colors.None && Rsymbol != Symbols.None && Lcolor != Colors.None && Lsymbol != Symbols.None)
+        if (Rcolor != ColorData.None && Rsymbol != Symbols.None && Lcolor != ColorData.None && Lsymbol != Symbols.None)
         {
             BadConnectionMade = true;
             SuccesfullConnectionMade = false;
@@ -135,7 +135,7 @@ public class ConnectorManager : MonoBehaviour
         switch (ConnectorLimiter.TypeOfLimiter)
         {
             case LimiterType.GeneralColor:
-                if ((Rcolor == Lcolor || Rcolor == Colors.Joker || Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == Lcolor || Rcolor == ColorData.Joker || Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -163,7 +163,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LimiterType.Red:
-                if ((Rcolor == Colors.Red && Lcolor == Colors.Red) || (Rcolor == Colors.Red && Lcolor == Colors.Joker) || (Rcolor == Colors.Joker && Lcolor == Colors.Red || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Red && Lcolor == ColorData.Red) || (Rcolor == ColorData.Red && Lcolor == ColorData.Joker) || (Rcolor == ColorData.Joker && Lcolor == ColorData.Red || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -177,7 +177,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LimiterType.Blue:
-                if ((Rcolor == Colors.Blue && Lcolor == Colors.Blue) || (Rcolor == Colors.Blue && Lcolor == Colors.Joker) || (Rcolor == Colors.Joker && Lcolor == Colors.Blue || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Blue && Lcolor == ColorData.Blue) || (Rcolor == ColorData.Blue && Lcolor == ColorData.Joker) || (Rcolor == ColorData.Joker && Lcolor == ColorData.Blue || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -191,7 +191,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LimiterType.Yellow:
-                if ((Rcolor == Colors.Yellow && Lcolor == Colors.Yellow || Rcolor == Colors.Joker && Lcolor == Colors.Yellow || Rcolor == Colors.Yellow && Lcolor == Colors.Joker || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Yellow && Lcolor == ColorData.Yellow || Rcolor == ColorData.Joker && Lcolor == ColorData.Yellow || Rcolor == ColorData.Yellow && Lcolor == ColorData.Joker || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -205,7 +205,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LimiterType.Pink:
-                if ((Rcolor == Colors.Pink && Lcolor == Colors.Pink || Rcolor == Colors.Joker && Lcolor == Colors.Pink || Rcolor == Colors.Pink && Lcolor == Colors.Joker || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Pink && Lcolor == ColorData.Pink || Rcolor == ColorData.Joker && Lcolor == ColorData.Pink || Rcolor == ColorData.Pink && Lcolor == ColorData.Joker || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -275,7 +275,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             default:
-                if (Rcolor != Colors.None && Rsymbol != Symbols.None && Lcolor != Colors.None && Lsymbol != Symbols.None)
+                if (Rcolor != ColorData.None && Rsymbol != Symbols.None && Lcolor != ColorData.None && Lsymbol != Symbols.None)
                 {
                     BadConnectionMade = true;
                     SuccesfullConnectionMade = false;
@@ -289,7 +289,7 @@ public class ConnectorManager : MonoBehaviour
         switch (ConnectorLimiter.TypeOfLootLimiter)
         {
             case LootLimiterType.LootLimiterGeneralColor:
-                if ((Rcolor == Lcolor || Rcolor == Colors.Joker || Lcolor == Colors.Joker)&& Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == Lcolor || Rcolor == ColorData.Joker || Lcolor == ColorData.Joker)&& Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -319,7 +319,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LootLimiterType.LootLimiterSpecificRed:
-                if ((Rcolor == Colors.Red && Lcolor == Colors.Red || Rcolor == Colors.Joker && Lcolor == Colors.Red || Rcolor == Colors.Red && Lcolor == Colors.Joker || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Red && Lcolor == ColorData.Red || Rcolor == ColorData.Joker && Lcolor == ColorData.Red || Rcolor == ColorData.Red && Lcolor == ColorData.Joker || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -334,7 +334,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LootLimiterType.LootLimiterSpecificBlue:
-                if ((Rcolor == Colors.Blue && Lcolor == Colors.Blue || Rcolor == Colors.Joker && Lcolor == Colors.Blue || Rcolor == Colors.Blue && Lcolor == Colors.Joker || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Blue && Lcolor == ColorData.Blue || Rcolor == ColorData.Joker && Lcolor == ColorData.Blue || Rcolor == ColorData.Blue && Lcolor == ColorData.Joker || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -349,7 +349,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LootLimiterType.LootLimiterSpecificYellow:
-                if ((Rcolor == Colors.Yellow && Lcolor == Colors.Yellow || Rcolor == Colors.Joker && Lcolor == Colors.Yellow || Rcolor == Colors.Yellow && Lcolor == Colors.Joker || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Yellow && Lcolor == ColorData.Yellow || Rcolor == ColorData.Joker && Lcolor == ColorData.Yellow || Rcolor == ColorData.Yellow && Lcolor == ColorData.Joker || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -364,7 +364,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LootLimiterType.LootLimiterSpecificPink:
-                if ((Rcolor == Colors.Pink && Lcolor == Colors.Pink || Rcolor == Colors.Joker && Lcolor == Colors.Pink || Rcolor == Colors.Pink && Lcolor == Colors.Joker || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Pink && Lcolor == ColorData.Pink || Rcolor == ColorData.Joker && Lcolor == ColorData.Pink || Rcolor == ColorData.Pink && Lcolor == ColorData.Joker || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -439,7 +439,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             default:
-                if (Rcolor != Colors.None && Rsymbol != Symbols.None && Lcolor != Colors.None && Lsymbol != Symbols.None)
+                if (Rcolor != ColorData.None && Rsymbol != Symbols.None && Lcolor != ColorData.None && Lsymbol != Symbols.None)
                 {
                     BadConnectionMade = true;
                     SuccesfullConnectionMade = false;
@@ -453,7 +453,7 @@ public class ConnectorManager : MonoBehaviour
         switch (ConnectorLimiter.TypeOfLootSlice)
         {
             case LootSliceType.LootGeneralColor:
-                if ((Rcolor == Lcolor || Rcolor == Colors.Joker || Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == Lcolor || Rcolor == ColorData.Joker || Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -484,7 +484,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LootSliceType.LootSpecificRed:
-                if ((Rcolor == Colors.Red && Lcolor == Colors.Red  || Rcolor == Colors.Joker && Lcolor == Colors.Red || Rcolor == Colors.Red && Lcolor == Colors.Joker || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Red && Lcolor == ColorData.Red  || Rcolor == ColorData.Joker && Lcolor == ColorData.Red || Rcolor == ColorData.Red && Lcolor == ColorData.Joker || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -500,7 +500,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LootSliceType.LootSpecificBlue:
-                if ((Rcolor == Colors.Blue && Lcolor == Colors.Blue || Rcolor == Colors.Joker && Lcolor == Colors.Blue || Rcolor == Colors.Blue && Lcolor == Colors.Joker || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Blue && Lcolor == ColorData.Blue || Rcolor == ColorData.Joker && Lcolor == ColorData.Blue || Rcolor == ColorData.Blue && Lcolor == ColorData.Joker || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -516,7 +516,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LootSliceType.LootSpecificYellow:
-                if ((Rcolor == Colors.Yellow && Lcolor == Colors.Yellow || Rcolor == Colors.Joker && Lcolor == Colors.Yellow || Rcolor == Colors.Yellow && Lcolor == Colors.Joker || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Yellow && Lcolor == ColorData.Yellow || Rcolor == ColorData.Joker && Lcolor == ColorData.Yellow || Rcolor == ColorData.Yellow && Lcolor == ColorData.Joker || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -532,7 +532,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LootSliceType.LootSpecificPink:
-                if ((Rcolor == Colors.Pink && Lcolor == Colors.Pink || Rcolor == Colors.Joker && Lcolor == Colors.Pink || Rcolor == Colors.Pink && Lcolor == Colors.Joker || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Pink && Lcolor == ColorData.Pink || Rcolor == ColorData.Joker && Lcolor == ColorData.Pink || Rcolor == ColorData.Pink && Lcolor == ColorData.Joker || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -612,7 +612,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             default:
-                if (Rcolor != Colors.None && Rsymbol != Symbols.None && Lcolor != Colors.None && Lsymbol != Symbols.None)
+                if (Rcolor != ColorData.None && Rsymbol != Symbols.None && Lcolor != ColorData.None && Lsymbol != Symbols.None)
                 {
                     BadConnectionMade = true;
                     SuccesfullConnectionMade = false;
@@ -626,7 +626,7 @@ public class ConnectorManager : MonoBehaviour
         switch (ConnectorLimiter.TypeOfLootLockSlice)
         {
             case LootLockSliceType.LootLockGeneralColor:
-                if ((Rcolor == Lcolor || Rcolor == Colors.Joker || Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == Lcolor || Rcolor == ColorData.Joker || Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -663,7 +663,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LootLockSliceType.LootLockSpecificRed:
-                if ((Rcolor == Colors.Red && Lcolor == Colors.Red || Rcolor == Colors.Joker && Lcolor == Colors.Red || Rcolor == Colors.Red && Lcolor == Colors.Joker || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Red && Lcolor == ColorData.Red || Rcolor == ColorData.Joker && Lcolor == ColorData.Red || Rcolor == ColorData.Red && Lcolor == ColorData.Joker || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -682,7 +682,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LootLockSliceType.LootLockSpecificBlue:
-                if ((Rcolor == Colors.Blue && Lcolor == Colors.Blue || Rcolor == Colors.Joker && Lcolor == Colors.Blue || Rcolor == Colors.Blue && Lcolor == Colors.Joker || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Blue && Lcolor == ColorData.Blue || Rcolor == ColorData.Joker && Lcolor == ColorData.Blue || Rcolor == ColorData.Blue && Lcolor == ColorData.Joker || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -701,7 +701,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LootLockSliceType.LootLockSpecificYellow:
-                if ((Rcolor == Colors.Yellow && Lcolor == Colors.Yellow || Rcolor == Colors.Joker && Lcolor == Colors.Yellow || Rcolor == Colors.Yellow && Lcolor == Colors.Joker || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Yellow && Lcolor == ColorData.Yellow || Rcolor == ColorData.Joker && Lcolor == ColorData.Yellow || Rcolor == ColorData.Yellow && Lcolor == ColorData.Joker || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -720,7 +720,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             case LootLockSliceType.LootLockSpecificPink:
-                if ((Rcolor == Colors.Pink && Lcolor == Colors.Pink || Rcolor == Colors.Joker && Lcolor == Colors.Pink || Rcolor == Colors.Pink && Lcolor == Colors.Joker || Rcolor == Colors.Joker && Lcolor == Colors.Joker) && Rcolor != Colors.None && Lcolor != Colors.None)
+                if ((Rcolor == ColorData.Pink && Lcolor == ColorData.Pink || Rcolor == ColorData.Joker && Lcolor == ColorData.Pink || Rcolor == ColorData.Pink && Lcolor == ColorData.Joker || Rcolor == ColorData.Joker && Lcolor == ColorData.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None)
                 {
                     //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color" + " " + transform.name);
                     Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);
@@ -815,7 +815,7 @@ public class ConnectorManager : MonoBehaviour
                 }
                 break;
             default:
-                if (Rcolor != Colors.None && Rsymbol != Symbols.None && Lcolor != Colors.None && Lsymbol != Symbols.None)
+                if (Rcolor != ColorData.None && Rsymbol != Symbols.None && Lcolor != ColorData.None && Lsymbol != Symbols.None)
                 {
                     BadConnectionMade = true;
                     SuccesfullConnectionMade = false;
@@ -879,7 +879,7 @@ public class ConnectorManager : MonoBehaviour
 
     public void CheckForNormalConnectionSlices()
     {
-        if ((Rcolor == Lcolor || Rsymbol == Lsymbol || Rcolor == Colors.Joker || Lcolor == Colors.Joker || Rsymbol == Symbols.Joker || Lsymbol == Symbols.Joker) && Rcolor != Colors.None && Lcolor != Colors.None && Rsymbol != Symbols.None && Rsymbol != Symbols.None)
+        if ((Rcolor == Lcolor || Rsymbol == Lsymbol || Rcolor == ColorData.Joker || Lcolor == ColorData.Joker || Rsymbol == Symbols.Joker || Lsymbol == Symbols.Joker) && Rcolor != ColorData.None && Lcolor != ColorData.None && Rsymbol != Symbols.None && Rsymbol != Symbols.None)
         {
             //Debug.Log("Limiter Type: " + ConnectorLimiter.TypeOfLimiter + " " + "Connection Made Color or Shape" + " " + transform.name);
             Destroy(Instantiate(GameManager.Instance.ConnectionVFX.gameObject, transform.position, transform.rotation, transform), 1.5f);

@@ -29,10 +29,10 @@ public class PieceMoveManager : MonoBehaviour
     public GameObject RightSidePiece;
 
     public Symbols Rsymbol = Symbols.None;
-    public Colors Rcolor = Colors.None;
+    public ColorData Rcolor = ColorData.None;
 
     public Symbols Lsymbol = Symbols.None;
-    public Colors Lcolor = Colors.None;
+    public ColorData Lcolor = ColorData.None;
 
     public bool IsJoker;
     //public List<Collider2D> InteractedColliders;

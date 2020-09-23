@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum PowerUpChooseItemTypes
 {
@@ -9,7 +10,9 @@ public enum PowerUpChooseItemTypes
     TileBomb,
     SliceBomb,
     ColorTransform,
-    ShapeTransform
+    ShapeTransform,
+    Reshuffle,
+    None
 }
 
 public class PowerUps : MonoBehaviour
@@ -18,16 +21,18 @@ public class PowerUps : MonoBehaviour
 
     public int TimesClickedDeal;
 
-    public bool GotPowerUp = false;
+    public bool Reshuffled = false;
     public bool LoseGame = false;
 
     public int SlotsInClip = 4;
     public bool UsingPowerUp;
 
-    public PowerUpChooseItemTypes PowerUpType;
+    public PowerUpChooseItemTypes PowerUpInUse;
 
-    public Colors ColorForColorTransformPowerUp;
+    public ColorData ColorForColorTransformPowerUp;
     public Symbols SymbolForShapeTransformPowerUp;
+
+    public Button PowerUpButton;
 
     public bool HasTargetForPowerUp = false;
 
@@ -41,78 +46,62 @@ public class PowerUps : MonoBehaviour
     {
         UsingPowerUp = true;
 
-        switch (TypeOfPowerUp)
-        {
-            case 0:
-                PowerUpType = PowerUpChooseItemTypes.Joker;
-                break;
-            case 1:
-                PowerUpType = PowerUpChooseItemTypes.Switch;
-                break;
-            case 2:
-                PowerUpType = PowerUpChooseItemTypes.TileBomb;
-                break;
-            case 3:
-                PowerUpType = PowerUpChooseItemTypes.SliceBomb;
-                break;
-            case 4:
-                PowerUpType = PowerUpChooseItemTypes.ColorTransform;
-                break;
-            case 5:
-                PowerUpType = PowerUpChooseItemTypes.ShapeTransform;
-                break;
-            default:
-                break;
-        }
+        PowerUpInUse = (PowerUpChooseItemTypes)TypeOfPowerUp;
     }
 
+    public void FillPowerUpButton(Button ThePowerUpButton)
+    {
+        PowerUpButton = ThePowerUpButton;
+    }
     public void ChooseColorForColorTransformPowerUp(int Color)
     {
-        switch (Color)
-        {
-            case 0:
-                ColorForColorTransformPowerUp = Colors.Red;
-                break;
-            case 1:
-                ColorForColorTransformPowerUp = Colors.Pink;
-                break;
-            case 2:
-                ColorForColorTransformPowerUp = Colors.Blue;
-                break;
-            case 3:
-                ColorForColorTransformPowerUp = Colors.Yellow;
-                break;
-            default:
-                break;
-        }
+        ColorForColorTransformPowerUp = (ColorData)Color;
+        //switch (Color)
+        //{
+        //    case 0:
+        //        ColorForColorTransformPowerUp = ColorData.Red;
+        //        break;
+        //    case 1:
+        //        ColorForColorTransformPowerUp = ColorData.Pink;
+        //        break;
+        //    case 2:
+        //        ColorForColorTransformPowerUp = ColorData.Blue;
+        //        break;
+        //    case 3:
+        //        ColorForColorTransformPowerUp = ColorData.Yellow;
+        //        break;
+        //    default:
+        //        break;
+        //}
     }
 
     public void ChooseSymbolForShapeTransformPowerUp(int Shape)
     {
-        switch (Shape)
-        {
-            case 0:
-                SymbolForShapeTransformPowerUp = Symbols.Circle;
-                break;
-            case 1:
-                SymbolForShapeTransformPowerUp = Symbols.Plus;
-                break;
-            case 2:
-                SymbolForShapeTransformPowerUp = Symbols.Triangle;
-                break;
-            case 3:
-                SymbolForShapeTransformPowerUp = Symbols.Square;
-                break;
-            default:
-                break;
-        }
+        SymbolForShapeTransformPowerUp = (Symbols)Shape;
+        //switch (Shape)
+        //{
+        //    case 0:
+        //        SymbolForShapeTransformPowerUp = Symbols.Circle;
+        //        break;
+        //    case 1:
+        //        SymbolForShapeTransformPowerUp = Symbols.Plus;
+        //        break;
+        //    case 2:
+        //        SymbolForShapeTransformPowerUp = Symbols.Triangle;
+        //        break;
+        //    case 3:
+        //        SymbolForShapeTransformPowerUp = Symbols.Square;
+        //        break;
+        //    default:
+        //        break;
+        //}
     }
 
     public void DealCards() //// Put on Deal Button in scene
     {
         if (!LoseGame)
         {
-            if (!GotPowerUp)
+            if (!Reshuffled)
             {
                 if (TimesClickedDeal == 0)
                 {
@@ -130,7 +119,7 @@ public class PowerUps : MonoBehaviour
                     Clip.transform.GetChild(i).gameObject.SetActive(false);
                 }
 
-                GotPowerUp = false;
+                Reshuffled = false;
             }
 
             TimesClickedDeal++;
@@ -149,9 +138,12 @@ public class PowerUps : MonoBehaviour
     {
         if (!LoseGame)
         {
-            if (TimesClickedDeal == 0 || GotPowerUp)
+            if (TimesClickedDeal == 0 || Reshuffled)
             {
                 UiManager.Instance.SlotsFullMessage();
+                UsingPowerUp = false;
+                PowerUpInUse = PowerUpChooseItemTypes.None;
+                PowerUpButton = null;
                 return;
             }
 
@@ -160,8 +152,13 @@ public class PowerUps : MonoBehaviour
                 Clip.transform.GetChild(i).gameObject.SetActive(true);
             }
 
-            GotPowerUp = true;
+            UsingPowerUp = false;
+            Reshuffled = true;
             ResuffleParts();
+
+            DoAfterSuccessfullPowerUp();
+            PowerUpInUse = PowerUpChooseItemTypes.None;
+            PowerUpButton = null;
         }
     }
 
@@ -175,7 +172,7 @@ public class PowerUps : MonoBehaviour
             }
         }
 
-        if (!GotPowerUp)
+        if (!Reshuffled)
         {
             for (int i = 0; i < SlotsInClip - TimesClickedDeal; i++)
             {
@@ -251,6 +248,8 @@ public class PowerUps : MonoBehaviour
         }
 
         Destroy(TileToBomb.gameObject);
+
+        DoAfterSuccessfullPowerUp();
         //UsingPowerUp = false;
     }
 
@@ -266,18 +265,18 @@ public class PowerUps : MonoBehaviour
             //Debug.Log("2");
 
             CellParent.Rconnect.Lsymbol = Symbols.None;
-            CellParent.Rconnect.Lcolor = Colors.None;
+            CellParent.Rconnect.Lcolor = ColorData.None;
 
 
             CellParent.Lconnect.Rsymbol = Symbols.None;
-            CellParent.Lconnect.Rcolor = Colors.None;
+            CellParent.Lconnect.Rcolor = ColorData.None;
 
             if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
             {
-                CellParent.OuterRightConnect.ROutercolor = Colors.None;
+                CellParent.OuterRightConnect.ROutercolor = ColorData.None;
                 CellParent.OuterRightConnect.ROutersymbol = Symbols.None;
 
-                CellParent.OuterLeftConnect.LOutercolor = Colors.None;
+                CellParent.OuterLeftConnect.LOutercolor = ColorData.None;
                 CellParent.OuterLeftConnect.LOutersymbol = Symbols.None;
 
             }
@@ -391,7 +390,9 @@ public class PowerUps : MonoBehaviour
            GameManager.Instance.FullCellCounter--;
             Destroy(PieceToBomb.gameObject);
             //UsingPowerUp = false;
+            DoAfterSuccessfullPowerUp();
         }
+
     }
 
     public void SwitchPieceSides(PieceMoveManager PieceToSwtich)
@@ -403,7 +404,7 @@ public class PowerUps : MonoBehaviour
             CellInfo PieceParent = PieceToSwtich.transform.parent.GetComponent<CellInfo>();
 
 
-            Colors TempColor = PieceToSwtich.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
+            ColorData TempColor = PieceToSwtich.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceColor;
             Symbols TempSymbol = PieceToSwtich.LeftSidePiece.transform.GetChild(0).GetComponent<ColorSymbolData>().PieceSymbol;
 
 
@@ -516,39 +517,42 @@ public class PowerUps : MonoBehaviour
                 }
             }
 
-           // UsingPowerUp = false;
+            DoAfterSuccessfullPowerUp();
+            // UsingPowerUp = false;
         }
     }
 
     public void Joker(PieceMoveManager PieceToJoker)
     {
+        PowerUpInUse = PowerUpChooseItemTypes.Joker;
+
         if (PieceToJoker.PartOfBoard && !PieceToJoker.Locked && !PieceToJoker.IsJoker)
         {
             Debug.Log("Used Joker Power Up");
 
             PieceToJoker.IsJoker = true;
 
-            PieceToJoker.Rcolor = Colors.Joker;
+            PieceToJoker.Rcolor = ColorData.Joker;
             PieceToJoker.Rsymbol = Symbols.Joker;
 
-            PieceToJoker.Lcolor = Colors.Joker;
+            PieceToJoker.Lcolor = ColorData.Joker;
             PieceToJoker.Lsymbol = Symbols.Joker;
 
             ////// Change Connectors Now
             CellInfo PieceParent = PieceToJoker.transform.parent.GetComponent<CellInfo>();
 
-            PieceParent.Rconnect.Lcolor = Colors.Joker;
+            PieceParent.Rconnect.Lcolor = ColorData.Joker;
             PieceParent.Rconnect.Lsymbol = Symbols.Joker;
 
-            PieceParent.Lconnect.Rcolor = Colors.Joker;
+            PieceParent.Lconnect.Rcolor = ColorData.Joker;
             PieceParent.Lconnect.Rsymbol = Symbols.Joker;
 
             if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
             {
-                PieceParent.OuterRightConnect.ROutercolor = Colors.Joker;
+                PieceParent.OuterRightConnect.ROutercolor = ColorData.Joker;
                 PieceParent.OuterRightConnect.ROutersymbol = Symbols.Joker;
 
-                PieceParent.OuterLeftConnect.LOutercolor = Colors.Joker;
+                PieceParent.OuterLeftConnect.LOutercolor = ColorData.Joker;
                 PieceParent.OuterLeftConnect.LOutersymbol = Symbols.Joker;
             }
 
@@ -623,6 +627,7 @@ public class PowerUps : MonoBehaviour
                 }
             }
 
+            DoAfterSuccessfullPowerUp();
             //UsingPowerUp = false;
         }
     }
@@ -736,6 +741,7 @@ public class PowerUps : MonoBehaviour
                 }
             }
 
+            DoAfterSuccessfullPowerUp();
             //UsingPowerUp = false;
         }
     }
@@ -850,6 +856,7 @@ public class PowerUps : MonoBehaviour
                 }
             }
 
+            DoAfterSuccessfullPowerUp();
             //UsingPowerUp = false;
         }
     }
@@ -857,7 +864,7 @@ public class PowerUps : MonoBehaviour
     public void UsePowerUp(GameObject ToUsePowerUp)
     {
         //Debug.Log(ToUsePowerUp.name);
-        switch (PowerUpType)
+        switch (PowerUpInUse)
         {
             case PowerUpChooseItemTypes.Joker:
                 Joker(ToUsePowerUp.transform.parent.parent.GetComponent<PieceMoveManager>());
@@ -883,10 +890,36 @@ public class PowerUps : MonoBehaviour
 
         StartCoroutine(ResetTargetPowerUp());
     }
-
     public IEnumerator ResetTargetPowerUp()
     {
         yield return new WaitForEndOfFrame();
         HasTargetForPowerUp = false;
+    }
+
+
+    public void DoAfterSuccessfullPowerUp()
+    {
+        foreach (EquipmentSlot slot in GameManager.Instance.ThePlayer.SlotsForEquipment)
+        {
+            if (slot.TheItem != null)
+            {
+                if (slot.TheItem.HasTimeCooldown)
+                {
+                    if (slot.TheItem.PowerUpToGive == PowerUpInUse)
+                    {
+                        slot.TimerTillNextPowerUpUse(PowerUpButton);
+                        Debug.Log("Decreased The Times To Use In Match");
+                    }
+                }
+                else
+                {
+                    if (slot.TheItem.PowerUpToGive == PowerUpInUse)
+                    {
+                        slot.DecreaseNumberOfUsesInMatch(PowerUpButton);
+                        Debug.Log("Decreased The Times To Use In Match");
+                    }
+                }
+            }
+        }
     }
 }

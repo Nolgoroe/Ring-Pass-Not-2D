@@ -13,7 +13,7 @@ public class LevelManager : ScriptableObject
 
     public bool DoubleRing;
 
-    public Colors[] SpecificColors;
+    public ColorData[] SpecificColors;
     public Symbols[] SpecificSymbols;
 
     public GameObject[] LeftShapesGameobjects;

@@ -39,6 +39,8 @@ public class UiManager : MonoBehaviour
     public List<Button> LevelButtons;
 
     public bool OptionsOpen;
+
+    public Button[] PowerUpButtons;
     void Start()
     {
         Instance = this;
@@ -52,6 +54,7 @@ public class UiManager : MonoBehaviour
         SuccessfullConnectionsCountText.text = "Connections: " + GameManager.Instance.SuccesfullConnectionsMade + "/" + GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].ConnectionsNeededToFinishLevel;
 
     }
+
     public void YouLoseMessage()
     {
         YouLose.gameObject.SetActive(true);
@@ -143,5 +146,128 @@ public class UiManager : MonoBehaviour
                 LevelButtons[i].interactable = true;
             }
         }
+    }
+
+    public void UpdatePowerUpOptions()
+    {
+        ///// WTF IS GOING ON HERE?! TALK TO ALON.
+
+        for (int i = 0; i < GameManager.Instance.ThePlayer.SlotsForEquipment.Length; i++)
+        {
+            if (GameManager.Instance.ThePlayer.SlotsForEquipment[i].Full)
+            {
+                for (int k = 0; k < PowerUpButtons.Length; k++)
+                {
+                    if (!PowerUpButtons[k].interactable)
+                    {
+                        PowerUpButtons[k].interactable = true;
+                        ///PowerUpButtons[k].GetComponent<Image>().sprite = GameManager.Instance.ThePlayer.SlotsForEquipment[i].TheItem.SpriteOfEquipment; Open When We Have Sprites!!!!!!!!!!!!
+                        
+                        switch (GameManager.Instance.ThePlayer.SlotsForEquipment[i].TheItem.PowerUpToGive)
+                        {
+                            case PowerUpChooseItemTypes.Joker:
+                                PowerUpButtons[k].onClick.AddListener(delegate{ GameManager.Instance.PowerUpManager.UsingPowerUpToggle((int)PowerUpChooseItemTypes.Joker); });
+                                PowerUpButtons[k].transform.GetChild(0).GetComponent<Text>().text = PowerUpChooseItemTypes.Joker.ToString();
+                                PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.FillPowerUpButton(PowerUpButtons[k]); });
+                                break;
+                            case PowerUpChooseItemTypes.Switch:
+                                PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.UsingPowerUpToggle((int)PowerUpChooseItemTypes.Switch); });
+                                PowerUpButtons[k].transform.GetChild(0).GetComponent<Text>().text = PowerUpChooseItemTypes.Switch.ToString();
+                                PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.FillPowerUpButton(PowerUpButtons[k]); });
+                                break;
+                            case PowerUpChooseItemTypes.TileBomb:
+                                PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.UsingPowerUpToggle((int)PowerUpChooseItemTypes.TileBomb); });
+                                PowerUpButtons[k].transform.GetChild(0).GetComponent<Text>().text = PowerUpChooseItemTypes.TileBomb.ToString();
+                                PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.FillPowerUpButton(PowerUpButtons[k]); });
+                                break;
+                            case PowerUpChooseItemTypes.SliceBomb:
+                                PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.UsingPowerUpToggle((int)PowerUpChooseItemTypes.SliceBomb); });
+                                PowerUpButtons[k].transform.GetChild(0).GetComponent<Text>().text = PowerUpChooseItemTypes.SliceBomb.ToString();
+                                PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.FillPowerUpButton(PowerUpButtons[k]); });
+                                break;
+                            case PowerUpChooseItemTypes.ColorTransform:
+                                PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.UsingPowerUpToggle((int)PowerUpChooseItemTypes.ColorTransform); });
+
+                                int Col = FindColorOrSymbolNumForPowerUp( Symbols.None ,GameManager.Instance.ThePlayer.SlotsForEquipment[i].TheItem.ColorForPowerUp);
+
+                                PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.ChooseColorForColorTransformPowerUp(Col); });
+
+                                PowerUpButtons[k].transform.GetChild(0).GetComponent<Text>().text = PowerUpChooseItemTypes.ColorTransform.ToString() + " " + GameManager.Instance.ThePlayer.SlotsForEquipment[i].TheItem.ColorForPowerUp.ToString();
+
+                                PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.FillPowerUpButton(PowerUpButtons[k]); });
+                                break;
+                            case PowerUpChooseItemTypes.ShapeTransform:
+                                PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.UsingPowerUpToggle((int)PowerUpChooseItemTypes.ShapeTransform); });
+
+                                int Sym = FindColorOrSymbolNumForPowerUp(GameManager.Instance.ThePlayer.SlotsForEquipment[i].TheItem.SymbolForPowerUp, ColorData.None);
+
+                                PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.ChooseSymbolForShapeTransformPowerUp(Sym); });
+
+                                PowerUpButtons[k].transform.GetChild(0).GetComponent<Text>().text = PowerUpChooseItemTypes.ShapeTransform.ToString() + " " + GameManager.Instance.ThePlayer.SlotsForEquipment[i].TheItem.SymbolForPowerUp.ToString();
+
+                                PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.FillPowerUpButton(PowerUpButtons[k]); });
+                                break;
+                            case PowerUpChooseItemTypes.Reshuffle:
+                                PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.FillPowerUpButton(PowerUpButtons[k]); });
+
+                                PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.UsingPowerUpToggle((int)PowerUpChooseItemTypes.Reshuffle); });
+
+                                PowerUpButtons[k].onClick.AddListener(GameManager.Instance.PowerUpManager.RefillClip);
+
+                                PowerUpButtons[k].transform.GetChild(0).GetComponent<Text>().text = PowerUpChooseItemTypes.Reshuffle.ToString();
+
+                                break;
+                            default:
+                                Debug.LogError("WHAT THE FUCK HAPPEND HERE?!");
+                                break;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public int FindColorOrSymbolNumForPowerUp(Symbols TheSymbol, ColorData TheColor)
+    {
+        if (TheSymbol != Symbols.None)
+        {
+            switch (TheSymbol)
+            {
+                case Symbols.Circle:
+                    return 0;
+                case Symbols.Plus:
+                    return 1;
+                case Symbols.Triangle:
+                    return 2;
+                case Symbols.Square:
+                    return 3;
+                case Symbols.Joker:
+                    return 4;
+                default:
+                    return -1;
+            }
+        }
+
+        if(TheColor != ColorData.None)
+        {
+            switch (TheColor)
+            {
+                case ColorData.Red:
+                    return 0;
+                case ColorData.Pink:
+                    return 1;
+                case ColorData.Blue:
+                    return 2;
+                case ColorData.Yellow:
+                    return 3;
+                case ColorData.Joker:
+                    return 4;
+                default:
+                    return -1;
+            }
+        }
+
+        return -2;
     }
 }

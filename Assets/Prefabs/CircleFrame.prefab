@@ -2292,6 +2292,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6110132794239592031}
     m_Modifications:
+    - target: {fileID: 796528680328101616, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 796528680358669202, guid: 5a28c7fa477d3094dbaa2acc42ff1017,
         type: 3}
       propertyPath: m_FontData.m_FontSize

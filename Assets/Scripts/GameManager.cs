@@ -132,6 +132,9 @@ public class GameManager : MonoBehaviour
         LevelSpecificLoot.Clear();
         LevelSpecificLoot.AddRange(GameLevels[CurrentLevelNum].LootForLevel);
         UiManager.Instance.ToggleLevelHub(false);
+
+
+        UiManager.Instance.UpdatePowerUpOptions();
     }
 
     public void FillClip()

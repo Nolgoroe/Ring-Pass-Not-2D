@@ -6,6 +6,11 @@ public class PlayerData : MonoBehaviour
 {
     public int Gold, Rubies, MagicalItems, MaxLevelReached;
 
+    public EquipmentSlot[] SlotsForEquipment;
+
+    public List<PowerUpChooseItemTypes> PowerUpsFromItems;
+
+    public List<EquipmentSlot> EquipmentWithTimeCooldown;
 
     private void Start()
     {
@@ -27,6 +32,14 @@ public class PlayerData : MonoBehaviour
         if (PlayerPrefs.HasKey("MaxLevelReached"))
         {
             MaxLevelReached = PlayerPrefs.GetInt("MaxLevelReached");
+        }
+
+        foreach (EquipmentSlot slot in SlotsForEquipment)
+        {
+            if (slot.Full)
+            {
+                PowerUpsFromItems.Add(slot.TheItem.PowerUpToGive);
+            }
         }
     }
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum Colors
+public enum ColorData
 {
     Red,
     Pink,
@@ -26,7 +26,7 @@ public class ColorSymbolData : MonoBehaviour
     public bool RightSide;
     public bool LeftSide;
 
-    public Colors PieceColor;
+    public ColorData PieceColor;
 
     public Color[] TheColors;
 
@@ -45,7 +45,7 @@ public class ColorSymbolData : MonoBehaviour
         }
         else
         {
-            PieceColor = (Colors)Random.Range(0, 4);
+            PieceColor = (ColorData)Random.Range(0, 4);
         }
 
         if (GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].DoubleRing)
@@ -61,16 +61,16 @@ public class ColorSymbolData : MonoBehaviour
 
         switch (PieceColor)
         {
-            case Colors.Red:
+            case ColorData.Red:
                 props.SetColor("_Color", TheColors[0]);
                 break;
-            case Colors.Pink:
+            case ColorData.Pink:
                 props.SetColor("_Color", TheColors[3]);
                 break;
-            case Colors.Blue:
+            case ColorData.Blue:
                 props.SetColor("_Color", TheColors[1]);
                 break;
-            case Colors.Yellow:
+            case ColorData.Yellow:
                 props.SetColor("_Color", TheColors[2]);
                 break;
             default:
@@ -150,7 +150,7 @@ public class ColorSymbolData : MonoBehaviour
     }
 
 
-    public void ChooseColorAndSpritePowerUp(Colors pieceColor, Symbols pieceSymbol)
+    public void ChooseColorAndSpritePowerUp(ColorData pieceColor, Symbols pieceSymbol)
     {
         MaterialPropertyBlock props = new MaterialPropertyBlock();
 
@@ -158,16 +158,16 @@ public class ColorSymbolData : MonoBehaviour
 
         switch (pieceColor)
         {
-            case Colors.Red:
+            case ColorData.Red:
                 props.SetColor("_Color", TheColors[0]);
                 break;
-            case Colors.Pink:
+            case ColorData.Pink:
                 props.SetColor("_Color", TheColors[3]);
                 break;
-            case Colors.Blue:
+            case ColorData.Blue:
                 props.SetColor("_Color", TheColors[1]);
                 break;
-            case Colors.Yellow:
+            case ColorData.Yellow:
                 props.SetColor("_Color", TheColors[2]);
                 break;
             default:

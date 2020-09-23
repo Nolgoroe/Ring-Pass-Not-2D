@@ -43,7 +43,7 @@ public class MouseCollisionDetection : MonoBehaviour
 
                 for (int i = 0; i < ObjectToUsePowerup.GetComponent<SelectPowerUpType>().PowerUpsToUse.Length; i++)
                 {
-                    if (GameManager.Instance.PowerUpManager.PowerUpType == ObjectToUsePowerup.GetComponent<SelectPowerUpType>().PowerUpsToUse[i])
+                    if (GameManager.Instance.PowerUpManager.PowerUpInUse == ObjectToUsePowerup.GetComponent<SelectPowerUpType>().PowerUpsToUse[i])
                     {
                         //Debug.Log("WHAT THE FUCK");
                         GameManager.Instance.PowerUpManager.HasTargetForPowerUp = true;
@@ -223,6 +223,10 @@ public class MouseCollisionDetection : MonoBehaviour
                         BombedSlice = false;
                         ObjectToUsePowerup = null;
                         GameManager.Instance.PowerUpManager.UsingPowerUp = false;
+                        GameManager.Instance.PowerUpManager.ColorForColorTransformPowerUp = ColorData.None;
+                        GameManager.Instance.PowerUpManager.SymbolForShapeTransformPowerUp = Symbols.None;
+                        GameManager.Instance.PowerUpManager.PowerUpInUse = PowerUpChooseItemTypes.None;
+                        GameManager.Instance.PowerUpManager.PowerUpButton = null;
                         return;
                     }
 
@@ -311,10 +315,10 @@ public class MouseCollisionDetection : MonoBehaviour
                                     }
 
                                     PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lsymbol = Symbols.None;
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lcolor = Colors.None;
+                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Rconnect.Lcolor = ColorData.None;
 
                                     PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rsymbol = Symbols.None;
-                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rcolor = Colors.None;
+                                    PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.Rcolor = ColorData.None;
 
 
                                     PieceToMove.OriginalParent.GetComponent<CellInfo>().Lconnect.BadConnectionMade = false;
@@ -326,10 +330,10 @@ public class MouseCollisionDetection : MonoBehaviour
                                     if (PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect != null)
                                     {
                                         PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.ROutersymbol = Symbols.None;
-                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.ROutercolor = Colors.None;
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.ROutercolor = ColorData.None;
 
                                         PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.LOutersymbol = Symbols.None;
-                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.LOutercolor = Colors.None;
+                                        PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.LOutercolor = ColorData.None;
 
                                         PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterLeftConnect.SuccesfullConnectionMade = false;
                                         PieceToMove.OriginalParent.GetComponent<CellInfo>().OuterRightConnect.SuccesfullConnectionMade = false;
