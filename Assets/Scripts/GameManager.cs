@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
 
     int LevelNumOfLimiters;
 
+    public Equipment[] GameItems;
     void Start()
     {
         Instance = this;
@@ -133,6 +134,12 @@ public class GameManager : MonoBehaviour
         LevelSpecificLoot.AddRange(GameLevels[CurrentLevelNum].LootForLevel);
         UiManager.Instance.ToggleLevelHub(false);
 
+        UiManager.Instance.PowerUpButtons.Clear();
+
+        foreach (GameObject powerUpButton in GameObject.FindGameObjectsWithTag("PowerUpButtons"))
+        {
+            UiManager.Instance.PowerUpButtons.Add(powerUpButton.GetComponent<Button>());
+        }
 
         UiManager.Instance.UpdatePowerUpOptions();
     }

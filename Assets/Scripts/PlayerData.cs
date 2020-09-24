@@ -10,7 +10,7 @@ public class PlayerData : MonoBehaviour
 
     public List<PowerUpChooseItemTypes> PowerUpsFromItems;
 
-    public List<EquipmentSlot> EquipmentWithTimeCooldown;
+    public List<Equipment> EquipmentWithTimeCooldown;
 
     private void Start()
     {
@@ -32,6 +32,22 @@ public class PlayerData : MonoBehaviour
         if (PlayerPrefs.HasKey("MaxLevelReached"))
         {
             MaxLevelReached = PlayerPrefs.GetInt("MaxLevelReached");
+        }
+
+        if (PlayerPrefs.HasKey("ItemsWithCooldownCount"))
+        {
+            int count = PlayerPrefs.GetInt("ItemsWithCooldownCount");
+
+            for (int i = 0; i < count; i++)
+            {
+                for (int k = 0; k < GameManager.Instance.GameItems.Length; k++)
+                {
+                    if(PlayerPrefs.GetInt("ItemID" + EquipmentManager.Instance.PositionsInPlayerPrefs[i]) == GameManager.Instance.GameItems[k].ID)
+                    {
+                        EquipmentWithTimeCooldown.Add(GameManager.Instance.GameItems[k]);
+                    }
+                }
+            }
         }
 
         foreach (EquipmentSlot slot in SlotsForEquipment)
@@ -56,5 +72,13 @@ public class PlayerData : MonoBehaviour
     public void ResetPlayerPref()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    [ContextMenu("Reset Player Equipment")]
+    public void ResetEquipmentData()
+    {
+        PlayerPrefs.DeleteKey("ItemsWithCooldownCount");
+        PlayerPrefs.DeleteKey("ItemID");
+        PlayerPrefs.DeleteKey("NextTimePowerUpAvailable");
     }
 }

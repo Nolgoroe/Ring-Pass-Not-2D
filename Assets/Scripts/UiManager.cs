@@ -40,7 +40,7 @@ public class UiManager : MonoBehaviour
 
     public bool OptionsOpen;
 
-    public Button[] PowerUpButtons;
+    public List <Button> PowerUpButtons;
     void Start()
     {
         Instance = this;
@@ -106,6 +106,22 @@ public class UiManager : MonoBehaviour
 
             BackToLevelHubButton.gameObject.SetActive(false);
 
+            for (int i = 0; i < PowerUpButtons.Count; i++)
+            {
+                PowerUpButtons[i].interactable = false;
+            }
+
+            for (int i = 0; i < GameManager.Instance.ThePlayer.SlotsForEquipment.Length; i++)
+            {
+                if (GameManager.Instance.ThePlayer.SlotsForEquipment[i].Full)
+                {
+                    if (!GameManager.Instance.ThePlayer.SlotsForEquipment[i].TheItem.HasTimeCooldown)
+                    {
+                        GameManager.Instance.ThePlayer.SlotsForEquipment[i].TimesLeftToUseInMatch = GameManager.Instance.ThePlayer.SlotsForEquipment[i].TheItem.UsesInMatch;
+                    }
+                }
+            }
+
             EnableLevels();
         }
         else
@@ -156,7 +172,7 @@ public class UiManager : MonoBehaviour
         {
             if (GameManager.Instance.ThePlayer.SlotsForEquipment[i].Full)
             {
-                for (int k = 0; k < PowerUpButtons.Length; k++)
+                for (int k = 0; k < PowerUpButtons.Count; k++)
                 {
                     if (!PowerUpButtons[k].interactable)
                     {
@@ -221,13 +237,33 @@ public class UiManager : MonoBehaviour
                                 Debug.LogError("WHAT THE FUCK HAPPEND HERE?!");
                                 break;
                         }
-                        break;
+
+                        CheckIfItemInCooldown(PowerUpButtons[k], GameManager.Instance.ThePlayer.SlotsForEquipment[i]);
+                        break; //// Exit the for loop for the Buttons or the names of all buttons will be the same
                     }
                 }
             }
         }
+
     }
 
+    public void CheckIfItemInCooldown(Button ToDeactivate, EquipmentSlot TheSlot)
+    {
+        if (PlayerPrefs.GetInt("ItemsWithCooldownCount") > 0)
+        {
+            int count = PlayerPrefs.GetInt("ItemsWithCooldownCount");
+
+            for (int i = 0; i < count; i++)
+            {
+                if (TheSlot.TheItem.ID == GameManager.Instance.ThePlayer.EquipmentWithTimeCooldown[i].ID)
+                {
+                    ToDeactivate.interactable = false;
+                    ToDeactivate.transform.GetChild(0).GetComponent<Text>().text = "Cooldown";
+                    PowerUpButtons.Remove(ToDeactivate);
+                }
+            }
+        }
+    }
     public int FindColorOrSymbolNumForPowerUp(Symbols TheSymbol, ColorData TheColor)
     {
         if (TheSymbol != Symbols.None)

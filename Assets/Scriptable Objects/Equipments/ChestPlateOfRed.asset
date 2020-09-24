@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75a8502140efa9543a40489772fe0939, type: 3}
-  m_Name: Summoners staff
+  m_Name: ChestPlateOfRed
   m_EditorClassIdentifier: 
-  ID: 2
-  SlotForEquipment: 3
-  CoolDownTimeHours: 0
-  UsesInMatch: 1
-  UsesBeforeTimeCountdown: 0
+  ID: 4
+  SlotForEquipment: 1
+  CoolDownTimeHours: 5
+  UsesInMatch: 0
+  UsesBeforeTimeCountdown: 1
   SpriteOfEquipment: {fileID: 0}
-  PowerUpToGive: 6
-  ColorForPowerUp: 5
+  PowerUpToGive: 4
+  ColorForPowerUp: 0
   SymbolForPowerUp: 5
-  HasTimeCooldown: 0
+  HasTimeCooldown: 1

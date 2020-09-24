@@ -397,7 +397,7 @@ public class PowerUps : MonoBehaviour
 
     public void SwitchPieceSides(PieceMoveManager PieceToSwtich)
     {
-        if (PieceToSwtich.PartOfBoard && !PieceToSwtich.Locked)
+        if (PieceToSwtich.PartOfBoard && !PieceToSwtich.Locked && (PieceToSwtich.Rsymbol != PieceToSwtich.Lsymbol && PieceToSwtich.Rcolor != PieceToSwtich.Lcolor))
         {
             Debug.Log("Used Switch Power Up");
 
@@ -638,7 +638,7 @@ public class PowerUps : MonoBehaviour
 
         if (pieceParent.PartOfBoard && !pieceParent.Locked && PieceToTransform.PieceColor != ColorForColorTransformPowerUp)
         {
-            Debug.Log("Used Color Transform Power Up");
+            //Debug.Log("Used Color Transform Power Up");
 
             PieceToTransform.PieceColor = ColorForColorTransformPowerUp;
             
@@ -752,7 +752,7 @@ public class PowerUps : MonoBehaviour
 
         if (pieceParent.PartOfBoard && !pieceParent.Locked && PieceToTransform.PieceSymbol != SymbolForShapeTransformPowerUp)
         {
-            Debug.Log("Used Symbol Transform Power Up");
+            //Debug.Log("Used Symbol Transform Power Up");
             PieceToTransform.PieceSymbol = SymbolForShapeTransformPowerUp;
 
             PieceToTransform.ChooseColorAndSpritePowerUp(PieceToTransform.PieceColor, SymbolForShapeTransformPowerUp);
@@ -907,15 +907,15 @@ public class PowerUps : MonoBehaviour
                 {
                     if (slot.TheItem.PowerUpToGive == PowerUpInUse)
                     {
-                        slot.TimerTillNextPowerUpUse(PowerUpButton);
-                        Debug.Log("Decreased The Times To Use In Match");
+                       EquipmentManager.Instance.TimerTillNextPowerUpUse(PowerUpButton, slot);
+                        //Debug.Log("Decreased The Times To Use In Match");
                     }
                 }
                 else
                 {
                     if (slot.TheItem.PowerUpToGive == PowerUpInUse)
                     {
-                        slot.DecreaseNumberOfUsesInMatch(PowerUpButton);
+                        EquipmentManager.Instance.DecreaseNumberOfUsesInMatch(PowerUpButton, slot);
                         Debug.Log("Decreased The Times To Use In Match");
                     }
                 }

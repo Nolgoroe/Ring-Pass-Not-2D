@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a8502140efa9543a40489772fe0939, type: 3}
   m_Name: Switching hat
   m_EditorClassIdentifier: 
-  ID: 2
+  ID: 3
   SlotForEquipment: 0
   CoolDownTimeHours: 0
   UsesInMatch: 2

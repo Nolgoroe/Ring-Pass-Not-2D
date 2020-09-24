@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a8502140efa9543a40489772fe0939, type: 3}
   m_Name: Moon ring
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 1
   SlotForEquipment: 2
-  CoolDownTimeHours: 24
+  CoolDownTimeHours: 5
   UsesInMatch: 0
   UsesBeforeTimeCountdown: 1
   SpriteOfEquipment: {fileID: 0}
