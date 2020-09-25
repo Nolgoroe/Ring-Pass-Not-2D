@@ -134,7 +134,7 @@ public class PowerUps : MonoBehaviour
         }
     }
 
-    public void RefillClip() /// Put on refill Power Up button in scene
+    public void RefillClip()
     {
         if (!LoseGame)
         {

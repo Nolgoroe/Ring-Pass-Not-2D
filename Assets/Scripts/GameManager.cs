@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
     int LevelNumOfLimiters;
 
     public Equipment[] GameItems;
+
     void Start()
     {
         Instance = this;

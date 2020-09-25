@@ -28,10 +28,12 @@ public class MouseCollisionDetection : MonoBehaviour
 
     [HideInInspector]
     public bool BombedSlice;
+
     private void Start()
     {
         Instance = this;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (gameObject.layer == LayerMask.NameToLayer("Power Ups Layer") && !GameManager.Instance.PowerUpManager.HasTargetForPowerUp)

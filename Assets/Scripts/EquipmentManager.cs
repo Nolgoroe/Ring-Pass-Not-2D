@@ -53,6 +53,7 @@ public class EquipmentManager : MonoBehaviour
             PressedPowerUp.interactable = false;
             PressedPowerUp.transform.GetChild(0).GetComponent<Text>().text = "Cooldown";
             SlotToWorkOn.Usable = false;
+
             if (!GameManager.Instance.ThePlayer.EquipmentWithTimeCooldown.Contains(SlotToWorkOn.TheItem))
             {
                 GameManager.Instance.ThePlayer.EquipmentWithTimeCooldown.Add(SlotToWorkOn.TheItem);
@@ -68,15 +69,13 @@ public class EquipmentManager : MonoBehaviour
 
                 PlayerPrefs.SetInt("ItemsWithCooldownCount", GameManager.Instance.ThePlayer.EquipmentWithTimeCooldown.Count);
 
-                //int pos = GameManager.Instance.ThePlayer.EquipmentWithTimeCooldown.Count;
-
                 for (int i = 0; i < GameManager.Instance.ThePlayer.EquipmentWithTimeCooldown.Count; i++)
                 {
                     if (SlotToWorkOn.TheItem.ID == GameManager.Instance.ThePlayer.EquipmentWithTimeCooldown[i].ID)
                     {
                         PlayerPrefs.SetInt("ItemID" + SlotToWorkOn.TheItem.ID, SlotToWorkOn.TheItem.ID);
 
-                        PlayerPrefs.SetString("DateTimePowerUpUsed" + SlotToWorkOn.TheItem.ID, DateTime.Now.ToString());
+                        //PlayerPrefs.SetString("DateTimePowerUpUsed" + SlotToWorkOn.TheItem.ID, DateTime.Now.ToString());
 
                         PlayerPrefs.SetString("NextTimePowerUpAvailable" + SlotToWorkOn.TheItem.ID, DateTime.Now.AddMinutes(SlotToWorkOn.TheItem.CoolDownTimeHours).ToString());
                     }
@@ -94,12 +93,10 @@ public class EquipmentManager : MonoBehaviour
             for (int i = 0; i < count; i++)
             {
                 DateTime CurrentTime = DateTime.Now.ToLocalTime();
-                //Debug.Log(CurrentTime);
-                //Debug.Log(PlayerPrefs.GetString("DateTimePowerUpUsed" + i));
+
                 Debug.Log(PlayerPrefs.GetString("NextTimePowerUpAvailable" + PositionsInPlayerPrefs[i]));
 
                 DateTime NextTimeAvailable = DateTime.Parse(PlayerPrefs.GetString("NextTimePowerUpAvailable" + PositionsInPlayerPrefs[i]));
-                //DateTime LastTimeWasUsed = DateTime.Parse(PlayerPrefs.GetString("DateTimePowerUpUsed" + i));
 
                 TimeSpan TotalTime = NextTimeAvailable - CurrentTime;
 
@@ -111,13 +108,15 @@ public class EquipmentManager : MonoBehaviour
                         {
                             //Debug.Log(GameManager.Instance.ThePlayer.EquipmentWithTimeCooldown[k].ID);
 
-                            for (int p = 0; p < GameManager.Instance.ThePlayer.SlotsForEquipment.Length; p++)
+                            for (int p = 0; p < GameManager.Instance.ThePlayer.SlotsForEquipment.Length; p++) 
                             {
-                                if(GameManager.Instance.ThePlayer.SlotsForEquipment[p].TheItem == GameManager.Instance.ThePlayer.EquipmentWithTimeCooldown[k])
+                                /////// Will create problems in the future because item might not be equipped on player. Might have to go through Inventory aswell
+                                
+                                if (GameManager.Instance.ThePlayer.SlotsForEquipment[p].TheItem == GameManager.Instance.ThePlayer.EquipmentWithTimeCooldown[k])
                                 {
                                     GameManager.Instance.ThePlayer.SlotsForEquipment[p].TimesLeftToUseBeforeCountdown = GameManager.Instance.ThePlayer.EquipmentWithTimeCooldown[k].UsesBeforeTimeCountdown;
                                 }
-                            }
+                            } 
 
                             PlayerPrefs.DeleteKey("ItemID" + PositionsInPlayerPrefs[i]);
 
