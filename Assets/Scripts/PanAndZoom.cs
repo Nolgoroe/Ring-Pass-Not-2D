@@ -10,12 +10,6 @@ public class PanAndZoom : MonoBehaviour
     public float MinZoom = 1;
     public float MaxZoom = 8;
 
-    public float MinX = 1;
-    public float MaxX = 8;
-
-    public float MinY = 1;
-    public float MaxY = 8;
-
     Touch touch;
 
     public SpriteRenderer SpriteBounds;

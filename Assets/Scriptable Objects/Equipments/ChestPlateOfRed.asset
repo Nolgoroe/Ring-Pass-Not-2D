@@ -17,6 +17,7 @@ MonoBehaviour:
   CoolDownTimeHours: 5
   UsesInMatch: 0
   UsesBeforeTimeCountdown: 1
+  UsesBeforeDestruction: 0
   SpriteOfEquipment: {fileID: 0}
   PowerUpToGive: 4
   ColorForPowerUp: 0

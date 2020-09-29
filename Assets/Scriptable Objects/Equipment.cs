@@ -24,6 +24,8 @@ public class Equipment : ScriptableObject
 
     public int UsesBeforeTimeCountdown;
 
+    public int UsesBeforeDestruction;
+
     public Sprite SpriteOfEquipment;
 
     public PowerUpChooseItemTypes PowerUpToGive;
