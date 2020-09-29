@@ -27,6 +27,8 @@ public class UiManager : MonoBehaviour
     public GameObject InGameUI;
     public GameObject LevelHub;
     public GameObject OptionsWindow;
+    public GameObject RingersHut;
+    public GameObject RingersHutUI;
 
     public AudioSource AudioManager;
 
@@ -95,6 +97,7 @@ public class UiManager : MonoBehaviour
         {
             LevelHub.gameObject.SetActive(true);
 
+
             if (OptionsWindow.activeInHierarchy)
             {
                 ToggleOptions(false);
@@ -123,6 +126,12 @@ public class UiManager : MonoBehaviour
             }
 
             EnableLevels();
+
+
+            RingersHut.SetActive(false);
+            RingersHutUI.SetActive(false);
+            InGameUI.SetActive(false);
+            MainMenuScreen.SetActive(false);
         }
         else
         {
@@ -264,6 +273,7 @@ public class UiManager : MonoBehaviour
             }
         }
     }
+
     public int FindColorOrSymbolNumForPowerUp(Symbols TheSymbol, ColorData TheColor)
     {
         if (TheSymbol != Symbols.None)
@@ -305,5 +315,29 @@ public class UiManager : MonoBehaviour
         }
 
         return -2;
+    }
+
+    public void BackToMainMenu()
+    {
+        MainMenuScreen.SetActive(true);
+
+
+        RingersHut.SetActive(false);
+        RingersHutUI.SetActive(false);
+        InGameUI.SetActive(false);
+        LevelHub.SetActive(false);
+        ToggleOptions(false);
+    }
+
+    public void ToRingersHut()
+    {
+        RingersHut.SetActive(true);
+        RingersHutUI.SetActive(true);
+
+
+        MainMenuScreen.SetActive(false);
+        InGameUI.SetActive(false);
+        LevelHub.SetActive(false);
+        ToggleOptions(false);
     }
 }
