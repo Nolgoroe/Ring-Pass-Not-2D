@@ -33,13 +33,18 @@ public class PanAndZoom : MonoBehaviour
     float horzExtent;
 
     float OriginalOrthofraphicsize;
+
+    Vector3 OriginalCamPos;
     private void OnDisable()
     {
         MainCam.orthographicSize = OriginalOrthofraphicsize;
+        MainCam.transform.position = OriginalCamPos;
     }
     private void Start()
     {
         MainCam = Camera.main;
+
+        OriginalCamPos = MainCam.transform.position;
 
         OriginalOrthofraphicsize = MainCam.orthographicSize;
 
