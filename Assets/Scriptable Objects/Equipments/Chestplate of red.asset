@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75a8502140efa9543a40489772fe0939, type: 3}
-  m_Name: ChestPlateOfRed
+  m_Name: Chestplate of red
   m_EditorClassIdentifier: 
   ID: 4
   SlotForEquipment: 1
-  CoolDownTimeHours: 5
+  CoolDownTimeHours: 1
   UsesInMatch: 0
   UsesBeforeTimeCountdown: 1
-  UsesBeforeDestruction: 0
+  UsesBeforeDestruction: 100
   SpriteOfEquipment: {fileID: 0}
   PowerUpToGive: 4
   ColorForPowerUp: 0
   SymbolForPowerUp: 5
   HasTimeCooldown: 1
+  TheTypeOfEquipment: 4

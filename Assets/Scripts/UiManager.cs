@@ -30,6 +30,8 @@ public class UiManager : MonoBehaviour
     public GameObject RingersHut;
     public GameObject RingersHutUI;
 
+    public GameObject Wardrobe;
+
     public AudioSource AudioManager;
 
     public Slider AudioVolume;
@@ -51,9 +53,12 @@ public class UiManager : MonoBehaviour
 
     private void Update()
     {
-        FullSlotCountText.text = "Full cells: " +  GameManager.Instance.FullCellCounter + "/" + GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].CellsInLevel;
+        if (GameManager.Instance.SceneBoard != null)
+        {
+            FullSlotCountText.text = "Full cells: " + GameManager.Instance.FullCellCounter + "/" + GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].CellsInLevel;
 
-        SuccessfullConnectionsCountText.text = "Connections: " + GameManager.Instance.SuccesfullConnectionsMade + "/" + GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].ConnectionsNeededToFinishLevel;
+            SuccessfullConnectionsCountText.text = "Connections: " + GameManager.Instance.SuccesfullConnectionsMade + "/" + GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].ConnectionsNeededToFinishLevel;
+        }
 
     }
 
@@ -121,6 +126,7 @@ public class UiManager : MonoBehaviour
                     if (!GameManager.Instance.ThePlayer.SlotsForEquipment[i].TheItem.HasTimeCooldown)
                     {
                         GameManager.Instance.ThePlayer.SlotsForEquipment[i].TimesLeftToUseInMatch = GameManager.Instance.ThePlayer.SlotsForEquipment[i].TheItem.UsesInMatch;
+                        //GameManager.Instance.ThePlayer.SlotsForEquipment[i].Usable = true;
                     }
                 }
             }
@@ -339,5 +345,17 @@ public class UiManager : MonoBehaviour
         InGameUI.SetActive(false);
         LevelHub.SetActive(false);
         ToggleOptions(false);
+    }
+
+    public void ToggleWardrobe(bool On)
+    {
+        if (On)
+        {
+            Wardrobe.SetActive(true);
+        }
+        else
+        {
+            Wardrobe.SetActive(false);
+        }
     }
 }

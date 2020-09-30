@@ -18,6 +18,8 @@ TagManager:
   - Lock
   - Commit
   - PowerUpButtons
+  - EquipmentCell
+  - MainCanvas
   layers:
   - Default
   - TransparentFX

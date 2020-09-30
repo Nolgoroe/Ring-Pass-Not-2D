@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 1
   SlotForEquipment: 2
-  CoolDownTimeHours: 5
+  CoolDownTimeHours: 1
   UsesInMatch: 0
   UsesBeforeTimeCountdown: 1
+  UsesBeforeDestruction: 100
   SpriteOfEquipment: {fileID: 0}
   PowerUpToGive: 5
   ColorForPowerUp: 5
   SymbolForPowerUp: 1
   HasTimeCooldown: 1
+  TheTypeOfEquipment: 2

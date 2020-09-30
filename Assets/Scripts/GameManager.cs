@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject ClipPrefab;
     public GameObject BoardPrefab;
 
+    public GameObject Wardrobe;
+
     public PowerUps PowerUpManager;
     public Transform SceneClip;
     public Transform SceneBoard;

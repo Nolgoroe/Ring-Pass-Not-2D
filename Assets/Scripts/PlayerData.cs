@@ -12,6 +12,8 @@ public class PlayerData : MonoBehaviour
 
     public List<Equipment> EquipmentWithTimeCooldown;
 
+    public List<Equipment> EquipmentInInventory;
+
     private void Start()
     {
         if (PlayerPrefs.HasKey("Gold"))
@@ -47,14 +49,6 @@ public class PlayerData : MonoBehaviour
                         EquipmentWithTimeCooldown.Add(GameManager.Instance.GameItems[k]);
                     }
                 }
-            }
-        }
-
-        foreach (EquipmentSlot slot in SlotsForEquipment)
-        {
-            if (slot.Full)
-            {
-                PowerUpsFromItems.Add(slot.TheItem.PowerUpToGive);
             }
         }
     }

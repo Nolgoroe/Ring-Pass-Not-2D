@@ -12,10 +12,21 @@ public enum EquipmentSlotType
     OffHand
 }
 
+public enum TypeOfequipment
+{
+    None,
+    Staff,
+    Ring,
+    Hat,
+    Chestplate
+}
+
 [CreateAssetMenu(fileName = "Level", menuName = "ScriptableObjects/Create Equipment")]
 public class Equipment : ScriptableObject
 {
+
     public int ID;
+
     public EquipmentSlotType SlotForEquipment;
 
     public float CoolDownTimeHours;
@@ -35,4 +46,7 @@ public class Equipment : ScriptableObject
     public Symbols SymbolForPowerUp;
 
     public bool HasTimeCooldown;
+
+    public TypeOfequipment TheTypeOfEquipment;
+
 }

@@ -36,11 +36,29 @@ public class EquipmentManager : MonoBehaviour
     {
         SlotToWorkOn.TimesLeftToUseInMatch--;
 
+        SlotToWorkOn.transform.GetChild(0).GetComponent<EquipmentCell>().TimesLeftToUseBeforeDestruction--;
+
         if (SlotToWorkOn.TimesLeftToUseInMatch == 0)
         {
             SlotToWorkOn.TimesLeftToUseInMatch = SlotToWorkOn.TheItem.UsesInMatch;
+
             PressedPowerUp.interactable = false;
-            SlotToWorkOn.Usable = false;
+            //SlotToWorkOn.Usable = false;
+        }
+
+        if(SlotToWorkOn.transform.GetChild(0).GetComponent<EquipmentCell>().TimesLeftToUseBeforeDestruction == 0)
+        {
+
+            SlotToWorkOn.Full = false;
+            SlotToWorkOn.TimeLeftTillNextUse = 0;
+            SlotToWorkOn.TimesLeftToUseInMatch = 0;
+            SlotToWorkOn.TimesLeftToUseBeforeCountdown = 0;
+
+            GameManager.Instance.ThePlayer.PowerUpsFromItems.Remove(SlotToWorkOn.TheItem.PowerUpToGive);
+            PressedPowerUp.transform.GetChild(0).GetComponent<Text>().text = "Power Up";
+            SlotToWorkOn.TheItem = null;
+
+            Destroy(SlotToWorkOn.transform.GetChild(0).gameObject);
         }
     }
 
@@ -52,7 +70,7 @@ public class EquipmentManager : MonoBehaviour
         {
             PressedPowerUp.interactable = false;
             PressedPowerUp.transform.GetChild(0).GetComponent<Text>().text = "Cooldown";
-            SlotToWorkOn.Usable = false;
+            //SlotToWorkOn.Usable = false;
 
             if (!GameManager.Instance.ThePlayer.EquipmentWithTimeCooldown.Contains(SlotToWorkOn.TheItem))
             {

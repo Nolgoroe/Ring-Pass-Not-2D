@@ -53,6 +53,7 @@ public class PowerUps : MonoBehaviour
     {
         PowerUpButton = ThePowerUpButton;
     }
+
     public void ChooseColorForColorTransformPowerUp(int Color)
     {
         ColorForColorTransformPowerUp = (ColorData)Color;
@@ -168,7 +169,7 @@ public class PowerUps : MonoBehaviour
         {
             if (Clip.transform.GetChild(i).gameObject.activeInHierarchy)
             {
-                Destroy(Clip.transform.GetChild(i).GetChild(0).gameObject);
+                Destroy(Clip.transform.GetChild(i).GetChild(0).GetChild(0).gameObject);
             }
         }
 
@@ -176,14 +177,14 @@ public class PowerUps : MonoBehaviour
         {
             for (int i = 0; i < SlotsInClip - TimesClickedDeal; i++)
             {
-                GameManager.Instance.FillClipPiece(Clip.transform.GetChild(i + TimesClickedDeal).gameObject);
+                GameManager.Instance.FillClipPiece(Clip.transform.GetChild(i + TimesClickedDeal).GetChild(0).gameObject);
             }
         }
         else
         {
             for (int i = 0; i < SlotsInClip; i++)
             {
-                GameManager.Instance.FillClipPiece(Clip.transform.GetChild(i).gameObject);
+                GameManager.Instance.FillClipPiece(Clip.transform.GetChild(i).GetChild(0).gameObject);
             }
         }
     }
@@ -397,7 +398,7 @@ public class PowerUps : MonoBehaviour
 
     public void SwitchPieceSides(PieceMoveManager PieceToSwtich)
     {
-        if (PieceToSwtich.PartOfBoard && !PieceToSwtich.Locked && (PieceToSwtich.Rsymbol != PieceToSwtich.Lsymbol && PieceToSwtich.Rcolor != PieceToSwtich.Lcolor))
+        if (PieceToSwtich.PartOfBoard && !PieceToSwtich.Locked && (PieceToSwtich.Rsymbol != PieceToSwtich.Lsymbol || PieceToSwtich.Rcolor != PieceToSwtich.Lcolor))
         {
             Debug.Log("Used Switch Power Up");
 
@@ -890,12 +891,12 @@ public class PowerUps : MonoBehaviour
 
         StartCoroutine(ResetTargetPowerUp());
     }
+
     public IEnumerator ResetTargetPowerUp()
     {
         yield return new WaitForEndOfFrame();
         HasTargetForPowerUp = false;
     }
-
 
     public void DoAfterSuccessfullPowerUp()
     {
