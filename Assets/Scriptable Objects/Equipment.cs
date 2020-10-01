@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 public enum EquipmentSlotType
@@ -21,7 +22,14 @@ public enum TypeOfequipment
     Chestplate
 }
 
-[CreateAssetMenu(fileName = "Level", menuName = "ScriptableObjects/Create Equipment")]
+[Serializable]
+public class ItemAmount
+{
+    public CraftingMaterials Material;
+    public int Amount;
+}
+
+[CreateAssetMenu(fileName = "Equipment", menuName = "ScriptableObjects/Create Equipment")]
 public class Equipment : ScriptableObject
 {
 
@@ -48,5 +56,7 @@ public class Equipment : ScriptableObject
     public bool HasTimeCooldown;
 
     public TypeOfequipment TheTypeOfEquipment;
+
+    public List<ItemAmount> MaterialsForCrafting;
 
 }

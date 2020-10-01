@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerData : MonoBehaviour
 {
     public int Gold, Rubies, MagicalItems, MaxLevelReached;
@@ -13,6 +14,8 @@ public class PlayerData : MonoBehaviour
     public List<Equipment> EquipmentWithTimeCooldown;
 
     public List<Equipment> EquipmentInInventory;
+
+    public List<ItemAmount> CraftingMatsInInventory;
 
     private void Start()
     {

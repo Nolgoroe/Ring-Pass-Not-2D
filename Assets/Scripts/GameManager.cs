@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
     public GameObject BoardPrefab;
 
     public GameObject Wardrobe;
+    public GameObject CraftingMatBagScreen;
+
+    public ForgeManager ForgeManagerScript;
+    public MaterialBagManager MaterialBagManagerScript;
 
     public PowerUps PowerUpManager;
     public Transform SceneClip;

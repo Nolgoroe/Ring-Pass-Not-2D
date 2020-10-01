@@ -24,3 +24,10 @@ MonoBehaviour:
   SymbolForPowerUp: 5
   HasTimeCooldown: 0
   TheTypeOfEquipment: 1
+  MaterialsForCrafting:
+  - Material: {fileID: 11400000, guid: 90484fd06e538c44eacd74520d3f5f94, type: 2}
+    Amount: 3
+  - Material: {fileID: 11400000, guid: 8920cc3e36f5b6a4090c991fed78f942, type: 2}
+    Amount: 1
+  - Material: {fileID: 11400000, guid: b46d6125eba95b74fb971f19ce791ac7, type: 2}
+    Amount: 1

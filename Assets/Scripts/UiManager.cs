@@ -23,6 +23,7 @@ public class UiManager : MonoBehaviour
     public GameObject MainMenuScreen;
     public Button Commit;
     public Button BackToLevelHubButton;
+    public Button CraftingMaterialsButton, ForgeButton;
 
     public GameObject InGameUI;
     public GameObject LevelHub;
@@ -31,6 +32,10 @@ public class UiManager : MonoBehaviour
     public GameObject RingersHutUI;
 
     public GameObject Wardrobe;
+
+    public GameObject MaterialsBagTab;
+    public GameObject ForgeTab;
+    public GameObject MaterialsForgeScreen;
 
     public AudioSource AudioManager;
 
@@ -356,6 +361,43 @@ public class UiManager : MonoBehaviour
         else
         {
             Wardrobe.SetActive(false);
+        }
+    }
+
+    public void MaterialsForgeTabSwitch(bool Materials)
+    {
+        if (Materials)
+        {
+            MaterialsBagTab.SetActive(true);
+            ForgeTab.SetActive(false);
+            ForgeButton.GetComponent<Image>().color = Color.grey;
+            CraftingMaterialsButton.GetComponent<Image>().color = Color.white;
+            GameManager.Instance.MaterialBagManagerScript.RefreshMaterialBag();
+        }
+        else
+        {
+            MaterialsBagTab.SetActive(false);
+            ForgeTab.SetActive(true);
+            ForgeButton.GetComponent<Image>().color = Color.white;
+            CraftingMaterialsButton.GetComponent<Image>().color = Color.grey;
+        }
+    }
+
+
+
+    public void OpenCraftingMatForgeBag(bool open)
+    {
+        if (open)
+        {
+            MaterialsForgeScreen.SetActive(true);
+            MaterialsForgeTabSwitch(true);
+            GameManager.Instance.ForgeManagerScript.CheckIfCanCraftItem();
+            GameManager.Instance.MaterialBagManagerScript.RefreshMaterialBag();
+
+        }
+        else
+        {
+            MaterialsForgeScreen.SetActive(false);
         }
     }
 }
