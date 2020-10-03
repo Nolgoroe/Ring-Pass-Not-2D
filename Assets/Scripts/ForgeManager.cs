@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ForgeManager : MonoBehaviour
 {
@@ -19,6 +20,14 @@ public class ForgeManager : MonoBehaviour
     GameObject go;
 
     public List<ForgeItem> ForgeItems;
+
+    string SortingString;
+
+    public Dropdown SortingDropdown;
+
+    public List<Equipment> SortedItems;
+
+    public List<Equipment> AllEquipments;
 
     void Start()
     {
@@ -40,9 +49,10 @@ public class ForgeManager : MonoBehaviour
             FI.ForgeButton.onClick.AddListener(delegate { ForgeItem(FIC.EquipmentToCreate); });
 
             ForgeItems.Add(go.GetComponent<ForgeItem>());
+
+            AllEquipments.Add(FIC.EquipmentToCreate);
         }
     }
-
 
 
     public void CheckIfCanCraftItem()
@@ -53,28 +63,32 @@ public class ForgeManager : MonoBehaviour
 
             for (int i = 0; i < FIC.EquipmentToCreate.MaterialsForCrafting.Count; i++)
             {
-                bool HasMaterial = false;
+                bool HasEnough = false;
 
                 for (int k = 0; k < GameManager.Instance.ThePlayer.CraftingMatsInInventory.Count; k++)
                 {
                     if (FIC.EquipmentToCreate.MaterialsForCrafting[i].Material == GameManager.Instance.ThePlayer.CraftingMatsInInventory[k].Material)
                     {
-                        HasMaterial = true;
                         if (GameManager.Instance.ThePlayer.CraftingMatsInInventory[k].Amount < FIC.EquipmentToCreate.MaterialsForCrafting[i].Amount)
                         {
                             item.ForgeButton.interactable = false;
+                            item.ForgeButton.transform.GetChild(0).GetComponent<Text>().color = Color.grey;
                             break;
                         }
                         else
                         {
+                            HasEnough = true;
                             item.ForgeButton.interactable = true;
+                            item.ForgeButton.transform.GetChild(0).GetComponent<Text>().color = Color.white;
+                            break;
                         }
                     }
                 }
 
-                if (!HasMaterial)
+                if (!HasEnough)
                 {
                     item.ForgeButton.interactable = false;
+                    item.ForgeButton.transform.GetChild(0).GetComponent<Text>().color = Color.grey;
                     break;
                 }
             }
@@ -107,7 +121,6 @@ public class ForgeManager : MonoBehaviour
         GameManager.Instance.MaterialBagManagerScript.RefreshMaterialBag();
     }
 
-
     public void RefreshForge()
     {
         for (int i = 0; i < ForgeItems.Count; i++)
@@ -128,12 +141,13 @@ public class ForgeManager : MonoBehaviour
 
                         if (GameManager.Instance.ThePlayer.CraftingMatsInInventory[r].Amount >= FIC.EquipmentToCreate.MaterialsForCrafting[k].Amount)
                         {
-                            ForgeItems[i].MaterialsForItem[k].CraftingMatCountText.color = Color.green;
+                            //ForgeItems[i].MaterialsForItem[k].CraftingMatCountText.color = Color.black;
                             ForgeItems[i].MaterialsForItem[k].HasEnough = true;
                         }
                         else
                         {
-                            ForgeItems[i].MaterialsForItem[k].CraftingMatCountText.color = Color.red;
+                            //ForgeItems[i].MaterialsForItem[k].CraftingMatCountText.color = Color.red;
+                            ForgeItems[i].MaterialsForItem[k].CountBG.color = Color.red;
                             ForgeItems[i].MaterialsForItem[k].HasEnough = false;
                         }
                     }
@@ -142,7 +156,8 @@ public class ForgeManager : MonoBehaviour
                 if (!HasMaterial)
                 {
                     ForgeItems[i].MaterialsForItem[k].CraftingMatCountText.text = 0 + " / " + FIC.EquipmentToCreate.MaterialsForCrafting[k].Amount;
-                    ForgeItems[i].MaterialsForItem[k].CraftingMatCountText.color = Color.red;
+                    //ForgeItems[i].MaterialsForItem[k].CraftingMatCountText.color = Color.red;
+                    ForgeItems[i].MaterialsForItem[k].CountBG.color = Color.red;
                     ForgeItems[i].MaterialsForItem[k].HasEnough = false;
                 }
             }
@@ -151,4 +166,74 @@ public class ForgeManager : MonoBehaviour
 
         CheckIfCanCraftItem();
     }
+
+    public void GetSortSting()
+    {
+        SortingString = SortingDropdown.options[SortingDropdown.value].text;
+
+        if (SortingString == "All")
+        {
+            SortItemsAll();
+        }
+        else
+        {
+            SortItemsByType(SortingString);
+        }
+    }
+
+    public void SortItemsAll()
+    {
+        SortedItems.Clear();
+
+        foreach (Equipment item in AllEquipments)
+        {
+            SortedItems.Add(item);
+        }
+
+        SortForge();
+    }
+
+    public void SortItemsByType(string Type)
+    {
+        SortedItems.Clear();
+
+        foreach (Equipment item in AllEquipments)
+        {
+            if (item.TheTypeOfEquipment.ToString() == Type)
+            {
+                SortedItems.Add(item);
+            }
+        }
+
+        SortForge();
+    }
+
+    public void SortForge()
+    {
+        foreach (Transform cell in ItemParent)
+        {
+            Destroy(cell.gameObject);
+        }
+        ForgeItems.Clear();
+
+        for (int i = 0; i < SortedItems.Count; i++)
+        {
+            GameObject go = Instantiate(ForgeItemPrefab, ItemParent);
+
+            ForgedItemCell FIC = go.GetComponent<ForgeItem>().TheItem.GetComponent<ForgedItemCell>();
+
+            ForgeItem FI = go.GetComponent<ForgeItem>();
+
+            FIC.EquipmentToCreate = SortedItems[i];
+
+            go.name = FIC.EquipmentToCreate.name;
+
+            FI.ForgeButton.onClick.AddListener(delegate { ForgeItem(FIC.EquipmentToCreate); });
+
+            ForgeItems.Add(go.GetComponent<ForgeItem>());
+        }
+
+        CheckIfCanCraftItem();
+    }
+
 }

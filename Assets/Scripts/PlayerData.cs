@@ -17,6 +17,8 @@ public class PlayerData : MonoBehaviour
 
     public List<ItemAmount> CraftingMatsInInventory;
 
+    public List<EquipmentSlot> EquippedItems;
+
     private void Start()
     {
         if (PlayerPrefs.HasKey("Gold"))

@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
 
         if (PlayerPrefs.HasKey("MaxLevelReached"))
         {
-            CurrentLevelNum = PlayerPrefs.GetInt("MaxLevelReached") - 1; ///// -1 Because counting levels start from 1 while loading levels starts from 0 from an array
+            CurrentLevelNum = PlayerPrefs.GetInt("MaxLevelReached"); ///// -1 Because counting levels start from 1 while loading levels starts from 0 from an array
         }
 
         UiManager.Instance.ToggleLevelHub(false);

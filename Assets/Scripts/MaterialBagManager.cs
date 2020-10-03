@@ -63,7 +63,7 @@ public class MaterialBagManager : MonoBehaviour
 
             CMcell.CraftingMatInCell = GameManager.Instance.ThePlayer.CraftingMatsInInventory[i].Material;
 
-            CMcell.CraftingMatNameText.text = GameManager.Instance.ThePlayer.CraftingMatsInInventory[i].Material.name;
+            //CMcell.CraftingMatNameText.text = GameManager.Instance.ThePlayer.CraftingMatsInInventory[i].Material.name;
 
             CMcell.TypeOfItem = GameManager.Instance.ThePlayer.CraftingMatsInInventory[i].Material.TypeOfItem;
 
@@ -72,79 +72,5 @@ public class MaterialBagManager : MonoBehaviour
         }
 
     }
-    //public void GetSortSting()
-    //{
-    //    SortingString = SortingDropdown.options[SortingDropdown.value].text;
-
-    //    if (SortingString == "All")
-    //    {
-    //        SortItemsAll();
-    //    }
-    //    else
-    //    {
-    //        SortItemsByType(SortingString);
-    //    }
-    //}
-
-    //public void SortItemsAll()
-    //{
-    //    SortedItems.Clear();
-
-    //    foreach (Equipment item in AllEquipments)
-    //    {
-    //        SortedItems.Add(item);
-    //    }
-
-    //    RefreshInventory();
-    //}
-
-    //public void SortItemsByType(string Type)
-    //{
-    //    SortedItems.Clear();
-
-    //    foreach (Equipment item in AllEquipments)
-    //    {
-    //        if (item.TheTypeOfEquipment.ToString() == Type)
-    //        {
-    //            SortedItems.Add(item);
-    //        }
-    //    }
-
-    //    RefreshInventory();
-    //}
-
-    //public void RefreshInventory()
-    //{
-    //    foreach (Transform cell in EquipmentCellParent)
-    //    {
-    //        Destroy(cell.gameObject);
-    //    }
-
-
-    //    for (int i = 0; i < SortedItems.Count; i++)
-    //    {
-    //        GameObject go = Instantiate(EquipemntCellPrefab, EquipmentCellParent);
-
-    //        EquipmentCell Eqcell = go.GetComponent<EquipmentCell>();
-
-    //        Eqcell.Full = true;
-
-    //        Eqcell.ItemInCell = SortedItems[i];
-
-    //        Eqcell.ItemName.text = SortedItems[i].name;
-
-    //        Eqcell.TheTypeOfItem = SortedItems[i].TheTypeOfEquipment;
-
-    //        if (GameManager.Instance.ThePlayer.EquipmentInInventory[i].HasTimeCooldown)
-    //        {
-    //            Eqcell.ItemUsesPerDay.text = "Uses Per Day: " + SortedItems[i].UsesBeforeTimeCountdown;
-    //        }
-    //        else
-    //        {
-    //            Eqcell.ItemUsesPerDay.text = "Uses Per Match: " + SortedItems[i].UsesInMatch;
-    //        }
-    //    }
-    //}
-
 }
 

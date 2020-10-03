@@ -900,27 +900,39 @@ public class PowerUps : MonoBehaviour
 
     public void DoAfterSuccessfullPowerUp()
     {
+
         foreach (EquipmentSlot slot in GameManager.Instance.ThePlayer.SlotsForEquipment)
         {
             if (slot.TheItem != null)
             {
                 if (slot.TheItem.HasTimeCooldown)
                 {
-                    if (slot.TheItem.PowerUpToGive == PowerUpInUse)
+                    for (int i = 0; i < slot.TheItem.PowerUpToGive.Length; i++)
                     {
-                       EquipmentManager.Instance.TimerTillNextPowerUpUse(PowerUpButton, slot);
-                        //Debug.Log("Decreased The Times To Use In Match");
+                        if (slot.TheItem.PowerUpToGive[i] == PowerUpInUse)
+                        {
+                            EquipmentManager.Instance.TimerTillNextPowerUpUse(PowerUpButton, slot);
+                            //Debug.Log("Decreased The Times To Use In Match");
+                            break;
+                        }
                     }
                 }
                 else
                 {
-                    if (slot.TheItem.PowerUpToGive == PowerUpInUse)
+                    for (int i = 0; i < slot.TheItem.PowerUpToGive.Length; i++)
                     {
-                        EquipmentManager.Instance.DecreaseNumberOfUsesInMatch(PowerUpButton, slot);
-                        Debug.Log("Decreased The Times To Use In Match");
+                        if (slot.TheItem.PowerUpToGive[i] == PowerUpInUse)
+                        {
+                            EquipmentManager.Instance.DecreaseNumberOfUsesInMatch(PowerUpButton, slot);
+                            Debug.Log("Decreased The Times To Use In Match");
+                            break;
+                        }
                     }
                 }
             }
+
         }
+
+        GameManager.Instance.PowerUpManager.PowerUpInUse = PowerUpChooseItemTypes.None;
     }
 }

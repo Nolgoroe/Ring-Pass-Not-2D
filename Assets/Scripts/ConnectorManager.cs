@@ -63,7 +63,7 @@ public class ConnectorManager : MonoBehaviour
             {
                 HasLimiter = true;
                 TypeOfLootLockSlice = ConnectorLimiter.TypeOfLootLockSlice;
-                LockPieces = true;
+                //LockPieces = true;
             }
         }
     }
@@ -633,6 +633,7 @@ public class ConnectorManager : MonoBehaviour
                     SuccesfullConnectionMade = true;
                     LeftPieceParent.Locked = true;
                     RightPieceParent.Locked = true;
+                    LockPieces = true;
                     GameManager.Instance.SuccesfullConnectionsMade++;
                     BadConnectionMade = false;
 
@@ -651,6 +652,7 @@ public class ConnectorManager : MonoBehaviour
                     SuccesfullConnectionMade = true;
                     LeftPieceParent.Locked = true;
                     RightPieceParent.Locked = true;
+                    LockPieces = true;
                     GameManager.Instance.SuccesfullConnectionsMade++;
                     BadConnectionMade = false;
 
@@ -670,6 +672,7 @@ public class ConnectorManager : MonoBehaviour
                     SuccesfullConnectionMade = true;
                     LeftPieceParent.Locked = true;
                     RightPieceParent.Locked = true;
+                    LockPieces = true;
                     GameManager.Instance.SuccesfullConnectionsMade++;
                     BadConnectionMade = false;
 
@@ -689,6 +692,7 @@ public class ConnectorManager : MonoBehaviour
                     SuccesfullConnectionMade = true;
                     LeftPieceParent.Locked = true;
                     RightPieceParent.Locked = true;
+                    LockPieces = true;
                     GameManager.Instance.SuccesfullConnectionsMade++;
                     BadConnectionMade = false;
 
@@ -708,6 +712,7 @@ public class ConnectorManager : MonoBehaviour
                     SuccesfullConnectionMade = true;
                     LeftPieceParent.Locked = true;
                     RightPieceParent.Locked = true;
+                    LockPieces = true;
                     GameManager.Instance.SuccesfullConnectionsMade++;
                     BadConnectionMade = false;
 
@@ -727,6 +732,7 @@ public class ConnectorManager : MonoBehaviour
                     SuccesfullConnectionMade = true;
                     LeftPieceParent.Locked = true;
                     RightPieceParent.Locked = true;
+                    LockPieces = true;
                     GameManager.Instance.SuccesfullConnectionsMade++;
                     BadConnectionMade = false;
 
@@ -746,6 +752,7 @@ public class ConnectorManager : MonoBehaviour
                     SuccesfullConnectionMade = true;
                     LeftPieceParent.Locked = true;
                     RightPieceParent.Locked = true;
+                    LockPieces = true;
                     GameManager.Instance.SuccesfullConnectionsMade++;
                     BadConnectionMade = false;
 
@@ -765,6 +772,7 @@ public class ConnectorManager : MonoBehaviour
                     SuccesfullConnectionMade = true;
                     LeftPieceParent.Locked = true;
                     RightPieceParent.Locked = true;
+                    LockPieces = true;
                     GameManager.Instance.SuccesfullConnectionsMade++;
                     BadConnectionMade = false;
 
@@ -784,6 +792,7 @@ public class ConnectorManager : MonoBehaviour
                     SuccesfullConnectionMade = true;
                     LeftPieceParent.Locked = true;
                     RightPieceParent.Locked = true;
+                    LockPieces = true;
                     GameManager.Instance.SuccesfullConnectionsMade++;
                     BadConnectionMade = false;
 
@@ -803,6 +812,7 @@ public class ConnectorManager : MonoBehaviour
                     SuccesfullConnectionMade = true;
                     LeftPieceParent.Locked = true;
                     RightPieceParent.Locked = true;
+                    LockPieces = true;
                     GameManager.Instance.SuccesfullConnectionsMade++;
                     BadConnectionMade = false;
 
@@ -901,26 +911,28 @@ public class ConnectorManager : MonoBehaviour
         //Debug.Log(Randomloot);
         //Debug.Log(GameManager.Instance.GameLevels[GameManager.Instance.CurrentLevelNum].LootForLevel[Randomloot]);
 
-        switch (GameManager.Instance.LevelSpecificLoot[Randomloot])
-        {
-            case LootType.SmallGold:
-                LootManager.Instance.GainGold(LootType.SmallGold);
-                break;
-            case LootType.BigGold:
-                LootManager.Instance.GainGold(LootType.BigGold);
-                break;
-            case LootType.SmallRuby:
-                LootManager.Instance.GainRubie(LootType.SmallRuby);
-                break;
-            case LootType.BigRuby:
-                LootManager.Instance.GainRubie(LootType.BigRuby);
-                break;
-            case LootType.MagicItem:
-                LootManager.Instance.GainMagicalItems();
-                break;
-            default:
-                break;
-        }
+        LootManager.Instance.GetAmountOfLoot(GameManager.Instance.LevelSpecificLoot[Randomloot]);
+
+        //switch (GameManager.Instance.LevelSpecificLoot[Randomloot])
+        //{
+        //    case LootType.SmallGold:
+        //        LootManager.Instance.GetAmountOfLoot(LootType.SmallGold);
+        //        break;
+        //    case LootType.BigGold:
+        //        LootManager.Instance.GetAmountOfLoot(LootType.BigGold);
+        //        break;
+        //    case LootType.SmallRuby:
+        //        LootManager.Instance.GetAmountOfLoot(LootType.SmallRuby);
+        //        break;
+        //    case LootType.BigRuby:
+        //        LootManager.Instance.GetAmountOfLoot(LootType.BigRuby);
+        //        break;
+        //    case LootType.MagicItem:
+        //        LootManager.Instance.GainMagicalItems();
+        //        break;
+        //    default:
+        //        break;
+        //}
 
         GameManager.Instance.ThePlayer.SaveDate();
         GameManager.Instance.LevelSpecificLoot.RemoveAt(Randomloot);

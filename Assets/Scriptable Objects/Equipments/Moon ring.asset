@@ -14,18 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 1
   SlotForEquipment: 2
-  CoolDownTimeHours: 1
-  UsesInMatch: 0
-  UsesBeforeTimeCountdown: 1
+  CoolDownTimeHours: 0
+  UsesInMatch: 10
+  UsesBeforeTimeCountdown: 0
   UsesBeforeDestruction: 100
-  SpriteOfEquipment: {fileID: 0}
-  PowerUpToGive: 5
+  SpriteOfEquipment: {fileID: 21300000, guid: b3339cf2e09fe3948aa3e00f128b0e29, type: 3}
+  PowerUpToGive: 0300000000000000
   ColorForPowerUp: 5
-  SymbolForPowerUp: 1
-  HasTimeCooldown: 1
+  SymbolForPowerUp: 5
+  HasTimeCooldown: 0
   TheTypeOfEquipment: 2
   MaterialsForCrafting:
   - Material: {fileID: 11400000, guid: e0096b65b3b97ca41b2861ea1d624daa, type: 2}
     Amount: 100
   - Material: {fileID: 11400000, guid: efb820c6483066e4fa0e0dc2f009e303, type: 2}
     Amount: 5
+  LookWhenEquipped: {fileID: 21300000, guid: 3ea34740eb26f4f449c112efc84c9633, type: 3}

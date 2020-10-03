@@ -13,6 +13,8 @@ public class ForgedItemCell : MonoBehaviour
 
     //public int CraftingMatCount;
 
+    public Image ItemSprite;
+
     private void Start()
     {
         TheTypeOfItem = EquipmentToCreate.TheTypeOfEquipment;
@@ -26,7 +28,7 @@ public class ForgedItemCell : MonoBehaviour
         {
             ItemUsesPerDay.text = "Uses Per Match: " + EquipmentToCreate.UsesInMatch;
         }
-
+        ItemSprite.sprite = EquipmentToCreate.SpriteOfEquipment;
     }
 }
 

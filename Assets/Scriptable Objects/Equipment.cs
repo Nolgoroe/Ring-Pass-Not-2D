@@ -27,6 +27,12 @@ public class ItemAmount
 {
     public CraftingMaterials Material;
     public int Amount;
+
+    public ItemAmount(CraftingMaterials material, int Amount)
+    {
+        Material = material;
+        this.Amount = Amount;
+    }
 }
 
 [CreateAssetMenu(fileName = "Equipment", menuName = "ScriptableObjects/Create Equipment")]
@@ -47,7 +53,7 @@ public class Equipment : ScriptableObject
 
     public Sprite SpriteOfEquipment;
 
-    public PowerUpChooseItemTypes PowerUpToGive;
+    public PowerUpChooseItemTypes[] PowerUpToGive;
 
     public ColorData ColorForPowerUp;
 
@@ -58,5 +64,7 @@ public class Equipment : ScriptableObject
     public TypeOfequipment TheTypeOfEquipment;
 
     public List<ItemAmount> MaterialsForCrafting;
+
+    public Sprite LookWhenEquipped;
 
 }

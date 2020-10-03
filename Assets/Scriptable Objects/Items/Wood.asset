@@ -15,4 +15,4 @@ MonoBehaviour:
   ID: 4
   TypeOfItem: 1
   SubTypeOfItem: 1
-  ItemSprite: {fileID: 0}
+  ItemSprite: {fileID: 21300000, guid: 61bf3d2015d5475499aba2bc9614be76, type: 3}

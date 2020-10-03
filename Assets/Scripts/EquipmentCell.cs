@@ -9,11 +9,13 @@ public class EquipmentCell : MonoBehaviour
 
     public Equipment ItemInCell;
 
-    public Text ItemName, ItemUsesPerDay;
+    //public Text ItemName, ItemUsesPerDay;
 
     public TypeOfequipment TheTypeOfItem;
 
-    public bool IsBeingHeld;
+    public Image ItemSprite;
+
+    public bool IsBeingHeld, EquippedOnPlayer;
 
     public int TimesLeftToUseBeforeDestruction;
 
@@ -21,6 +23,8 @@ public class EquipmentCell : MonoBehaviour
     public Transform OriginalParent;
 
     Vector3 Mousepos;
+
+    public GameObject Equipped;
 
     private void Start()
     {

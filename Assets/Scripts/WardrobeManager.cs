@@ -18,19 +18,26 @@ public class WardrobeManager : MonoBehaviour
 
     public List<Equipment> SortedItems;
 
+    public List<EquipmentSlot> SortedEquippedItems;
+
+    public List<EquipmentSlot> EquippedItems;
+
     string SortingString;
 
 
-
-    void Start()
+    private void OnEnable()
     {
         Instance = this;
 
         foreach (Transform cell in EquipmentCellParent)
         {
-            Destroy(cell.gameObject);
+            if (!cell.GetComponent<EquipmentCell>().EquippedOnPlayer)
+            {
+                Destroy(cell.gameObject);
+            }
         }
 
+        AllEquipments.Clear();
 
         for (int i = 0; i < GameManager.Instance.ThePlayer.EquipmentInInventory.Count; i++)
         {
@@ -41,23 +48,42 @@ public class WardrobeManager : MonoBehaviour
 
             Eqcell.ItemInCell = GameManager.Instance.ThePlayer.EquipmentInInventory[i];
 
-            Eqcell.ItemName.text = GameManager.Instance.ThePlayer.EquipmentInInventory[i].name;
+            //Eqcell.ItemName.text = GameManager.Instance.ThePlayer.EquipmentInInventory[i].name;
 
             Eqcell.TheTypeOfItem = GameManager.Instance.ThePlayer.EquipmentInInventory[i].TheTypeOfEquipment;
 
+            Eqcell.ItemSprite.sprite = GameManager.Instance.ThePlayer.EquipmentInInventory[i].SpriteOfEquipment;
+
             if (GameManager.Instance.ThePlayer.EquipmentInInventory[i].HasTimeCooldown)
             {
-                Eqcell.ItemUsesPerDay.text = "Uses Per Day: " + GameManager.Instance.ThePlayer.EquipmentInInventory[i].UsesBeforeTimeCountdown;
+                //Eqcell.ItemUsesPerDay.text = "Uses Per Day: " + GameManager.Instance.ThePlayer.EquipmentInInventory[i].UsesBeforeTimeCountdown;
             }
             else
             {
-                Eqcell.ItemUsesPerDay.text = "Uses Per Match: " + GameManager.Instance.ThePlayer.EquipmentInInventory[i].UsesInMatch;
+                //Eqcell.ItemUsesPerDay.text = "Uses Per Match: " + GameManager.Instance.ThePlayer.EquipmentInInventory[i].UsesInMatch;
             }
 
             Equipment TheItem = go.GetComponent<EquipmentCell>().ItemInCell;
 
             AllEquipments.Add(TheItem);
         }
+
+        //for (int i = 0; i < EquippedItems.Count; i++)
+        //{
+        //    GameObject go = Instantiate(EquipemntCellPrefab, EquipmentCellParent);
+
+        //    EquipmentCell Eqcell = go.GetComponent<EquipmentCell>();
+        //    Eqcell.Full = true;
+        //    Eqcell.ItemInCell = EquippedItems[i].TheItem;
+        //    Eqcell.TheTypeOfItem = EquippedItems[i].TheItem.TheTypeOfEquipment;
+        //    Eqcell.ItemSprite.sprite = EquippedItems[i].TheItem.SpriteOfEquipment;
+        //    Eqcell.TimesLeftToUseBeforeDestruction = EquippedItems[i].TheItem.UsesBeforeDestruction;
+        //    Eqcell.IsBeingHeld = false;
+        //    Eqcell.EquippedOnPlayer = true;
+        //    Eqcell.Equipped.SetActive(true);
+        //    Eqcell.GetComponent<Image>().color = new Color(1, 1, 1, 0.6f);
+
+        //}
     }
 
     public void GetSortSting()
@@ -77,10 +103,16 @@ public class WardrobeManager : MonoBehaviour
     public void SortItemsAll()
     {
         SortedItems.Clear();
+        SortedEquippedItems.Clear();
 
         foreach (Equipment item in AllEquipments)
         {
             SortedItems.Add(item);
+        }
+
+        foreach (EquipmentSlot item in EquippedItems)
+        {
+            SortedEquippedItems.Add(item);
         }
 
         RefreshInventory();
@@ -89,12 +121,21 @@ public class WardrobeManager : MonoBehaviour
     public void SortItemsByType(string Type)
     {
         SortedItems.Clear();
+        SortedEquippedItems.Clear();
 
         foreach (Equipment item in AllEquipments)
         {
             if(item.TheTypeOfEquipment.ToString() == Type)
             {
                 SortedItems.Add(item);
+            }
+        }
+
+        foreach (EquipmentSlot item in EquippedItems)
+        {
+            if (item.TheItem.TheTypeOfEquipment.ToString() == Type)
+            {
+                SortedEquippedItems.Add(item);
             }
         }
 
@@ -105,7 +146,10 @@ public class WardrobeManager : MonoBehaviour
     {
         foreach (Transform cell in EquipmentCellParent)
         {
-            Destroy(cell.gameObject);
+            if (!cell.GetComponent<EquipmentCell>().EquippedOnPlayer)
+            {
+                Destroy(cell.gameObject);
+            }
         }
 
 
@@ -119,19 +163,50 @@ public class WardrobeManager : MonoBehaviour
 
             Eqcell.ItemInCell = SortedItems[i];
 
-            Eqcell.ItemName.text = SortedItems[i].name;
+            //Eqcell.ItemName.text = SortedItems[i].name;
 
             Eqcell.TheTypeOfItem = SortedItems[i].TheTypeOfEquipment;
 
+            Eqcell.ItemSprite.sprite = SortedItems[i].SpriteOfEquipment;
+
             if (GameManager.Instance.ThePlayer.EquipmentInInventory[i].HasTimeCooldown)
             {
-                Eqcell.ItemUsesPerDay.text = "Uses Per Day: " + SortedItems[i].UsesBeforeTimeCountdown;
+                //Eqcell.ItemUsesPerDay.text = "Uses Per Day: " + SortedItems[i].UsesBeforeTimeCountdown;
             }
             else
             {
-                Eqcell.ItemUsesPerDay.text = "Uses Per Match: " + SortedItems[i].UsesInMatch;
+                //Eqcell.ItemUsesPerDay.text = "Uses Per Match: " + SortedItems[i].UsesInMatch;
+            }
+        }
+
+        if(SortedEquippedItems.Count == 0)
+        {
+            foreach (EquipmentSlot item in EquippedItems)
+            {
+                item.OriginalCellFromInventory.gameObject.SetActive(false);
+            }
+
+        }
+        else
+        {
+            foreach (EquipmentSlot item in EquippedItems)
+            {
+                
+                if (!SortedEquippedItems.Contains(item))
+                {
+                    if (item.OriginalCellFromInventory)
+                    {
+                        item.OriginalCellFromInventory.gameObject.SetActive(false);
+                    }
+                }
+                else
+                {
+                    if (item.OriginalCellFromInventory)
+                    {
+                        item.OriginalCellFromInventory.gameObject.SetActive(true);
+                    }
+                }
             }
         }
     }
-
 }

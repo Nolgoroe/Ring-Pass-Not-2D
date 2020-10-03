@@ -9,13 +9,15 @@ public class CraftingMaterialCell : MonoBehaviour
 
     public CraftingMaterials CraftingMatInCell;
 
-    public Text CraftingMatNameText, CraftingMatCountText;
+    public Text /*CraftingMatNameText,*/ CraftingMatCountText;
 
     public ItemType TypeOfItem;
 
     public SubTypeOfItem SubTypeOfItem;
 
     public int CraftingMatCount;
+
+    public Image ItemSprite;
 
     private void Start()
     {
@@ -29,9 +31,9 @@ public class CraftingMaterialCell : MonoBehaviour
             {
                 CraftingMatCount = GameManager.Instance.ThePlayer.CraftingMatsInInventory[i].Amount;
             }
-        }    
-
-        CraftingMatCountText.text = "Item Count: " + CraftingMatCount.ToString();
+        }
+        ItemSprite.sprite = CraftingMatInCell.ItemSprite;
+        CraftingMatCountText.text = CraftingMatCount.ToString();
     }
 }
 

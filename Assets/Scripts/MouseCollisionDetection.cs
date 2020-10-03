@@ -603,6 +603,17 @@ public class MouseCollisionDetection : MonoBehaviour
                             }
                         }
                     }
+
+
+
+                    GameManager.Instance.PowerUpManager.UsingPowerUp = false;
+                    GameManager.Instance.PowerUpManager.PowerUpInUse = PowerUpChooseItemTypes.None;
+                    GameManager.Instance.PowerUpManager.ColorForColorTransformPowerUp = ColorData.None;
+                    GameManager.Instance.PowerUpManager.SymbolForShapeTransformPowerUp = Symbols.None;
+                    GameManager.Instance.PowerUpManager.PowerUpButton = null;
+                    GameManager.Instance.PowerUpManager.SymbolForShapeTransformPowerUp = Symbols.None;
+                    GameManager.Instance.PowerUpManager.HasTargetForPowerUp = false;
+
                 }
             }
             else

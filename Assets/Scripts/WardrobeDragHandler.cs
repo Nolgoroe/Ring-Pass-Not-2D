@@ -13,10 +13,12 @@ public class WardrobeDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandle
     //public List<Collider2D> InteractedColliders;
 
     Transform MainCavas;
+
     private void Start()
     {
         MainCavas = GameObject.FindGameObjectWithTag("MainCanvas").transform;
     }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (GameManager.Instance.Wardrobe.activeInHierarchy)
@@ -29,13 +31,16 @@ public class WardrobeDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandle
 
             CellToMove = gameObject.GetComponent<EquipmentCell>();
 
-            Mousepos = Input.mousePosition;
-            transform.position = Mousepos;
-            //Debug.Log(Input.mousePosition);
+            if (!CellToMove.EquippedOnPlayer)
+            {
+                Mousepos = Input.mousePosition;
+                transform.position = Mousepos;
+                //Debug.Log(Input.mousePosition);
 
-            CellToMove.transform.SetParent(MainCavas);
+                CellToMove.transform.SetParent(MainCavas);
 
-            gameObject.GetComponent<Image>().raycastTarget = false;
+                gameObject.GetComponent<Image>().raycastTarget = false;
+            }
             //}
             //}
         }
@@ -43,23 +48,25 @@ public class WardrobeDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     public void OnDrag(PointerEventData eventData)
     {
-        //transform.GetComponent<Collider2D>().enabled = true;
-        Mousepos = Input.mousePosition;
-        transform.position = Mousepos;
-        //Debug.Log(Input.mousePosition);
-
-        if (CellToMove != null)
+        if (!CellToMove.EquippedOnPlayer)
         {
-            CellToMove.IsBeingHeld = true;
+            //transform.GetComponent<Collider2D>().enabled = true;
+            Mousepos = Input.mousePosition;
+            transform.position = Mousepos;
+            //Debug.Log(Input.mousePosition);
 
-            //CellToMove.Full = false;
+            if (CellToMove != null)
+            {
+                CellToMove.IsBeingHeld = true;
+
+                //CellToMove.Full = false;
+            }
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        
-        if(transform.parent != CellToMove.OriginalParent)
+        if (transform.parent != CellToMove.OriginalParent)
         {
             CellToMove.transform.SetParent(CellToMove.OriginalParent);
             CellToMove.transform.position = CellToMove.OriginalParent.transform.position;
@@ -71,6 +78,5 @@ public class WardrobeDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandle
         CellToMove.IsBeingHeld = false;
 
         CellToMove = null;
-
     }
 }
