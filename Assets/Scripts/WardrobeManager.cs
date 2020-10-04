@@ -25,10 +25,12 @@ public class WardrobeManager : MonoBehaviour
     string SortingString;
 
 
-    private void OnEnable()
+    private void Start()
     {
         Instance = this;
-
+    }
+    public void OpenWardrobe()
+    {
         foreach (Transform cell in EquipmentCellParent)
         {
             if (!cell.GetComponent<EquipmentCell>().EquippedOnPlayer)
@@ -52,38 +54,21 @@ public class WardrobeManager : MonoBehaviour
 
             Eqcell.TheTypeOfItem = GameManager.Instance.ThePlayer.EquipmentInInventory[i].TheTypeOfEquipment;
 
-            Eqcell.ItemSprite.sprite = GameManager.Instance.ThePlayer.EquipmentInInventory[i].SpriteOfEquipment;
+            Eqcell.ItemSprite.sprite = Resources.Load<Sprite>(GameManager.Instance.ThePlayer.EquipmentInInventory[i].ItemSpriteInventory);
 
-            if (GameManager.Instance.ThePlayer.EquipmentInInventory[i].HasTimeCooldown)
-            {
-                //Eqcell.ItemUsesPerDay.text = "Uses Per Day: " + GameManager.Instance.ThePlayer.EquipmentInInventory[i].UsesBeforeTimeCountdown;
-            }
-            else
-            {
-                //Eqcell.ItemUsesPerDay.text = "Uses Per Match: " + GameManager.Instance.ThePlayer.EquipmentInInventory[i].UsesInMatch;
-            }
+            //if (GameManager.Instance.ThePlayer.EquipmentInInventory[i].HasTimeCooldown)
+            //{
+            //    //Eqcell.ItemUsesPerDay.text = "Uses Per Day: " + GameManager.Instance.ThePlayer.EquipmentInInventory[i].UsesBeforeTimeCountdown;
+            //}
+            //else
+            //{
+            //    //Eqcell.ItemUsesPerDay.text = "Uses Per Match: " + GameManager.Instance.ThePlayer.EquipmentInInventory[i].UsesInMatch;
+            //}
 
             Equipment TheItem = go.GetComponent<EquipmentCell>().ItemInCell;
 
             AllEquipments.Add(TheItem);
         }
-
-        //for (int i = 0; i < EquippedItems.Count; i++)
-        //{
-        //    GameObject go = Instantiate(EquipemntCellPrefab, EquipmentCellParent);
-
-        //    EquipmentCell Eqcell = go.GetComponent<EquipmentCell>();
-        //    Eqcell.Full = true;
-        //    Eqcell.ItemInCell = EquippedItems[i].TheItem;
-        //    Eqcell.TheTypeOfItem = EquippedItems[i].TheItem.TheTypeOfEquipment;
-        //    Eqcell.ItemSprite.sprite = EquippedItems[i].TheItem.SpriteOfEquipment;
-        //    Eqcell.TimesLeftToUseBeforeDestruction = EquippedItems[i].TheItem.UsesBeforeDestruction;
-        //    Eqcell.IsBeingHeld = false;
-        //    Eqcell.EquippedOnPlayer = true;
-        //    Eqcell.Equipped.SetActive(true);
-        //    Eqcell.GetComponent<Image>().color = new Color(1, 1, 1, 0.6f);
-
-        //}
     }
 
     public void GetSortSting()
@@ -167,7 +152,7 @@ public class WardrobeManager : MonoBehaviour
 
             Eqcell.TheTypeOfItem = SortedItems[i].TheTypeOfEquipment;
 
-            Eqcell.ItemSprite.sprite = SortedItems[i].SpriteOfEquipment;
+            Eqcell.ItemSprite.sprite = Resources.Load<Sprite>(SortedItems[i].ItemSpriteInventory);
 
             if (GameManager.Instance.ThePlayer.EquipmentInInventory[i].HasTimeCooldown)
             {

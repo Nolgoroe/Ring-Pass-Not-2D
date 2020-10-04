@@ -35,7 +35,7 @@ public class ForgeItem : MonoBehaviour
 
             for (int k = 0; k < GameManager.Instance.ThePlayer.CraftingMatsInInventory.Count; k++)
             {
-                if (ItemToCraft.EquipmentToCreate.MaterialsForCrafting[i].Material == GameManager.Instance.ThePlayer.CraftingMatsInInventory[k].Material)
+                if (ItemToCraft.EquipmentToCreate.MaterialsForCrafting[i].Material.ID == GameManager.Instance.ThePlayer.CraftingMatsInInventory[k].Material.ID)
                 {
                     HasMaterial = true;
                     FMC.CraftingMatCountText.text = (GameManager.Instance.ThePlayer.CraftingMatsInInventory[k].Amount.ToString() + " / " + ItemToCraft.EquipmentToCreate.MaterialsForCrafting[i].Amount);

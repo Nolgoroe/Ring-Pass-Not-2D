@@ -67,7 +67,7 @@ public class ForgeManager : MonoBehaviour
 
                 for (int k = 0; k < GameManager.Instance.ThePlayer.CraftingMatsInInventory.Count; k++)
                 {
-                    if (FIC.EquipmentToCreate.MaterialsForCrafting[i].Material == GameManager.Instance.ThePlayer.CraftingMatsInInventory[k].Material)
+                    if (FIC.EquipmentToCreate.MaterialsForCrafting[i].Material.ID == GameManager.Instance.ThePlayer.CraftingMatsInInventory[k].Material.ID)
                     {
                         if (GameManager.Instance.ThePlayer.CraftingMatsInInventory[k].Amount < FIC.EquipmentToCreate.MaterialsForCrafting[i].Amount)
                         {
@@ -104,7 +104,7 @@ public class ForgeManager : MonoBehaviour
         {
             for (int k = 0; k < TheItem.MaterialsForCrafting.Count; k++)
             {
-                if (GameManager.Instance.ThePlayer.CraftingMatsInInventory[i].Material == TheItem.MaterialsForCrafting[k].Material)
+                if (GameManager.Instance.ThePlayer.CraftingMatsInInventory[i].Material.ID == TheItem.MaterialsForCrafting[k].Material.ID)
                 {
                     GameManager.Instance.ThePlayer.CraftingMatsInInventory[i].Amount -= TheItem.MaterialsForCrafting[k].Amount;
 
@@ -116,6 +116,7 @@ public class ForgeManager : MonoBehaviour
             }
         }
 
+        GameManager.Instance.ThePlayer.SaveMatsInInventory();
 
         RefreshForge();
         GameManager.Instance.MaterialBagManagerScript.RefreshMaterialBag();
@@ -133,7 +134,7 @@ public class ForgeManager : MonoBehaviour
 
                 for (int r = 0; r < GameManager.Instance.ThePlayer.CraftingMatsInInventory.Count; r++)
                 {
-                    if (ForgeItems[i].MaterialsForItem[k].CraftingMatInCell == GameManager.Instance.ThePlayer.CraftingMatsInInventory[r].Material)
+                    if (ForgeItems[i].MaterialsForItem[k].CraftingMatInCell.ID == GameManager.Instance.ThePlayer.CraftingMatsInInventory[r].Material.ID)
                     {
                         HasMaterial = true;
                         ForgeItems[i].MaterialsForItem[k].CraftingMatCountText.text = GameManager.Instance.ThePlayer.CraftingMatsInInventory[r].Amount.ToString() + " / " + FIC.EquipmentToCreate.MaterialsForCrafting[k].Amount;

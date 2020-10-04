@@ -59,37 +59,49 @@ public class EquipmentManager : MonoBehaviour
             SlotToWorkOn.TimesLeftToUseBeforeCountdown = 0;
             SlotToWorkOn.TimesLeftToUseBeforeDestruction = 0;
 
-            SlotToWorkOn.ItemSprite = SlotToWorkOn.GetComponent<Image>();
+            //SlotToWorkOn.ItemSprite = SlotToWorkOn.GetComponent<Image>();
             SlotToWorkOn.GetComponent<Image>().color = new Color(1, 1, 1, 0);
 
             WardrobeManager.Instance.EquippedItems.Remove(SlotToWorkOn);
+            GameManager.Instance.ThePlayer.EquippedItems.Remove(SlotToWorkOn.TheItem);
 
             SlotToWorkOn.OriginalCellFromInventory.EquippedOnPlayer = false;
             SlotToWorkOn.OriginalCellFromInventory.GetComponent<Image>().color = new Color(1, 1, 1, 1);
             SlotToWorkOn.OriginalCellFromInventory.Equipped.SetActive(false);
             SlotToWorkOn.OriginalCellFromInventory = null;
 
+
             for (int i = 0; i < GameManager.Instance.ThePlayer.PowerUpsFromItems.Count; i++)
             {
-                for (int k = 0; k < SlotToWorkOn.TheItem.PowerUpToGive.Length; k++)
+                for (int k = 0; k < SlotToWorkOn.TheItem.PowerUpToGive.Count; k++)
                 {
                     if (GameManager.Instance.ThePlayer.PowerUpsFromItems[i] == SlotToWorkOn.TheItem.PowerUpToGive[k])
                     {
+                        foreach (Button Butt in UiManager.Instance.PowerUpButtons)
+                        {
+                            if (Butt.GetComponentInChildren<Text>().text == GameManager.Instance.ThePlayer.PowerUpsFromItems[i].ToString())
+                            {
+                                Butt.transform.GetChild(0).GetComponent<Text>().text = "Power Up";
+                                Butt.interactable = false;
+                            }
+                        }
+
                         GameManager.Instance.ThePlayer.PowerUpsFromItems.Remove(SlotToWorkOn.TheItem.PowerUpToGive[k]);
                     }
 
                 }
             }
 
-            foreach (Button item in SlotToWorkOn.DestructionButtons)
-            {
-                item.transform.GetChild(0).GetComponent<Text>().text = "Power Up";
-                item.interactable = false;
 
-            }
+            //foreach (Button item in SlotToWorkOn.DestructionButtons)
+            //{
+            //    item.transform.GetChild(0).GetComponent<Text>().text = "Power Up";
+            //    item.interactable = false;
+
+            //}
 
 
-            SlotToWorkOn.DestructionButtons.Clear();
+            //SlotToWorkOn.DestructionButtons.Clear();
 
             SlotToWorkOn.TheItem = null;
 

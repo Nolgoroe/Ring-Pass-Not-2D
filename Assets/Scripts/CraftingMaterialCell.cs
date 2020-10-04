@@ -32,7 +32,7 @@ public class CraftingMaterialCell : MonoBehaviour
                 CraftingMatCount = GameManager.Instance.ThePlayer.CraftingMatsInInventory[i].Amount;
             }
         }
-        ItemSprite.sprite = CraftingMatInCell.ItemSprite;
+        ItemSprite.sprite = Resources.Load<Sprite>(CraftingMatInCell.ItemSpritePath);
         CraftingMatCountText.text = CraftingMatCount.ToString();
     }
 }

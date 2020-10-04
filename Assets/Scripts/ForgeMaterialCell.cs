@@ -26,6 +26,6 @@ public class ForgeMaterialCell : MonoBehaviour
         SubTypeOfItem = CraftingMatInCell.SubTypeOfItem;
 
         CraftingMatNameText.text = CraftingMatInCell.name;
-        ItemSprite.sprite = CraftingMatInCell.ItemSprite;
+        ItemSprite.sprite = Resources.Load<Sprite>(CraftingMatInCell.ItemSpritePath);
     }
 }

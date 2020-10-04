@@ -43,7 +43,7 @@ public class Equipment : ScriptableObject
 
     public EquipmentSlotType SlotForEquipment;
 
-    public float CoolDownTimeHours;
+    public double CoolDownTimeHours;
 
     public int UsesInMatch;
 
@@ -51,9 +51,9 @@ public class Equipment : ScriptableObject
 
     public int UsesBeforeDestruction;
 
-    public Sprite SpriteOfEquipment;
+    //public Sprite SpriteOfEquipment;
 
-    public PowerUpChooseItemTypes[] PowerUpToGive;
+    public  List<PowerUpChooseItemTypes> PowerUpToGive;
 
     public ColorData ColorForPowerUp;
 
@@ -65,6 +65,11 @@ public class Equipment : ScriptableObject
 
     public List<ItemAmount> MaterialsForCrafting;
 
-    public Sprite LookWhenEquipped;
+    //public Sprite LookWhenEquipped;
+
+    public string ItemSpriteInventory;
+
+
+    public string ItemSpritePathWhenEquipped;
 
 }

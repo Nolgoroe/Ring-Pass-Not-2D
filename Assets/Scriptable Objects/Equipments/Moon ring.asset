@@ -29,4 +29,5 @@ MonoBehaviour:
     Amount: 100
   - Material: {fileID: 11400000, guid: efb820c6483066e4fa0e0dc2f009e303, type: 2}
     Amount: 5
-  LookWhenEquipped: {fileID: 21300000, guid: 3ea34740eb26f4f449c112efc84c9633, type: 3}
+  ItemSpriteInventory: Equipment/For Inventory/ItemIcon_BeetleRing
+  ItemSpritePathWhenEquipped: Equipment/When Equipped/Beetle Ring

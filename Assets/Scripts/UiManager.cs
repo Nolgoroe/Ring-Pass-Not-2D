@@ -129,7 +129,7 @@ public class UiManager : MonoBehaviour
 
             for (int i = 0; i < GameManager.Instance.ThePlayer.SlotsForEquipment.Length; i++)
             {
-                GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Clear();
+               //GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Clear();
 
                 if (GameManager.Instance.ThePlayer.SlotsForEquipment[i].Full)
                 {
@@ -200,7 +200,7 @@ public class UiManager : MonoBehaviour
             {
                 IsAnySlotFull = true;
 
-                for (int r = 0; r < GameManager.Instance.ThePlayer.SlotsForEquipment[i].TheItem.PowerUpToGive.Length; r++)
+                for (int r = 0; r < GameManager.Instance.ThePlayer.SlotsForEquipment[i].TheItem.PowerUpToGive.Count; r++)
                 {
                     for (int k = 0; k < PowerUpButtons.Count; k++)
                     {
@@ -214,28 +214,28 @@ public class UiManager : MonoBehaviour
                                     PowerUpButtons[k].transform.GetChild(0).GetComponent<Text>().text = PowerUpChooseItemTypes.Joker.ToString();
                                     PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.FillPowerUpButton(PowerUpButtons[k]); });
                                     PowerUpButtons[k].interactable = true;
-                                    GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Add(PowerUpButtons[k]);
+                                    //GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Add(PowerUpButtons[k]);
                                     break;
                                 case PowerUpChooseItemTypes.Switch:
                                     PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.UsingPowerUpToggle((int)PowerUpChooseItemTypes.Switch); });
                                     PowerUpButtons[k].transform.GetChild(0).GetComponent<Text>().text = PowerUpChooseItemTypes.Switch.ToString();
                                     PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.FillPowerUpButton(PowerUpButtons[k]); });
                                     PowerUpButtons[k].interactable = true;
-                                    GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Add(PowerUpButtons[k]);
+                                    //GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Add(PowerUpButtons[k]);
                                     break;
                                 case PowerUpChooseItemTypes.TileBomb:
                                     PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.UsingPowerUpToggle((int)PowerUpChooseItemTypes.TileBomb); });
                                     PowerUpButtons[k].transform.GetChild(0).GetComponent<Text>().text = PowerUpChooseItemTypes.TileBomb.ToString();
                                     PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.FillPowerUpButton(PowerUpButtons[k]); });
                                     PowerUpButtons[k].interactable = true;
-                                    GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Add(PowerUpButtons[k]);
+                                    //GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Add(PowerUpButtons[k]);
                                     break;
                                 case PowerUpChooseItemTypes.SliceBomb:
                                     PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.UsingPowerUpToggle((int)PowerUpChooseItemTypes.SliceBomb); });
                                     PowerUpButtons[k].transform.GetChild(0).GetComponent<Text>().text = PowerUpChooseItemTypes.SliceBomb.ToString();
                                     PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.FillPowerUpButton(PowerUpButtons[k]); });
                                     PowerUpButtons[k].interactable = true;
-                                    GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Add(PowerUpButtons[k]);
+                                    //GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Add(PowerUpButtons[k]);
                                     break;
                                 case PowerUpChooseItemTypes.ColorTransform:
                                     PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.UsingPowerUpToggle((int)PowerUpChooseItemTypes.ColorTransform); });
@@ -248,7 +248,7 @@ public class UiManager : MonoBehaviour
 
                                     PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.FillPowerUpButton(PowerUpButtons[k]); });
                                     PowerUpButtons[k].interactable = true;
-                                    GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Add(PowerUpButtons[k]);
+                                    //GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Add(PowerUpButtons[k]);
                                     break;
                                 case PowerUpChooseItemTypes.ShapeTransform:
                                     PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.UsingPowerUpToggle((int)PowerUpChooseItemTypes.ShapeTransform); });
@@ -261,7 +261,7 @@ public class UiManager : MonoBehaviour
 
                                     PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.FillPowerUpButton(PowerUpButtons[k]); });
                                     PowerUpButtons[k].interactable = true;
-                                    GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Add(PowerUpButtons[k]);
+                                    //GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Add(PowerUpButtons[k]);
                                     break;
                                 case PowerUpChooseItemTypes.Reshuffle:
                                     PowerUpButtons[k].onClick.AddListener(delegate { GameManager.Instance.PowerUpManager.FillPowerUpButton(PowerUpButtons[k]); });
@@ -272,7 +272,7 @@ public class UiManager : MonoBehaviour
 
                                     PowerUpButtons[k].transform.GetChild(0).GetComponent<Text>().text = PowerUpChooseItemTypes.Reshuffle.ToString();
                                     PowerUpButtons[k].interactable = true;
-                                    GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Add(PowerUpButtons[k]);
+                                    //GameManager.Instance.ThePlayer.SlotsForEquipment[i].DestructionButtons.Add(PowerUpButtons[k]);
 
                                     break;
                                 default:
@@ -388,6 +388,7 @@ public class UiManager : MonoBehaviour
         if (On)
         {
             Wardrobe.SetActive(true);
+            WardrobeManager.Instance.OpenWardrobe();
         }
         else
         {

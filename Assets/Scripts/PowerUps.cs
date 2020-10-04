@@ -907,7 +907,7 @@ public class PowerUps : MonoBehaviour
             {
                 if (slot.TheItem.HasTimeCooldown)
                 {
-                    for (int i = 0; i < slot.TheItem.PowerUpToGive.Length; i++)
+                    for (int i = 0; i < slot.TheItem.PowerUpToGive.Count; i++)
                     {
                         if (slot.TheItem.PowerUpToGive[i] == PowerUpInUse)
                         {
@@ -919,7 +919,7 @@ public class PowerUps : MonoBehaviour
                 }
                 else
                 {
-                    for (int i = 0; i < slot.TheItem.PowerUpToGive.Length; i++)
+                    for (int i = 0; i < slot.TheItem.PowerUpToGive.Count; i++)
                     {
                         if (slot.TheItem.PowerUpToGive[i] == PowerUpInUse)
                         {

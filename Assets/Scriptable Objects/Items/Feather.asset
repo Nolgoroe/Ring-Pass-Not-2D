@@ -15,4 +15,4 @@ MonoBehaviour:
   ID: 5
   TypeOfItem: 1
   SubTypeOfItem: 5
-  ItemSprite: {fileID: 21300000, guid: f8d3b409eae44374e998a02b2e9dae7e, type: 3}
+  ItemSpritePath: CrafingMats/Feather

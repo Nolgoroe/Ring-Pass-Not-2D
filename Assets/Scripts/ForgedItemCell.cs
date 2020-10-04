@@ -28,7 +28,8 @@ public class ForgedItemCell : MonoBehaviour
         {
             ItemUsesPerDay.text = "Uses Per Match: " + EquipmentToCreate.UsesInMatch;
         }
-        ItemSprite.sprite = EquipmentToCreate.SpriteOfEquipment;
+        ItemSprite.sprite = Resources.Load<Sprite>(EquipmentToCreate.ItemSpriteInventory);
+
     }
 }
 

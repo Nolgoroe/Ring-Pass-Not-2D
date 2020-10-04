@@ -2741,7 +2741,7 @@ RectTransform:
   - {fileID: 635249198}
   - {fileID: 575461405}
   m_Father: {fileID: 1990389474}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2854,8 +2854,6 @@ MonoBehaviour:
   TimesLeftToUseBeforeCountdown: 0
   TimesLeftToUseBeforeDestruction: 0
   TheItem: {fileID: 0}
-  DestructionButtons: []
-  ItemSprite: {fileID: 217984930}
   OriginalCellFromInventory: {fileID: 0}
 --- !u!1 &218687084
 GameObject:
@@ -3743,8 +3741,6 @@ MonoBehaviour:
   TimesLeftToUseBeforeCountdown: 0
   TimesLeftToUseBeforeDestruction: 0
   TheItem: {fileID: 0}
-  DestructionButtons: []
-  ItemSprite: {fileID: 284850379}
   OriginalCellFromInventory: {fileID: 0}
 --- !u!1 &285222481
 GameObject:
@@ -5482,8 +5478,6 @@ MonoBehaviour:
   TimesLeftToUseBeforeCountdown: 0
   TimesLeftToUseBeforeDestruction: 0
   TheItem: {fileID: 0}
-  DestructionButtons: []
-  ItemSprite: {fileID: 0}
   OriginalCellFromInventory: {fileID: 0}
 --- !u!1 &497048103
 GameObject:
@@ -5591,8 +5585,6 @@ MonoBehaviour:
   TimesLeftToUseBeforeCountdown: 0
   TimesLeftToUseBeforeDestruction: 0
   TheItem: {fileID: 0}
-  DestructionButtons: []
-  ItemSprite: {fileID: 497048105}
   OriginalCellFromInventory: {fileID: 0}
 --- !u!1 &513086841
 GameObject:
@@ -7027,7 +7019,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 635249198}
-  - component: {fileID: 635249199}
   - component: {fileID: 635249201}
   - component: {fileID: 635249200}
   m_Layer: 5
@@ -7057,26 +7048,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &635249199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635249197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4bab984e2770d042b49d5811431ee0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EquipemntCellPrefab: {fileID: 4558919112716310355, guid: d4d72d6f827ae334c8eeb48edd18e6eb,
-    type: 3}
-  EquipmentCellParent: {fileID: 474345788}
-  SortingDropdown: {fileID: 873139527}
-  AllEquipments: []
-  SortedItems: []
-  SortedEquippedItems: []
-  EquippedItems: []
 --- !u!114 &635249200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8677,7 +8648,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0008544922, y: 0}
+  m_AnchoredPosition: {x: -0.0007324219, y: 0}
   m_SizeDelta: {x: 132.1, y: 471.32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &821207348
@@ -9308,7 +9279,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 635249199}
+      - m_Target: {fileID: 1098806536}
         m_MethodName: GetSortSting
         m_Mode: 1
         m_Arguments:
@@ -9687,7 +9658,7 @@ Transform:
   - {fileID: 2095498361}
   - {fileID: 493891704}
   m_Father: {fileID: 1990389474}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &925840937
 GameObject:
@@ -11668,6 +11639,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1076957552}
   m_CullTransparentMesh: 0
+--- !u!1 &1098806534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1098806535}
+  - component: {fileID: 1098806536}
+  m_Layer: 0
+  m_Name: Wardrobe Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1098806535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098806534}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 685.4126, y: 606.9443, z: 14.704468}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1990389474}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1098806536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098806534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4bab984e2770d042b49d5811431ee0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EquipemntCellPrefab: {fileID: 4558919112716310355, guid: d4d72d6f827ae334c8eeb48edd18e6eb,
+    type: 3}
+  EquipmentCellParent: {fileID: 474345788}
+  SortingDropdown: {fileID: 873139527}
+  AllEquipments: []
+  SortedItems: []
+  SortedEquippedItems: []
+  EquippedItems: []
 --- !u!1 &1098842133
 GameObject:
   m_ObjectHideFlags: 0
@@ -18561,17 +18583,7 @@ MonoBehaviour:
   PowerUpsFromItems: 
   EquipmentWithTimeCooldown: []
   EquipmentInInventory: []
-  CraftingMatsInInventory:
-  - Material: {fileID: 11400000, guid: e0096b65b3b97ca41b2861ea1d624daa, type: 2}
-    Amount: 5
-  - Material: {fileID: 11400000, guid: b46d6125eba95b74fb971f19ce791ac7, type: 2}
-    Amount: 10
-  - Material: {fileID: 11400000, guid: efb820c6483066e4fa0e0dc2f009e303, type: 2}
-    Amount: 15
-  - Material: {fileID: 11400000, guid: 8920cc3e36f5b6a4090c991fed78f942, type: 2}
-    Amount: 20
-  - Material: {fileID: 11400000, guid: 90484fd06e538c44eacd74520d3f5f94, type: 2}
-    Amount: 25
+  CraftingMatsInInventory: []
   EquippedItems: []
 --- !u!1 &1832088521
 GameObject:
@@ -20077,6 +20089,7 @@ Transform:
   - {fileID: 1227455822}
   - {fileID: 56236030}
   - {fileID: 70554419}
+  - {fileID: 1098806535}
   - {fileID: 922081042}
   - {fileID: 201675180}
   m_Father: {fileID: 0}
@@ -20592,8 +20605,6 @@ MonoBehaviour:
   TimesLeftToUseBeforeCountdown: 0
   TimesLeftToUseBeforeDestruction: 0
   TheItem: {fileID: 0}
-  DestructionButtons: []
-  ItemSprite: {fileID: 0}
   OriginalCellFromInventory: {fileID: 0}
 --- !u!1 &2100581379
 GameObject:

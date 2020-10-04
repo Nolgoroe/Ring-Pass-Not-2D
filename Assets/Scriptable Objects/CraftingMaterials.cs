@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum ItemType
 {
@@ -26,5 +27,7 @@ public class CraftingMaterials : ScriptableObject
     public int ID;
     public ItemType TypeOfItem;
     public SubTypeOfItem SubTypeOfItem;
-    public Sprite ItemSprite;
+    //public Sprite ItemSprite;
+
+    public string ItemSpritePath;
 }

@@ -13,7 +13,7 @@ public class EquipmentSlot : MonoBehaviour,IDropHandler
 
     public EquipmentSlotType TypeOfSlot;
 
-    public float TimeLeftTillNextUse;
+    public double TimeLeftTillNextUse;
 
     public int TimesLeftToUseInMatch;
 
@@ -23,9 +23,9 @@ public class EquipmentSlot : MonoBehaviour,IDropHandler
 
     public Equipment TheItem;
 
-    public List<Button> DestructionButtons;
+    //public List<Button> DestructionButtons;
 
-    public Image ItemSprite;
+    //public Image ItemSprite;
 
     public EquipmentCell OriginalCellFromInventory;
 
@@ -49,8 +49,11 @@ public class EquipmentSlot : MonoBehaviour,IDropHandler
 
                 OriginalCellFromInventory = WardrobeDragHandler.CellToMove;
 
-                ItemSprite.sprite = TheItem.LookWhenEquipped;
-                ItemSprite.color = new Color(1, 1, 1, 1);
+                //ItemSprite.sprite = Resources.Load <Sprite>(TheItem.ItemSpritePathWhenEquipped);
+                //ItemSprite.color = new Color(1, 1, 1, 1);
+
+                gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>(TheItem.ItemSpritePathWhenEquipped);
+                gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1);
 
                 WardrobeDragHandler.CellToMove.GetComponent<Image>().color = new Color(1, 1, 1, 0.6f);
                 WardrobeDragHandler.CellToMove.EquippedOnPlayer = true;
@@ -73,7 +76,7 @@ public class EquipmentSlot : MonoBehaviour,IDropHandler
                 TimesLeftToUseBeforeDestruction = TheItem.UsesBeforeDestruction;
 
                 GameManager.Instance.ThePlayer.PowerUpsFromItems.AddRange(TheItem.PowerUpToGive);
-                GameManager.Instance.ThePlayer.EquippedItems.Add(this);
+                GameManager.Instance.ThePlayer.EquippedItems.Add(TheItem);
                 WardrobeManager.Instance.EquippedItems.Add(this);
 
                 WardrobeManager.Instance.AllEquipments.Remove(TheItem); /// ADD to on drop inventory

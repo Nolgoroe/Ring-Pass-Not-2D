@@ -65,7 +65,7 @@ public class DropItemInInventory : MonoBehaviour/*, IDropHandler*/, IPointerDown
             {
                 for (int i = 0; i < GameManager.Instance.ThePlayer.PowerUpsFromItems.Count; i++)
                 {
-                    for (int k = 0; k < EQS.TheItem.PowerUpToGive.Length; k++)
+                    for (int k = 0; k < EQS.TheItem.PowerUpToGive.Count; k++)
                     {
                         if (GameManager.Instance.ThePlayer.PowerUpsFromItems[i] == EQS.TheItem.PowerUpToGive[k])
                         {
@@ -75,8 +75,8 @@ public class DropItemInInventory : MonoBehaviour/*, IDropHandler*/, IPointerDown
                     }
                 }
 
-                EQS.DestructionButtons.Clear();
-                EQS.ItemSprite = EQS.GetComponent<Image>();
+                //EQS.DestructionButtons.Clear();
+                //EQS.ItemSprite = EQS.GetComponent<Image>();
                 EQS.GetComponent<Image>().color = new Color(1, 1, 1, 0);
                 EQS.Full = false;
                 EQS.TimesLeftToUseBeforeCountdown = 0;
@@ -90,7 +90,7 @@ public class DropItemInInventory : MonoBehaviour/*, IDropHandler*/, IPointerDown
                 WardrobeManager.Instance.EquippedItems.Remove(EQS);
                 WardrobeManager.Instance.AllEquipments.Add(EQS.TheItem);
                 GameManager.Instance.ThePlayer.EquipmentInInventory.Add(EQS.TheItem);
-                GameManager.Instance.ThePlayer.EquippedItems.Remove(EQS);
+                GameManager.Instance.ThePlayer.EquippedItems.Remove(EQS.TheItem);
 
                 EQS.OriginalCellFromInventory = null;
                 EQS.TheItem = null;
