@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LitJson;
+using System.IO;
 
 
 public class PlayerData : MonoBehaviour
@@ -17,7 +19,7 @@ public class PlayerData : MonoBehaviour
 
     public List<ItemAmount> CraftingMatsInInventory;
 
-    public List<EquipmentSlot> EquippedItems;
+    JsonData MatsInInventory;
 
     private void Start()
     {
@@ -79,5 +81,17 @@ public class PlayerData : MonoBehaviour
         PlayerPrefs.DeleteKey("ItemsWithCooldownCount");
         PlayerPrefs.DeleteKey("ItemID");
         PlayerPrefs.DeleteKey("NextTimePowerUpAvailable");
+    }
+
+
+    [ContextMenu("Save mats in inventroy")]
+    public void SaveMatsInInventory()
+    {
+        for (int i = 0; i < CraftingMatsInInventory.Count; i++)
+        {
+            MatsInInventory = JsonMapper.ToJson(CraftingMatsInInventory[i]);
+        }
+
+        File.WriteAllText(Application.dataPath + "/CraftingMatsInInventory.Json", MatsInInventory.ToString());
     }
 }
