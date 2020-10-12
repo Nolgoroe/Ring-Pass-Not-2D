@@ -25,9 +25,9 @@ public class ForgeManager : MonoBehaviour
 
     public Dropdown SortingDropdown;
 
-    public List<Equipment> SortedItems;
+    public List<Equipment> SortedItems; ///// Used For Sorting
 
-    public List<Equipment> AllEquipments;
+    public List<Equipment> AllEquipments; ///// Used For Sorting
 
     void Start()
     {
@@ -99,6 +99,18 @@ public class ForgeManager : MonoBehaviour
     public void ForgeItem(Equipment TheItem)
     {
         GameManager.Instance.ThePlayer.EquipmentInInventory.Add(TheItem);
+
+        foreach (ForgeItem item in ForgeItems)
+        {
+            if(item.TheItem.GetComponent<ForgedItemCell>().EquipmentToCreate.ID == TheItem.ID)
+            {
+                Destroy(item.gameObject);
+
+                ForgeItems.Remove(item);
+                AllEquipments.Remove(TheItem);
+                break;
+            }
+        }
 
         for (int i = 0; i < GameManager.Instance.ThePlayer.CraftingMatsInInventory.Count; i++)
         {
@@ -215,6 +227,7 @@ public class ForgeManager : MonoBehaviour
         {
             Destroy(cell.gameObject);
         }
+
         ForgeItems.Clear();
 
         for (int i = 0; i < SortedItems.Count; i++)
@@ -237,4 +250,23 @@ public class ForgeManager : MonoBehaviour
         CheckIfCanCraftItem();
     }
 
+    public void SummonAfterDestruction(Equipment Item)
+    {
+        GameObject go = Instantiate(ForgeItemPrefab, ItemParent);
+
+        ForgedItemCell FIC = go.GetComponent<ForgeItem>().TheItem.GetComponent<ForgedItemCell>();
+
+        ForgeItem FI = go.GetComponent<ForgeItem>();
+
+        FIC.EquipmentToCreate = Item;
+
+        go.name = FIC.EquipmentToCreate.name;
+
+        FI.ForgeButton.onClick.AddListener(delegate { ForgeItem(FIC.EquipmentToCreate); });
+
+        ForgeItems.Add(FI);
+        AllEquipments.Add(FIC.EquipmentToCreate);
+
+        CheckIfCanCraftItem();
+    }
 }

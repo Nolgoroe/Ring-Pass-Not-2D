@@ -13237,6 +13237,7 @@ MonoBehaviour:
   SymbolForShapeTransformPowerUp: 5
   PowerUpButton: {fileID: 0}
   HasTargetForPowerUp: 0
+  PowerUpsInGame: 00000000010000000200000003000000040000000500000006000000
 --- !u!4 &1227455822
 Transform:
   m_ObjectHideFlags: 0

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4618320490761022121}
   - component: {fileID: -4938532121456885551}
   - component: {fileID: -8517780459230056111}
-  - component: {fileID: -3705319162402189337}
   m_Layer: 11
   m_Name: Circle_R
   m_TagString: Untagged
@@ -163,16 +162,3 @@ PolygonCollider2D:
       - {x: 0.42999998, y: -0.81}
       - {x: 0.51, y: -0.61}
       - {x: 0.58, y: -0.44}
---- !u!114 &-3705319162402189337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2798714391076580937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 136f362086f5856459bd13cc3a800a98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PowerUpsToUse: 0300000001000000000000000400000005000000

@@ -35,7 +35,11 @@ public class EquipmentManager : MonoBehaviour
     public void DecreaseNumberOfUsesInMatch(Button PressedPowerUp, EquipmentSlot SlotToWorkOn)
     {
         SlotToWorkOn.TimesLeftToUseInMatch--;
-        SlotToWorkOn.TimesLeftToUseBeforeDestruction--;
+
+        if (SlotToWorkOn.TheItem.Destructable)
+        {
+            SlotToWorkOn.TimesLeftToUseBeforeDestruction--;
+        }
 
         if (SlotToWorkOn.OriginalCellFromInventory)
         {
@@ -47,11 +51,13 @@ public class EquipmentManager : MonoBehaviour
             SlotToWorkOn.TimesLeftToUseInMatch = SlotToWorkOn.TheItem.UsesInMatch;
 
             PressedPowerUp.interactable = false;
+            PressedPowerUp.onClick.RemoveAllListeners();
             //SlotToWorkOn.Usable = false;
         }
 
-        if(SlotToWorkOn.TimesLeftToUseBeforeDestruction == 0)
+        if (SlotToWorkOn.TimesLeftToUseBeforeDestruction == 0 && SlotToWorkOn.TheItem.Destructable)
         {
+            GameManager.Instance.ForgeManagerScript.SummonAfterDestruction(SlotToWorkOn.TheItem);
 
             SlotToWorkOn.Full = false;
             SlotToWorkOn.TimeLeftTillNextUse = 0;
@@ -82,6 +88,7 @@ public class EquipmentManager : MonoBehaviour
                             if (Butt.GetComponentInChildren<Text>().text == GameManager.Instance.ThePlayer.PowerUpsFromItems[i].ToString())
                             {
                                 Butt.transform.GetChild(0).GetComponent<Text>().text = "Power Up";
+                                Butt.onClick.RemoveAllListeners();
                                 Butt.interactable = false;
                             }
                         }
@@ -113,10 +120,17 @@ public class EquipmentManager : MonoBehaviour
     {
         SlotToWorkOn.TimesLeftToUseBeforeCountdown--;
         SlotToWorkOn.TimeLeftTillNextUse = SlotToWorkOn.TheItem.CoolDownTimeHours;
+
+        if (SlotToWorkOn.TheItem.Destructable)
+        {
+            SlotToWorkOn.TimesLeftToUseBeforeDestruction--;
+        }
+
         if (SlotToWorkOn.TimesLeftToUseBeforeCountdown == 0)
         {
             PressedPowerUp.interactable = false;
             PressedPowerUp.transform.GetChild(0).GetComponent<Text>().text = "Cooldown";
+            PressedPowerUp.onClick.RemoveAllListeners();
             //SlotToWorkOn.Usable = false;
 
             if (!GameManager.Instance.ThePlayer.EquipmentWithTimeCooldown.Contains(SlotToWorkOn.TheItem))
@@ -146,6 +160,64 @@ public class EquipmentManager : MonoBehaviour
                     }
                 }
             }
+        }
+
+        if (SlotToWorkOn.TimesLeftToUseBeforeDestruction == 0 && SlotToWorkOn.TheItem.Destructable)
+        {
+            SlotToWorkOn.Full = false;
+            SlotToWorkOn.TimeLeftTillNextUse = 0;
+            SlotToWorkOn.TimesLeftToUseInMatch = 0;
+            SlotToWorkOn.TimesLeftToUseBeforeCountdown = 0;
+            SlotToWorkOn.TimesLeftToUseBeforeDestruction = 0;
+
+            //SlotToWorkOn.ItemSprite = SlotToWorkOn.GetComponent<Image>();
+            SlotToWorkOn.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+
+            WardrobeManager.Instance.EquippedItems.Remove(SlotToWorkOn);
+            GameManager.Instance.ThePlayer.EquippedItems.Remove(SlotToWorkOn.TheItem);
+
+            SlotToWorkOn.OriginalCellFromInventory.EquippedOnPlayer = false;
+            SlotToWorkOn.OriginalCellFromInventory.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            SlotToWorkOn.OriginalCellFromInventory.Equipped.SetActive(false);
+            SlotToWorkOn.OriginalCellFromInventory = null;
+
+
+            for (int i = 0; i < GameManager.Instance.ThePlayer.PowerUpsFromItems.Count; i++)
+            {
+                for (int k = 0; k < SlotToWorkOn.TheItem.PowerUpToGive.Count; k++)
+                {
+                    if (GameManager.Instance.ThePlayer.PowerUpsFromItems[i] == SlotToWorkOn.TheItem.PowerUpToGive[k])
+                    {
+                        foreach (Button Butt in UiManager.Instance.PowerUpButtons)
+                        {
+                            if (Butt.GetComponentInChildren<Text>().text == GameManager.Instance.ThePlayer.PowerUpsFromItems[i].ToString())
+                            {
+                                Butt.transform.GetChild(0).GetComponent<Text>().text = "Power Up";
+                                Butt.onClick.RemoveAllListeners();
+                                Butt.interactable = false;
+                            }
+                        }
+
+                        GameManager.Instance.ThePlayer.PowerUpsFromItems.Remove(SlotToWorkOn.TheItem.PowerUpToGive[k]);
+                    }
+
+                }
+            }
+
+
+            //foreach (Button item in SlotToWorkOn.DestructionButtons)
+            //{
+            //    item.transform.GetChild(0).GetComponent<Text>().text = "Power Up";
+            //    item.interactable = false;
+
+            //}
+
+
+            //SlotToWorkOn.DestructionButtons.Clear();
+
+            SlotToWorkOn.TheItem = null;
+
+            //Destroy(SlotToWorkOn.transform.GetChild(0).gameObject);
         }
     }
 

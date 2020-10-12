@@ -43,9 +43,9 @@ public class MouseCollisionDetection : MonoBehaviour
                 //Debug.Log(collision.gameObject.name);
                 ObjectToUsePowerup = collision.gameObject;
 
-                for (int i = 0; i < ObjectToUsePowerup.GetComponent<SelectPowerUpType>().PowerUpsToUse.Length; i++)
+                for (int i = 0; i < GameManager.Instance.PowerUpManager.PowerUpsInGame.Length; i++)
                 {
-                    if (GameManager.Instance.PowerUpManager.PowerUpInUse == ObjectToUsePowerup.GetComponent<SelectPowerUpType>().PowerUpsToUse[i])
+                    if (GameManager.Instance.PowerUpManager.PowerUpInUse == GameManager.Instance.PowerUpManager.PowerUpsInGame[i])
                     {
                         //Debug.Log("WHAT THE FUCK");
                         GameManager.Instance.PowerUpManager.HasTargetForPowerUp = true;

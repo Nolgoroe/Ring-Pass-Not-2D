@@ -17,9 +17,8 @@ MonoBehaviour:
   CoolDownTimeHours: 0
   UsesInMatch: 10
   UsesBeforeTimeCountdown: 0
-  UsesBeforeDestruction: 100
-  SpriteOfEquipment: {fileID: 21300000, guid: b3339cf2e09fe3948aa3e00f128b0e29, type: 3}
-  PowerUpToGive: 0300000000000000
+  UsesBeforeDestruction: 0
+  PowerUpToGive: 03000000
   ColorForPowerUp: 5
   SymbolForPowerUp: 5
   HasTimeCooldown: 0
@@ -31,3 +30,4 @@ MonoBehaviour:
     Amount: 5
   ItemSpriteInventory: Equipment/For Inventory/ItemIcon_BeetleRing
   ItemSpritePathWhenEquipped: Equipment/When Equipped/Beetle Ring
+  Destructable: 0

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2891837359190337964}
   - component: {fileID: -4133511073559367878}
   - component: {fileID: 5260051813578817757}
-  - component: {fileID: 8174850917164605727}
   m_Layer: 11
   m_Name: Square_L
   m_TagString: Untagged
@@ -161,16 +160,3 @@ PolygonCollider2D:
       - {x: -0.38, y: -0.83}
       - {x: -0.08, y: -0.72999996}
       - {x: 0.14999999, y: -0.66999996}
---- !u!114 &8174850917164605727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8235953214814661458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 136f362086f5856459bd13cc3a800a98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PowerUpsToUse: 0300000001000000000000000400000005000000

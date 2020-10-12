@@ -36,6 +36,8 @@ public class PowerUps : MonoBehaviour
 
     public bool HasTargetForPowerUp = false;
 
+    public PowerUpChooseItemTypes[] PowerUpsInGame;
+
     public void Init()
     {
         TimesClickedDeal = 0;

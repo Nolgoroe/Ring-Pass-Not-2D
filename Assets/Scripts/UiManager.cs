@@ -125,6 +125,7 @@ public class UiManager : MonoBehaviour
             for (int i = 0; i < PowerUpButtons.Count; i++)
             {
                 PowerUpButtons[i].interactable = false;
+                PowerUpButtons[i].onClick.RemoveAllListeners();
             }
 
             for (int i = 0; i < GameManager.Instance.ThePlayer.SlotsForEquipment.Length; i++)
@@ -294,6 +295,7 @@ public class UiManager : MonoBehaviour
             {
                 PowerUpButtons[k].interactable = false;
                 PowerUpButtons[k].transform.GetChild(0).GetComponent<Text>().text = "Power Up";
+                PowerUpButtons[k].onClick.RemoveAllListeners();
             }
         }
     }
@@ -310,6 +312,7 @@ public class UiManager : MonoBehaviour
                 {
                     ToDeactivate.interactable = false;
                     ToDeactivate.transform.GetChild(0).GetComponent<Text>().text = "Cooldown";
+                    ToDeactivate.onClick.RemoveAllListeners();
                     PowerUpButtons.Remove(ToDeactivate);
                 }
             }

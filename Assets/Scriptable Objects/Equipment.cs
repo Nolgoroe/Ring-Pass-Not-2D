@@ -69,7 +69,7 @@ public class Equipment : ScriptableObject
 
     public string ItemSpriteInventory;
 
-
     public string ItemSpritePathWhenEquipped;
 
+    public bool Destructable;
 }
